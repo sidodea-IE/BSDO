@@ -1,0 +1,1019 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:bsdo="https://w3id.org/bsdo#"
+   xmlns:dcterms="http://purl.org/dc/terms/"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+   xmlns:skos="http://www.w3.org/2004/02/skos/core#"
+>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasUnitIdentifier">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:label xml:lang="en">unit identifier</rdfs:label>
+    <rdfs:comment xml:lang="en">A persistent unit identifier, independent of any vehicle. Both ecosystems maintain such identifiers, but under mutually uninterpretable schemes, and neither follows the identification standard required of battery passports by Regulation (EU) 2023/1542.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo/merged">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:versionInfo>0.2.0-draft</owl:versionInfo>
+    <dcterms:title xml:lang="en">BSDO — terminology and population merged</dcterms:title>
+    <dcterms:creator>Sido Dea Auvia</dcterms:creator>
+    <dcterms:license rdf:resource="https://creativecommons.org/licenses/by/4.0/"/>
+    <rdfs:comment xml:lang="en">The BSDO terminology and its population combined into one file for editors that cannot resolve imports. Logically equivalent to bsdo.ttl together with bsdo-abox.ttl.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Swap3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">SWAP direct swap, 3-slot</rdfs:label>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_SWAP_Small"/>
+    <rdfs:comment xml:lang="en">Source: in-application procedure guide for the smaller station type.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Inst_V01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryInstallation"/>
+    <bsdo:installedPack rdf:resource="https://w3id.org/bsdo#Pack_V01"/>
+    <bsdo:installedIn rdf:resource="https://w3id.org/bsdo#Veh_Volta401"/>
+    <rdfs:comment xml:lang="en">The installation is reified rather than modelled as a mereological part-whole relation: a pack moves between vehicles through exchange, so a fixed relation would be false.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/emmo/domain/battery#battery_74ed2670_657d_4f0b_b0a6_3f13bc2e9c17">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Battery (EMMO domain-battery)</rdfs:label>
+    <rdfs:comment xml:lang="en">Alignment stub for the Battery class of the EMMO domain-battery module. Declared locally rather than imported: importing the full module would introduce several thousand classes to obtain a single subsumption relation.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/emmo/domain/battery"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V02">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <bsdo:hasUnitIdentifier>VOLTA-PSEUDO-02</bsdo:hasUnitIdentifier>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
+    <bsdo:hasEnrolmentStatus rdf:resource="https://w3id.org/bsdo#Online"/>
+    <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n677f92213537418a9f8f4100991e68ffb2"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LFPSwappableBattery">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="n677f92213537418a9f8f4100991e68ffb20"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:label xml:lang="en">LiFePO4 Swappable Battery</rdfs:label>
+    <rdfs:comment xml:lang="en">A swappable pack with lithium iron phosphate chemistry. Disjoint with the lithium-ion class.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#mayBeChargedByHolder">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#boolean"/>
+    <rdfs:label xml:lang="en">may be charged by holder</rdfs:label>
+    <rdfs:comment xml:lang="en">The right to charge a pack, which is separate from owning it. The same physical pack may fall under different rights regimes depending on its network enrolment status, with ownership unchanged throughout.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_Volta_Low">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:thresholdPercent>
+    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+    <rdfs:label xml:lang="en">Volta bucket, below 50%</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_100km">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
+    <rdfs:label xml:lang="en">Try to Ride</rdfs:label>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in kilometres.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb15">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb19">
+    <rdf:first rdf:nodeID="n677f92213537418a9f8f4100991e68ffb17"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb4">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb7"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_Ganti">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">Volta direct exchange</rdfs:label>
+    <skos:altLabel xml:lang="id">Ganti Baterai</skos:altLabel>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Select a cabinet, scan, an empty door opens, exchange. Neither payment nor a time limit is mentioned, in contrast to the booking and loan flows of the same operator.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#ServiceEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Service Event</rdfs:label>
+    <rdfs:comment xml:lang="en">A bounded event in which energy is supplied to a vehicle, either by exchanging the physical carrier or by transferring energy into a carrier that remains in place.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasCapacityAh">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">capacity (Ah)</rdfs:label>
+    <rdfs:comment xml:lang="en">Capacity in ampere-hours. The two ecosystems report capacity in different units, which are not convertible without the actual rather than nominal voltage.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#DualFunctionDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="n677f92213537418a9f8f4100991e68ffb10"/>
+    <rdfs:label xml:lang="en">Dual-Function Device</rdfs:label>
+    <rdfs:comment xml:lang="en">A device performing both object exchange and energy transfer. One ecosystem separates these functions across distinct appliances; the other combines them in a single cabinet. The distinction becomes visible only because the two functions are modelled as separate attributes.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_Volta_401">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
+    <rdfs:label xml:lang="en">Volta SGB battery, 60 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_60V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">23</bsdo:hasCapacityAh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual, specification page.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_500km">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
+    <rdfs:label xml:lang="en">Happly Ride</rdfs:label>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">500</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in kilometres. Plan name spelled as it appears in the application.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_Volta401">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">Volta 401</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual. Vehicle identifier pseudonymised.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_Volta_Cabinet">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPOnlyDevice"/>
+    <rdfs:label xml:lang="en">Volta SGB cabinet</rdfs:label>
+    <skos:altLabel xml:lang="id">kabinet SGB</skos:altLabel>
+    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+    <rdfs:comment xml:lang="en">Eight doors observed, with status and state of charge reported per door. This cabinet performs both exchange and charging, and is therefore classified as both a swap device and a charging device; a reasoner should infer it to be a dual-function device. The other ecosystem separates these functions across distinct appliances.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Home">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdfs:label xml:lang="en">Swap Home charger</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: operator website. A charging appliance rather than an exchange device, and the clearest instance in the data of the distinction between energy transfer and object transfer.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Harian">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
+    <rdfs:label xml:lang="en">Daily plan</rdfs:label>
+    <skos:altLabel xml:lang="id">Paket Harian</skos:altLabel>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#SwapDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:label xml:lang="en">Swap Device</rdfs:label>
+    <skos:altLabel xml:lang="id">BSS</skos:altLabel>
+    <skos:altLabel xml:lang="id">Swap Poin</skos:altLabel>
+    <skos:altLabel xml:lang="id">SGB</skos:altLabel>
+    <skos:altLabel xml:lang="id">kabinet</skos:altLabel>
+    <rdfs:comment xml:lang="en">A device that exchanges battery packs.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_Volta_Mitra">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdfs:label xml:lang="en">Volta SGB Mitra, SPBU</rdfs:label>
+    <rdfs:comment xml:lang="en">Host: fuel station. Availability is reported as aggregate bands rather than per door. The difference in display from the other observed cabinet is unexplained and is not taken as evidence of a different device type.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb22">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb23"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#quotaAmount">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#QuotaPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">quota amount</rdfs:label>
+    <rdfs:comment xml:lang="en">The quota amount. Its unit depends on the subclass: kilometres for a distance plan, exchange events for an event-count plan. The two are disjoint because they are not commensurable.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LFPOnlyDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:subClassOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb36"/>
+    <rdfs:label xml:lang="en">LiFePO4-Only Device</rdfs:label>
+    <rdfs:comment xml:lang="en">A device that accepts only lithium iron phosphate packs.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#occursAtSlot">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#BatterySlot"/>
+    <rdfs:label xml:lang="en">occurs at slot</rdfs:label>
+    <rdfs:comment xml:lang="en">The slot or door in which a pack is placed. The two ecosystems use different native terms.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_250km">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
+    <rdfs:label xml:lang="en">Good Good Ride</rdfs:label>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">250</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in kilometres. The website and the application state different validity periods for this plan; both are recorded.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#declaredBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#Operator"/>
+    <rdfs:label xml:lang="en">declared by</rdfs:label>
+    <rdfs:comment xml:lang="en">The operator declaring this rule. Eligibility rules are operator-specific rather than a shared standard.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#thresholdPercent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">threshold (%)</rdfs:label>
+    <rdfs:comment xml:lang="en">The state-of-charge threshold a rule declares. The same numeric value can mean different things: a single eligibility threshold in one ecosystem, a band boundary in the other.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Op_SWAP">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#Operator"/>
+    <rdfs:label xml:lang="en">SWAP Energy</rdfs:label>
+    <skos:altLabel xml:lang="id">Swap Energi Indonesia</skos:altLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Customer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#Agent"/>
+    <rdfs:label xml:lang="en">Customer</rdfs:label>
+    <skos:altLabel xml:lang="id">Volters</skos:altLabel>
+    <rdfs:comment xml:lang="en">An end user of a battery swap service.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb9">
+    <rdf:first rdf:nodeID="n677f92213537418a9f8f4100991e68ffb6"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Obs_V01_a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <bsdo:observationOf rdf:resource="https://w3id.org/bsdo#Pack_V01"/>
+    <bsdo:hasStateOfCharge rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">92</bsdo:hasStateOfCharge>
+    <rdfs:comment xml:lang="en">This ecosystem exposes state of charge per unit but exposes no health indicator.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#VC_60V">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#VoltageClass"/>
+    <rdfs:label xml:lang="en">60 V</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#installationFrom">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryInstallation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="en">installation from</rdfs:label>
+    <rdfs:comment xml:lang="en">The start of an installation episode, which makes the battery-vehicle relation temporary rather than a fixed part-whole.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasParticipantCustomer">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#Customer"/>
+    <rdfs:label xml:lang="en">has participant customer</rdfs:label>
+    <rdfs:comment xml:lang="en">The customer participating in a service event.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_VoltaEagle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">Volta Eagle</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasCustodyDeadlineHours">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">custody deadline (hours)</rdfs:label>
+    <rdfs:comment xml:lang="en">The deadline for temporary custody, expressed in hours. Note that xsd:duration is deliberately not used: it is not part of the OWL 2 datatype map and would place the ontology outside OWL 2 DL.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#CustodyPreservingEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="n677f92213537418a9f8f4100991e68ffb4"/>
+    <rdfs:label xml:lang="en">Custody-Preserving Event</rdfs:label>
+    <rdfs:comment xml:lang="en">Events in which custody transfers temporarily while ownership does not. Membership is inferred rather than asserted, and deliberately crosses the object-transfer / energy-transfer partition: in a loan event the customer holds an operator's pack, whereas in a deposit-charging event the operator holds the customer's pack.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Booking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">SWAP booking</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: in-application booking dialogue. Time limits, scan requirements and automatic door opening are not documented for this flow.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#DepositChargingEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EnergyTransferEvent"/>
+    <rdfs:label xml:lang="en">Deposit Charging Event</rdfs:label>
+    <skos:altLabel xml:lang="id">SCB</skos:altLabel>
+    <skos:altLabel xml:lang="id">Sistem Charge Battery</skos:altLabel>
+    <rdfs:comment xml:lang="en">The customer's own pack is deposited in a cabinet for charging and later retrieved.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasEnrolmentStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#NetworkEnrolmentStatus"/>
+    <rdfs:label xml:lang="en">has enrolment status</rdfs:label>
+    <rdfs:comment xml:lang="en">A pack's enrolment status in an operator's network. This determines the right to manage the pack, not its ownership.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Swap8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">SWAP direct swap, 8-slot</rdfs:label>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_SWAP_Big"/>
+    <rdfs:comment xml:lang="en">Source: in-application procedure guide for the larger station type, in which the pack is first placed on a separate reader before the slot.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_TukarTitip">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LoanEvent"/>
+    <rdfs:label xml:lang="en">Volta pack loan against deposited pack</rdfs:label>
+    <skos:altLabel xml:lang="id">Tukar Titip</skos:altLabel>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
+    <bsdo:hasCustodyDeadlineHours rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6</bsdo:hasCustodyDeadlineHours>
+    <bsdo:returnsPackTo rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Pay, scan within a time limit, collect a borrowed pack, and exchange it back for the customer's own before the custody deadline expires. The original term has no equivalent in the other ecosystem and is retained as an alternative label.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <bsdo:hasUnitIdentifier>VOLTA-PSEUDO-01</bsdo:hasUnitIdentifier>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
+    <bsdo:hasEnrolmentStatus rdf:resource="https://w3id.org/bsdo#Online"/>
+    <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view.</rdfs:comment>
+    <bsdo:ownedBy rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <bsdo:heldBy rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <bsdo:mayBeChargedByHolder rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</bsdo:mayBeChargedByHolder>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_Booking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">Volta booking</rdfs:label>
+    <skos:altLabel xml:lang="id">Booking Baterai</skos:altLabel>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
+    <bsdo:hasParticipantCustomer rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Select a cabinet, pay, then a time limit applies for scanning before the door opens.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Obs_S01_a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <bsdo:observationOf rdf:resource="https://w3id.org/bsdo#Pack_S01"/>
+    <bsdo:hasStateOfCharge rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">99</bsdo:hasStateOfCharge>
+    <bsdo:hasQualitativeHealthLabel>Healthy</bsdo:hasQualitativeHealthLabel>
+    <rdfs:comment xml:lang="en">This ecosystem exposes a qualitative health badge whose scale, thresholds and derivation method are undisclosed. The value derives from demonstration material. Such a badge cannot be mapped onto the other ecosystem's silence, nor onto the quantified state-of-health information required by Regulation (EU) 2023/1542.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_SWAP">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:thresholdPercent>
+    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+    <rdfs:label xml:lang="en">SWAP swap-eligibility threshold</rdfs:label>
+    <rdfs:comment xml:lang="en">The application states a single state-of-charge eligibility threshold. Stock is reported as three counters: swappable, reservable, and total.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb12">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#NetworkEnrolledBattery">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="n677f92213537418a9f8f4100991e68ffb30"/>
+    <rdfs:subClassOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb31"/>
+    <rdfs:label xml:lang="en">Network-Enrolled Battery</rdfs:label>
+    <rdfs:comment xml:lang="en">A pack enrolled in an operator's network: ownership remains with the customer while the right to charge rests with the operator.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_S01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <bsdo:hasUnitIdentifier>SWAP-PSEUDO-01</bsdo:hasUnitIdentifier>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
+    <bsdo:ownedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+    <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view, drawn from demonstration material. The field structure is treated as evidence; the values are not treated as measurements. Operator ownership is inferred from the distance-based tariff model rather than directly observed.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#SwapEligibilityRule">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Swap Eligibility Rule</rdfs:label>
+    <rdfs:comment xml:lang="en">A rule stating when a pack counts as ready to be exchanged. Eligibility is operator-relative: the two ecosystems declare thresholds that do not partition the same interval, so the predicate has no ontology-wide extension.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Operator">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#Agent"/>
+    <rdfs:label xml:lang="en">Operator</rdfs:label>
+    <rdfs:comment xml:lang="en">An operator of a battery swap ecosystem.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#QuotaPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Prepaid Quota Plan</rdfs:label>
+    <rdfs:comment xml:lang="en">Both ecosystems sell prepaid quota with an expiry period. What differs is the dimension in which the quota is denominated.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#occursAtDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:label xml:lang="en">occurs at device</rdfs:label>
+    <rdfs:comment xml:lang="en">The device at which an event takes place.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LithiumIonSwappableBattery">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:equivalentClass rdf:nodeID="n677f92213537418a9f8f4100991e68ffb16"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/emmo/domain/battery#battery_96addc62_ea04_449a_8237_4cd541dd8e5f"/>
+    <rdfs:label xml:lang="en">Lithium-Ion Swappable Battery</rdfs:label>
+    <rdfs:comment xml:lang="en">The subclass axiom is stated explicitly although it is entailed by the equivalent-class definition, so that SPARQL queries over the raw graph work without a reasoner.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb8">
+    <rdf:first rdf:nodeID="n677f92213537418a9f8f4100991e68ffb5"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb9"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#packRemoved">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ObjectTransferEvent"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:label xml:lang="en">pack removed from vehicle</rdfs:label>
+    <rdfs:comment xml:lang="en">The pack removed from the vehicle during an object-transfer event.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_Volta_Cirebon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdfs:label xml:lang="en">Volta SGB, Cirebon showroom</rdfs:label>
+    <rdfs:comment xml:lang="en">Eight doors, two occupied and the remainder empty or unavailable. Host: brand showroom.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#returnsPackTo">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#Agent"/>
+    <rdfs:label xml:lang="en">returns pack to</rdfs:label>
+    <rdfs:comment xml:lang="en">The party to whom a pack is returned at the end of an event. Present only on events that preserve ownership.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_SWAP_72V">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
+    <rdfs:label xml:lang="en">SWAP battery, 72 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_72V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">30</bsdo:hasCapacityAh>
+    <bsdo:hasCapacityKWh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.1</bsdo:hasCapacityKWh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
+    <rdfs:comment xml:lang="en">Source: operator website and vehicle manufacturer specification page.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_DeSultan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">Smoot De Sultan</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: vehicle manufacturer specification page.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasVoltageClass">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#VoltageClass"/>
+    <rdfs:comment xml:lang="en">Deliberately not functional: a single product may carry more than one declared voltage class when different sources of the same operator label it differently. Non-functionality records that instability rather than resolving it.</rdfs:comment>
+    <rdfs:comment xml:lang="en">The declared nominal voltage class. Not functional, since one artefact may carry more than one declaration from different sources.</rdfs:comment>
+    <rdfs:label xml:lang="en">has voltage class</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#packInserted">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ObjectTransferEvent"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:label xml:lang="en">pack inserted into vehicle</rdfs:label>
+    <rdfs:comment xml:lang="en">The pack inserted into the vehicle during an object-transfer event.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Scheme_Volta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
+    <rdfs:label xml:lang="en">Volta unit identifier scheme</rdfs:label>
+    <rdfs:comment xml:lang="en">Observed pattern: a fixed prefix and digit block, followed by four letters and a further digit sequence. Not interpretable against the other ecosystem's scheme, and does not appear to follow ISO/IEC 15459.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LithiumIronPhosphate">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#CellChemistry"/>
+    <rdfs:label xml:lang="en">LiFePO4</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb18">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb19"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#ElectricMotorcycle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Electric Motorcycle</rdfs:label>
+    <rdfs:comment xml:lang="en">An electric two-wheeler using swappable batteries. Its relation to a pack is temporary; see BatteryInstallation.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_Volta_Eagle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
+    <rdfs:label xml:lang="en">Volta SGB battery, 64 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_64V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">21</bsdo:hasCapacityAh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual, specification page. This pack shares a nominal voltage class with a pack of the other ecosystem, and has near-identical practical capacity, yet the two differ in cell chemistry and cannot be interchanged.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb30">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#hasEnrolmentStatus"/>
+    <owl:hasValue rdf:resource="https://w3id.org/bsdo#Online"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_SCB">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#DepositChargingEvent"/>
+    <rdfs:label xml:lang="en">Volta deposited-pack charging service</rdfs:label>
+    <skos:altLabel xml:lang="id">SCB</skos:altLabel>
+    <skos:altLabel xml:lang="id">Sistem Charge Battery</skos:altLabel>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
+    <bsdo:hasCustodyDeadlineHours rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6</bsdo:hasCustodyDeadlineHours>
+    <bsdo:returnsPackTo rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Activate the service, scan within a time limit, begin charging, and retrieve the customer's own pack before the custody deadline expires. Custody runs in the opposite direction from the loan flow: here the operator holds the customer's pack.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatteryHandlingDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Battery Handling Device</rdfs:label>
+    <rdfs:comment xml:lang="en">A device that handles battery packs, whether by exchanging or by charging them.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasIdentifierScheme">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
+    <rdfs:label xml:lang="en">has identifier scheme</rdfs:label>
+    <rdfs:comment xml:lang="en">The numbering scheme of a unit identifier. The two ecosystems use mutually uninterpretable schemes, which is the first mapping any roaming arrangement must resolve.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatteryStateObservation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Battery State Observation</rdfs:label>
+    <rdfs:comment xml:lang="en">Reification of a pack's state at a single point in time. Temporal representation is deliberately bounded to state at an event rather than a continuous trajectory.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_SWAP_Sleman">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdfs:label xml:lang="en">SWAP station, Sleman</rdfs:label>
+    <rdfs:comment xml:lang="en">Station identifier pseudonymised. Eight slots observed, each reporting state of charge and voltage class.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Big">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonOnlyDevice"/>
+    <rdfs:label xml:lang="en">SWAP Big station</rdfs:label>
+    <skos:altLabel xml:lang="id">8-Slot Station</skos:altLabel>
+    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <rdfs:comment xml:lang="en">Source: operator website. On this station type the indicator colours encode the state of an authentication process, a different meaning from the same colours on the smaller type of the same operator.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb27">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+    <owl:distinctMembers rdf:nodeID="n677f92213537418a9f8f4100991e68ffb28"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#observationOf">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:label xml:lang="en">observation of</rdfs:label>
+    <rdfs:comment xml:lang="en">The pack whose state is observed.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/emmo/domain/battery#battery_96addc62_ea04_449a_8237_4cd541dd8e5f">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">LithiumIonBattery (EMMO domain-battery)</rdfs:label>
+    <rdfs:comment xml:lang="en">Alignment stub for the LithiumIonBattery class of the EMMO domain-battery module.</rdfs:comment>
+    <rdfs:isDefinedBy rdf:resource="https://w3id.org/emmo/domain/battery"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasQualitativeHealthLabel">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#string"/>
+    <rdfs:seeAlso rdf:resource="https://w3id.org/emmo/domain/electrochemistry#electrochemistry_a7a4614f_2426_46f3_8475_cda4a9fabfce"/>
+    <rdfs:comment xml:lang="en">Deliberately typed as a string rather than a numeric quantity. One ecosystem exposes a qualitative badge whose scale, thresholds and derivation method are undisclosed; the other exposes nothing. Typing it numerically would imply a comparability the sources do not support.</rdfs:comment>
+    <rdfs:label xml:lang="en">qualitative health label</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb10">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb11"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Cust_V01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#Customer"/>
+    <rdfs:label xml:lang="en">Customer V01 (pseudonymised)</rdfs:label>
+    <rdfs:comment xml:lang="en">Personal data of a third party is fully pseudonymised: name, photograph, registration number, chassis and engine numbers, and geographic coordinates are not recorded.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatterySlot">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Battery Slot</rdfs:label>
+    <skos:altLabel xml:lang="id">Slot</skos:altLabel>
+    <skos:altLabel xml:lang="id">Pintu</skos:altLabel>
+    <rdfs:comment xml:lang="en">The two ecosystems use different native terms for this concept. Both are retained as alternative labels rather than normalised to a single term.</rdfs:comment>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb21">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#hasCellChemistry"/>
+    <owl:hasValue rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb13">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+    <owl:distinctMembers rdf:nodeID="n677f92213537418a9f8f4100991e68ffb14"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb35">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#accepts"/>
+    <owl:allValuesFrom rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Scheme_SWAP">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
+    <rdfs:label xml:lang="en">SWAP unit identifier scheme</rdfs:label>
+    <rdfs:comment xml:lang="en">Observed pattern: a two-letter prefix indicating entity type, followed by a digit sequence. Does not appear to follow ISO/IEC 15459.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Online">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#NetworkEnrolmentStatus"/>
+    <rdfs:label xml:lang="en">online</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#EnergyTransferEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:label xml:lang="en">Energy Transfer Event</rdfs:label>
+    <rdfs:comment xml:lang="en">Events in which energy is transferred without exchanging the physical carrier.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#SwappableBattery">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/emmo/domain/battery#battery_74ed2670_657d_4f0b_b0a6_3f13bc2e9c17"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+    <rdfs:label xml:lang="en">Swappable Battery</rdfs:label>
+    <rdfs:comment xml:lang="en">Aligned to the Battery class of the EMMO domain-battery module, which is the vocabulary layer that the BattINFO application ontology profiles.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#installedIn">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryInstallation"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">installed in</rdfs:label>
+    <rdfs:comment xml:lang="en">The vehicle in which the pack is installed during this episode.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Bulanan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
+    <rdfs:label xml:lang="en">Monthly plan</rdfs:label>
+    <skos:altLabel xml:lang="id">Paket Bulanan</skos:altLabel>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate. The plan is bound to one registered vehicle.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#NetworkEnrolmentStatus">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Network Enrolment Status</rdfs:label>
+    <rdfs:comment xml:lang="en">A pack's network enrolment status: enrolled or not enrolled.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#accepts">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:comment xml:lang="en">The packs a device can serve. Never asserted directly; constrained by chemistry axioms so that incompatibility surfaces as a logical inconsistency rather than as an empty query result.</rdfs:comment>
+    <rdfs:label xml:lang="en">accepts</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#installedPack">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryInstallation"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:label xml:lang="en">installed pack</rdfs:label>
+    <rdfs:comment xml:lang="en">The pack installed in the vehicle during this installation episode.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#EventCountQuotaPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#QuotaPlan"/>
+    <rdfs:label xml:lang="en">Event-Count Quota Plan</rdfs:label>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb6">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#returnsPackTo"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb33">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb34"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasCapacityKWh">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:label xml:lang="en">capacity (kWh)</rdfs:label>
+    <rdfs:comment xml:lang="en">Capacity in kilowatt-hours. See the note on capacity in ampere-hours.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#ownedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#Agent"/>
+    <rdfs:label xml:lang="en">owned by</rdfs:label>
+    <rdfs:comment xml:lang="en">Ownership, which persists across service events.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Mingguan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
+    <rdfs:label xml:lang="en">Weekly plan</rdfs:label>
+    <skos:altLabel xml:lang="id">Paket Mingguan</skos:altLabel>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">14</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#heldBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#Agent"/>
+    <rdfs:label xml:lang="en">held by</rdfs:label>
+    <rdfs:comment xml:lang="en">Current physical custody. Functional: a pack is held by at most one party at a time. Custody can diverge from ownership, and changes at every exchange.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#acceptsChemistry">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#CellChemistry"/>
+    <rdfs:label xml:lang="en">accepts chemistry</rdfs:label>
+    <rdfs:comment xml:lang="en">The cell chemistry a device can serve. Together with the disjointness of the chemistry classes, this is what makes incompatibility derivable as a logical inconsistency.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb26">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb34">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#ObjectTransferEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:label xml:lang="en">Object Transfer Event</rdfs:label>
+    <rdfs:comment xml:lang="en">Events in which the physical carrier is exchanged. Derived from a formal concept spanning six service flows drawn from both ecosystems, so the distinction is not an artefact of one operator's product line.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb25">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb26"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#CellChemistry">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Cell Chemistry</rdfs:label>
+    <rdfs:comment xml:lang="en">Cell chemistry as an enumerated value.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#observedAt">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="en">observed at</rdfs:label>
+    <rdfs:comment xml:lang="en">The time of observation, which bounds temporal representation to state at a point in time rather than a full trajectory.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Op_Volta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#Operator"/>
+    <rdfs:label xml:lang="en">Volta</rdfs:label>
+    <skos:altLabel xml:lang="id">PT Volta Indonesia Semesta</skos:altLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#eventTime">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#dateTime"/>
+    <rdfs:label xml:lang="en">event time</rdfs:label>
+    <rdfs:comment xml:lang="en">The time at which an event occurred. Generally unpopulated: transaction payloads could not be observed from available sources.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LoanEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#ObjectTransferEvent"/>
+    <rdfs:label xml:lang="en">Loan Event</rdfs:label>
+    <skos:altLabel xml:lang="id">Tukar Titip</skos:altLabel>
+    <rdfs:comment xml:lang="en">An exchange in which the customer receives a borrowed pack and later returns it, within a stated deadline, in exchange for their own.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_SWAP_64V">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
+    <rdfs:label xml:lang="en">SWAP battery, 64 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_64V"/>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_60V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <bsdo:hasCapacityKWh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.3</bsdo:hasCapacityKWh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
+    <rdfs:comment xml:lang="en">Source: operator website. Two voltage classes are deliberately asserted: the website states one value while the operator's own application labels the same product with another. This intra-ecosystem terminological instability is recorded rather than resolved.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb29">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#Offline"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Small">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonOnlyDevice"/>
+    <rdfs:label xml:lang="en">SWAP Small station</rdfs:label>
+    <skos:altLabel xml:lang="id">3-Slot Station</skos:altLabel>
+    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <rdfs:comment xml:lang="en">Source: operator website. Published capacity differs by one from the slot count stated in the application; the additional slot is presumed to receive the customer's depleted pack. On this station type the indicator colours encode charge level.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LithiumIon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#CellChemistry"/>
+    <rdfs:label xml:lang="en">Lithium-Ion (generic)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb2">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#ObjectTransferEvent"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb3"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb16">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb18"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb28">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#Online"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb29"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#SwapEvent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#ObjectTransferEvent"/>
+    <rdfs:label xml:lang="en">Swap Event</rdfs:label>
+    <rdfs:comment xml:lang="en">An exchange in which the outgoing pack does not return to the customer.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#ChargingDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:label xml:lang="en">Charging Device</rdfs:label>
+    <rdfs:comment xml:lang="en">A device that transfers energy into a battery pack in place.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#VC_64V">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#VoltageClass"/>
+    <rdfs:label xml:lang="en">64 V</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb39">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb24">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n677f92213537418a9f8f4100991e68ffb25"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb31">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#mayBeChargedByHolder"/>
+    <owl:hasValue rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</owl:hasValue>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_Volta_High">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">80</bsdo:thresholdPercent>
+    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+    <rdfs:label xml:lang="en">Volta bucket, 80% and above</rdfs:label>
+    <rdfs:comment xml:lang="en">This operator reports two bands that do not partition the same interval. A pack in the intervening range satisfies the other operator's threshold but falls into neither band here.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#VoltageClass">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Nominal Voltage Class</rdfs:label>
+    <rdfs:comment xml:lang="en">Declared nominal voltage class. This dimension overlaps across the ecosystems studied and therefore does not determine whether packs can be interchanged.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasStateOfCharge">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#decimal"/>
+    <rdfs:seeAlso rdf:resource="https://w3id.org/emmo/domain/electrochemistry#electrochemistry_8b2aaa50_bbe1_45da_8778_8898326246a2"/>
+    <rdfs:comment xml:lang="en">Aligned to StateOfCharge in the EMMO domain-electrochemistry module. The StateOfCharge class in the domain-battery namespace is deprecated and is not used here.</rdfs:comment>
+    <rdfs:label xml:lang="en">state of charge (%)</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#hasCellChemistry">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#FunctionalProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#CellChemistry"/>
+    <rdfs:label xml:lang="en">has cell chemistry</rdfs:label>
+    <rdfs:comment xml:lang="en">The cell chemistry declared by the manufacturer. This is the dimension on which interchange actually fails.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb36">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#accepts"/>
+    <owl:allValuesFrom rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Agent">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Agent</rdfs:label>
+    <rdfs:comment xml:lang="en">A party that can own or hold a battery pack.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb20">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <owl:intersectionOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb22"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb17">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#hasCellChemistry"/>
+    <owl:hasValue rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#DistanceQuotaPlan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#QuotaPlan"/>
+    <rdfs:label xml:lang="en">Distance Quota Plan</rdfs:label>
+    <rdfs:comment xml:lang="en">Quota denominated in kilometres travelled.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#EcosystemArtefact">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Ecosystem Artefact</rdfs:label>
+    <rdfs:comment xml:lang="en">Any artefact bound to a particular battery swap ecosystem: battery models, station devices, service flows, vehicle models, and the commercial and normative artefacts that accompany them. This binding is what makes cross-ecosystem comparison expressible.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb11">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb12"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#LithiumIonOnlyDevice">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:subClassOf rdf:resource="https://w3id.org/bsdo#BatteryHandlingDevice"/>
+    <rdfs:subClassOf rdf:nodeID="n677f92213537418a9f8f4100991e68ffb35"/>
+    <rdfs:label xml:lang="en">Lithium-Ion-Only Device</rdfs:label>
+    <rdfs:comment xml:lang="en">A device that accepts only lithium-ion packs. The value restriction declared here is what makes incompatibility detectable as an inconsistency.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#IdentifierScheme">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Identifier Scheme</rdfs:label>
+    <rdfs:comment xml:lang="en">A unit identifier scheme, specific to an ecosystem.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb5">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Restriction"/>
+    <owl:onProperty rdf:resource="https://w3id.org/bsdo#hasCustodyDeadlineHours"/>
+    <owl:minCardinality rdf:datatype="http://www.w3.org/2001/XMLSchema#nonNegativeInteger">1</owl:minCardinality>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatteryInstallation">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Class"/>
+    <rdfs:label xml:lang="en">Battery Installation</rdfs:label>
+    <rdfs:comment xml:lang="en">Reification of the association between a pack and a vehicle. This is deliberately not modelled as a mereological part-whole relation: in a swap domain a pack moves between vehicles, so a fixed relation would be false.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb23">
+    <rdf:first rdf:nodeID="n677f92213537418a9f8f4100991e68ffb21"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb7">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#ServiceEvent"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb8"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#validityDays">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#DatatypeProperty"/>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#QuotaPlan"/>
+    <rdfs:range rdf:resource="http://www.w3.org/2001/XMLSchema#integer"/>
+    <rdfs:label xml:lang="en">validity (days)</rdfs:label>
+    <rdfs:comment xml:lang="en">The validity period of a quota in days. A quota is exhausted either by use or by expiry, whichever comes first.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#operatedBy">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#ObjectProperty"/>
+    <rdfs:range rdf:resource="https://w3id.org/bsdo#Operator"/>
+    <rdfs:label xml:lang="en">operated by</rdfs:label>
+    <rdfs:comment xml:lang="en">Relates an artefact to the operator whose ecosystem it belongs to. Ecosystem membership is what makes cross-ecosystem comparison expressible at all.</rdfs:comment>
+    <rdfs:domain rdf:resource="https://w3id.org/bsdo#EcosystemArtefact"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb37">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+    <owl:distinctMembers rdf:nodeID="n677f92213537418a9f8f4100991e68ffb38"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb14">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb15"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#VC_72V">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#VoltageClass"/>
+    <rdfs:label xml:lang="en">72 V</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb38">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+    <rdf:rest rdf:nodeID="n677f92213537418a9f8f4100991e68ffb39"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb3">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#EnergyTransferEvent"/>
+    <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
+  </rdf:Description>
+  <rdf:Description rdf:nodeID="n677f92213537418a9f8f4100991e68ffb32">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDisjointClasses"/>
+    <owl:members rdf:nodeID="n677f92213537418a9f8f4100991e68ffb33"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Offline">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#NetworkEnrolmentStatus"/>
+    <rdfs:label xml:lang="en">offline</rdfs:label>
+  </rdf:Description>
+</rdf:RDF>

@@ -1,0 +1,23 @@
+@prefix bsdo: <https://w3id.org/bsdo#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#################################################################
+#  Cross-ecosystem incompatibility test (CQ8)
+#
+#  Held in a separate file so that the ontology and its population
+#  remain consistent on their own. Load this file together with
+#  bsdo.ttl and bsdo-abox.ttl: a reasoner is expected to report an
+#  inconsistency. If the merged set is reported consistent, the
+#  incompatibility-detection mechanism has failed.
+#################################################################
+<https://w3id.org/bsdo/cq8-test> rdf:type owl:Ontology ;
+    owl:imports <https://w3id.org/bsdo/abox> ;
+    rdfs:label "BSDO cross-ecosystem incompatibility test"@en ;
+    rdfs:comment "Test scenario: a lithium iron phosphate pack from one ecosystem is inserted into a handling device of the other ecosystem that accepts lithium-ion packs only."@en .
+
+bsdo:Pack_V_test rdf:type owl:NamedIndividual , bsdo:LFPSwappableBattery ;
+    bsdo:hasCellChemistry bsdo:LithiumIronPhosphate .
+
+bsdo:Dev_SWAP_Small bsdo:accepts bsdo:Pack_V_test .

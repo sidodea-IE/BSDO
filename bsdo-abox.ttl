@@ -1,0 +1,350 @@
+@prefix bsdo:  <https://w3id.org/bsdo#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+
+#################################################################
+#  BSDO — Battery Swap Domain Ontology
+#  Population (ABox)
+#
+#  Individuals for two independently operated Indonesian battery swap
+#  ecosystems, drawn from operator applications, official websites, and
+#  manufacturer documentation.
+#
+#  All identifiers are pseudonymised: names, registration numbers, chassis
+#  and engine numbers, battery serial numbers, and geographic coordinates.
+#  What is retained is the pattern of each identifier scheme, since the
+#  mutual uninterpretability of the two schemes is itself a finding.
+#
+#  Where a value derives from promotional or demonstration material rather
+#  than live operation, the individual's annotation states so: the field
+#  structure such material exposes is treated as evidence, the values are
+#  not treated as measurements.
+#
+#  Licence: CC-BY 4.0
+#################################################################
+
+<https://w3id.org/bsdo/abox> rdf:type owl:Ontology ;
+    owl:imports <https://w3id.org/bsdo> ;
+    dcterms:title "BSDO ABox — SWAP Energy & Volta"@en ;
+    rdfs:comment "Population of two Indonesian battery swap ecosystems, drawn from operator applications, official websites, and manufacturer documentation. All identifiers are pseudonymised."@en .
+
+#################################################################
+#  1. OPERATORS
+#################################################################
+
+bsdo:Op_SWAP rdf:type owl:NamedIndividual , bsdo:Operator ;
+    rdfs:label "SWAP Energy"@en ;
+    skos:altLabel "Swap Energi Indonesia"@id .
+
+bsdo:Op_Volta rdf:type owl:NamedIndividual , bsdo:Operator ;
+    rdfs:label "Volta"@en ;
+    skos:altLabel "PT Volta Indonesia Semesta"@id .
+
+[] rdf:type owl:AllDifferent ; owl:distinctMembers ( bsdo:Op_SWAP bsdo:Op_Volta ) .
+
+#################################################################
+#  2. IDENTIFIER SCHEMES
+#     The two schemes are mutually uninterpretable; this is a finding.
+#################################################################
+
+bsdo:Scheme_SWAP rdf:type owl:NamedIndividual , bsdo:IdentifierScheme ;
+    rdfs:label "SWAP unit identifier scheme"@en ;
+    rdfs:comment "Observed pattern: a two-letter prefix indicating entity type, followed by a digit sequence. Does not appear to follow ISO/IEC 15459."@en .
+
+bsdo:Scheme_Volta rdf:type owl:NamedIndividual , bsdo:IdentifierScheme ;
+    rdfs:label "Volta unit identifier scheme"@en ;
+    rdfs:comment "Observed pattern: a fixed prefix and digit block, followed by four letters and a further digit sequence. Not interpretable against the other ecosystem's scheme, and does not appear to follow ISO/IEC 15459."@en .
+
+#################################################################
+#  3. BATTERY MODELS
+#################################################################
+
+bsdo:BatMod_SWAP_64V rdf:type owl:NamedIndividual , bsdo:LithiumIonSwappableBattery ;
+    rdfs:label "SWAP battery, 64 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_64V , bsdo:VC_60V ;
+    bsdo:hasCellChemistry bsdo:LithiumIon ;
+    bsdo:hasCapacityKWh "1.3"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_SWAP ;
+    rdfs:comment "Source: operator website. Two voltage classes are deliberately asserted: the website states one value while the operator's own application labels the same product with another. This intra-ecosystem terminological instability is recorded rather than resolved."@en .
+
+bsdo:BatMod_SWAP_72V rdf:type owl:NamedIndividual , bsdo:LithiumIonSwappableBattery ;
+    rdfs:label "SWAP battery, 72 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_72V ;
+    bsdo:hasCellChemistry bsdo:LithiumIon ;
+    bsdo:hasCapacityAh "30"^^xsd:decimal ;
+    bsdo:hasCapacityKWh "2.1"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_SWAP ;
+    rdfs:comment "Source: operator website and vehicle manufacturer specification page."@en .
+
+bsdo:BatMod_Volta_401 rdf:type owl:NamedIndividual , bsdo:LFPSwappableBattery ;
+    rdfs:label "Volta SGB battery, 60 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_60V ;
+    bsdo:hasCellChemistry bsdo:LithiumIronPhosphate ;
+    bsdo:hasCapacityAh "23"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    rdfs:comment "Source: manufacturer owner's manual, specification page."@en .
+
+bsdo:BatMod_Volta_Eagle rdf:type owl:NamedIndividual , bsdo:LFPSwappableBattery ;
+    rdfs:label "Volta SGB battery, 64 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_64V ;
+    bsdo:hasCellChemistry bsdo:LithiumIronPhosphate ;
+    bsdo:hasCapacityAh "21"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    rdfs:comment "Source: manufacturer owner's manual, specification page. This pack shares a nominal voltage class with a pack of the other ecosystem, and has near-identical practical capacity, yet the two differ in cell chemistry and cannot be interchanged."@en .
+
+#################################################################
+#  4. OBSERVED BATTERY UNITS (identifiers pseudonymised)
+#################################################################
+
+bsdo:Pack_S01 rdf:type owl:NamedIndividual , bsdo:SwappableBattery ;
+    bsdo:hasUnitIdentifier "SWAP-PSEUDO-01" ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_SWAP ;
+    bsdo:ownedBy bsdo:Op_SWAP ;
+    rdfs:comment "Identifier pseudonymised. Source: operator application, battery view, drawn from demonstration material. The field structure is treated as evidence; the values are not treated as measurements. Operator ownership is inferred from the distance-based tariff model rather than directly observed."@en .
+
+bsdo:Pack_V01 rdf:type owl:NamedIndividual , bsdo:SwappableBattery ;
+    bsdo:hasUnitIdentifier "VOLTA-PSEUDO-01" ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    bsdo:hasEnrolmentStatus bsdo:Online ;
+    rdfs:comment "Identifier pseudonymised. Source: operator application, battery view."@en .
+
+bsdo:Pack_V02 rdf:type owl:NamedIndividual , bsdo:SwappableBattery ;
+    bsdo:hasUnitIdentifier "VOLTA-PSEUDO-02" ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    bsdo:hasEnrolmentStatus bsdo:Online ;
+    rdfs:comment "Identifier pseudonymised. Source: operator application, battery view."@en .
+
+#  --- State observations, bounded to a point in time ---
+bsdo:Obs_V01_a rdf:type owl:NamedIndividual , bsdo:BatteryStateObservation ;
+    bsdo:observationOf bsdo:Pack_V01 ;
+    bsdo:hasStateOfCharge "92"^^xsd:decimal ;
+    rdfs:comment "This ecosystem exposes state of charge per unit but exposes no health indicator."@en .
+
+bsdo:Obs_S01_a rdf:type owl:NamedIndividual , bsdo:BatteryStateObservation ;
+    bsdo:observationOf bsdo:Pack_S01 ;
+    bsdo:hasStateOfCharge "99"^^xsd:decimal ;
+    bsdo:hasQualitativeHealthLabel "Healthy" ;
+    rdfs:comment "This ecosystem exposes a qualitative health badge whose scale, thresholds and derivation method are undisclosed. The value derives from demonstration material. Such a badge cannot be mapped onto the other ecosystem's silence, nor onto the quantified state-of-health information required by Regulation (EU) 2023/1542."@en .
+
+#################################################################
+#  5. DEVICES
+#################################################################
+
+bsdo:Dev_SWAP_Small rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:LithiumIonOnlyDevice ;
+    rdfs:label "SWAP Small station"@en ;
+    skos:altLabel "3-Slot Station"@id ;
+    bsdo:acceptsChemistry bsdo:LithiumIon ;
+    rdfs:comment "Source: operator website. Published capacity differs by one from the slot count stated in the application; the additional slot is presumed to receive the customer's depleted pack. On this station type the indicator colours encode charge level."@en .
+
+bsdo:Dev_SWAP_Big rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:LithiumIonOnlyDevice ;
+    rdfs:label "SWAP Big station"@en ;
+    skos:altLabel "8-Slot Station"@id ;
+    bsdo:acceptsChemistry bsdo:LithiumIon ;
+    rdfs:comment "Source: operator website. On this station type the indicator colours encode the state of an authentication process, a different meaning from the same colours on the smaller type of the same operator."@en .
+
+bsdo:Dev_SWAP_Home rdf:type owl:NamedIndividual , bsdo:ChargingDevice ;
+    rdfs:label "Swap Home charger"@en ;
+    rdfs:comment "Source: operator website. A charging appliance rather than an exchange device, and the clearest instance in the data of the distinction between energy transfer and object transfer."@en .
+
+bsdo:Dev_Volta_Cabinet rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:ChargingDevice , bsdo:LFPOnlyDevice ;
+    rdfs:label "Volta SGB cabinet"@en ;
+    skos:altLabel "kabinet SGB"@id ;
+    bsdo:acceptsChemistry bsdo:LithiumIronPhosphate ;
+    rdfs:comment "Eight doors observed, with status and state of charge reported per door. This cabinet performs both exchange and charging, and is therefore classified as both a swap device and a charging device; a reasoner should infer it to be a dual-function device. The other ecosystem separates these functions across distinct appliances."@en .
+
+#  --- Observed station instances ---
+bsdo:Sta_SWAP_Sleman rdf:type owl:NamedIndividual , bsdo:SwapDevice ;
+    rdfs:label "SWAP station, Sleman"@en ;
+    rdfs:comment "Station identifier pseudonymised. Eight slots observed, each reporting state of charge and voltage class."@en .
+
+bsdo:Sta_Volta_Cirebon rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:ChargingDevice ;
+    rdfs:label "Volta SGB, Cirebon showroom"@en ;
+    rdfs:comment "Eight doors, two occupied and the remainder empty or unavailable. Host: brand showroom."@en .
+
+bsdo:Sta_Volta_Mitra rdf:type owl:NamedIndividual , bsdo:SwapDevice ;
+    rdfs:label "Volta SGB Mitra, SPBU"@en ;
+    rdfs:comment "Host: fuel station. Availability is reported as aggregate bands rather than per door. The difference in display from the other observed cabinet is unexplained and is not taken as evidence of a different device type."@en .
+
+#################################################################
+#  6. SWAP ELIGIBILITY RULES
+#################################################################
+
+bsdo:Elig_SWAP rdf:type owl:NamedIndividual , bsdo:SwapEligibilityRule ;
+    bsdo:thresholdPercent "50"^^xsd:decimal ;
+    bsdo:declaredBy bsdo:Op_SWAP ;
+    rdfs:label "SWAP swap-eligibility threshold"@en ;
+    rdfs:comment "The application states a single state-of-charge eligibility threshold. Stock is reported as three counters: swappable, reservable, and total."@en .
+
+bsdo:Elig_Volta_Low rdf:type owl:NamedIndividual , bsdo:SwapEligibilityRule ;
+    bsdo:thresholdPercent "50"^^xsd:decimal ;
+    bsdo:declaredBy bsdo:Op_Volta ;
+    rdfs:label "Volta bucket, below 50%"@en .
+
+bsdo:Elig_Volta_High rdf:type owl:NamedIndividual , bsdo:SwapEligibilityRule ;
+    bsdo:thresholdPercent "80"^^xsd:decimal ;
+    bsdo:declaredBy bsdo:Op_Volta ;
+    rdfs:label "Volta bucket, 80% and above"@en ;
+    rdfs:comment "This operator reports two bands that do not partition the same interval. A pack in the intervening range satisfies the other operator's threshold but falls into neither band here."@en .
+
+#################################################################
+#  7. TARIFF PLANS
+#################################################################
+
+bsdo:Plan_SWAP_100km rdf:type owl:NamedIndividual , bsdo:DistanceQuotaPlan ;
+    rdfs:label "Try to Ride"@en ;
+    bsdo:quotaAmount "100"^^xsd:decimal ; bsdo:validityDays "30"^^xsd:integer ;
+    rdfs:comment "Quota denominated in kilometres."@en .
+bsdo:Plan_SWAP_250km rdf:type owl:NamedIndividual , bsdo:DistanceQuotaPlan ;
+    rdfs:label "Good Good Ride"@en ;
+    bsdo:quotaAmount "250"^^xsd:decimal ; bsdo:validityDays "60"^^xsd:integer ;
+    rdfs:comment "Quota denominated in kilometres. The website and the application state different validity periods for this plan; both are recorded."@en .
+bsdo:Plan_SWAP_500km rdf:type owl:NamedIndividual , bsdo:DistanceQuotaPlan ;
+    rdfs:label "Happly Ride"@en ;
+    bsdo:quotaAmount "500"^^xsd:decimal ; bsdo:validityDays "60"^^xsd:integer ;
+    rdfs:comment "Quota denominated in kilometres. Plan name spelled as it appears in the application."@en .
+
+bsdo:Plan_Volta_Harian rdf:type owl:NamedIndividual , bsdo:EventCountQuotaPlan ;
+    rdfs:label "Daily plan"@en ;
+    skos:altLabel "Paket Harian"@id ;
+    bsdo:quotaAmount "1"^^xsd:decimal ; bsdo:validityDays "1"^^xsd:integer ;
+    rdfs:comment "Quota denominated in number of exchange events."@en .
+bsdo:Plan_Volta_Mingguan rdf:type owl:NamedIndividual , bsdo:EventCountQuotaPlan ;
+    rdfs:label "Weekly plan"@en ;
+    skos:altLabel "Paket Mingguan"@id ;
+    bsdo:quotaAmount "14"^^xsd:decimal ; bsdo:validityDays "7"^^xsd:integer ;
+    rdfs:comment "Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate."@en .
+bsdo:Plan_Volta_Bulanan rdf:type owl:NamedIndividual , bsdo:EventCountQuotaPlan ;
+    rdfs:label "Monthly plan"@en ;
+    skos:altLabel "Paket Bulanan"@id ;
+    bsdo:quotaAmount "50"^^xsd:decimal ; bsdo:validityDays "30"^^xsd:integer ;
+    rdfs:comment "Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate. The plan is bound to one registered vehicle."@en .
+
+#################################################################
+#  8. SERVICE FLOW SPECIFICATIONS
+#  These are procedure specifications taken from official documentation, not
+#  logged transactions. Transaction payloads could not be observed.
+#################################################################
+
+bsdo:Flow_SWAP_Swap3 rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "SWAP direct swap, 3-slot"@en ;
+    bsdo:occursAtDevice bsdo:Dev_SWAP_Small ;
+    rdfs:comment "Source: in-application procedure guide for the smaller station type."@en .
+
+bsdo:Flow_SWAP_Swap8 rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "SWAP direct swap, 8-slot"@en ;
+    bsdo:occursAtDevice bsdo:Dev_SWAP_Big ;
+    rdfs:comment "Source: in-application procedure guide for the larger station type, in which the pack is first placed on a separate reader before the slot."@en .
+
+bsdo:Flow_SWAP_Booking rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "SWAP booking"@en ;
+    rdfs:comment "Source: in-application booking dialogue. Time limits, scan requirements and automatic door opening are not documented for this flow."@en .
+
+bsdo:Flow_Volta_Ganti rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "Volta direct exchange"@en ;
+    skos:altLabel "Ganti Baterai"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    rdfs:comment "Source: operator application user manual. Select a cabinet, scan, an empty door opens, exchange. Neither payment nor a time limit is mentioned, in contrast to the booking and loan flows of the same operator."@en .
+
+bsdo:Flow_Volta_Booking rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "Volta booking"@en ;
+    skos:altLabel "Booking Baterai"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    bsdo:hasParticipantCustomer bsdo:Cust_V01 ;
+    rdfs:comment "Source: operator application user manual. Select a cabinet, pay, then a time limit applies for scanning before the door opens."@en .
+
+bsdo:Flow_Volta_TukarTitip rdf:type owl:NamedIndividual , bsdo:LoanEvent ;
+    rdfs:label "Volta pack loan against deposited pack"@en ;
+    skos:altLabel "Tukar Titip"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    bsdo:hasCustodyDeadlineHours "6"^^xsd:decimal ;
+    bsdo:returnsPackTo bsdo:Cust_V01 ;
+    rdfs:comment "Source: operator application user manual. Pay, scan within a time limit, collect a borrowed pack, and exchange it back for the customer's own before the custody deadline expires. The original term has no equivalent in the other ecosystem and is retained as an alternative label."@en .
+
+bsdo:Flow_Volta_SCB rdf:type owl:NamedIndividual , bsdo:DepositChargingEvent ;
+    rdfs:label "Volta deposited-pack charging service"@en ;
+    skos:altLabel "SCB"@id , "Sistem Charge Battery"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    bsdo:hasCustodyDeadlineHours "6"^^xsd:decimal ;
+    bsdo:returnsPackTo bsdo:Cust_V01 ;
+    rdfs:comment "Source: operator application user manual. Activate the service, scan within a time limit, begin charging, and retrieve the customer's own pack before the custody deadline expires. Custody runs in the opposite direction from the loan flow: here the operator holds the customer's pack."@en .
+
+#################################################################
+#  9. AGENTS AND VEHICLES
+#################################################################
+
+bsdo:Cust_V01 rdf:type owl:NamedIndividual , bsdo:Customer ;
+    rdfs:label "Customer V01 (pseudonymised)"@en ;
+    rdfs:comment "Personal data of a third party is fully pseudonymised: name, photograph, registration number, chassis and engine numbers, and geographic coordinates are not recorded."@en .
+
+bsdo:Veh_Volta401 rdf:type owl:NamedIndividual , bsdo:ElectricMotorcycle ;
+    rdfs:label "Volta 401"@en ;
+    rdfs:comment "Source: manufacturer owner's manual. Vehicle identifier pseudonymised."@en .
+
+bsdo:Veh_VoltaEagle rdf:type owl:NamedIndividual , bsdo:ElectricMotorcycle ;
+    rdfs:label "Volta Eagle"@en ;
+    rdfs:comment "Source: manufacturer owner's manual."@en .
+
+bsdo:Veh_DeSultan rdf:type owl:NamedIndividual , bsdo:ElectricMotorcycle ;
+    rdfs:label "Smoot De Sultan"@en ;
+    rdfs:comment "Source: vehicle manufacturer specification page."@en .
+
+#  --- Battery-vehicle relation: temporary, not a fixed part-whole ---
+bsdo:Inst_V01 rdf:type owl:NamedIndividual , bsdo:BatteryInstallation ;
+    bsdo:installedPack bsdo:Pack_V01 ;
+    bsdo:installedIn bsdo:Veh_Volta401 ;
+    rdfs:comment "The installation is reified rather than modelled as a mereological part-whole relation: a pack moves between vehicles through exchange, so a fixed relation would be false."@en .
+
+#################################################################
+# 10. OWNERSHIP VERSUS CUSTODY — DOCUMENTARY EVIDENCE
+#################################################################
+
+bsdo:Pack_V01 bsdo:ownedBy bsdo:Cust_V01 ;
+              bsdo:heldBy bsdo:Cust_V01 ;
+              bsdo:mayBeChargedByHolder "false"^^xsd:boolean .
+
+#  The owner's manual for a network-enrolled model forbids the user from
+#  charging the pack, while the manual for another model of the same operator
+#  provides charging instructions. The customer owns the pack and holds it,
+#  but is not authorised to charge it: ownership and the right to manage are
+#  separate, and the distinguishing factor is network enrolment status.
+
+#################################################################
+# 11. ECOSYSTEM MEMBERSHIP
+#     Every artefact was observed within a particular ecosystem.
+#################################################################
+
+bsdo:BatMod_SWAP_64V   bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:BatMod_SWAP_72V   bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:BatMod_Volta_401  bsdo:operatedBy bsdo:Op_Volta .
+bsdo:BatMod_Volta_Eagle bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Dev_SWAP_Small    bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Dev_SWAP_Big      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Dev_SWAP_Home     bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Dev_Volta_Cabinet bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Sta_SWAP_Sleman   bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Sta_Volta_Cirebon bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Sta_Volta_Mitra   bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Plan_SWAP_100km      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Plan_SWAP_250km      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Plan_SWAP_500km      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Plan_Volta_Harian    bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Plan_Volta_Mingguan  bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Plan_Volta_Bulanan   bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Flow_SWAP_Swap3      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Flow_SWAP_Swap8      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Flow_SWAP_Booking    bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Flow_Volta_Ganti     bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Flow_Volta_Booking   bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Flow_Volta_TukarTitip bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Flow_Volta_SCB       bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Veh_Volta401     bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Veh_VoltaEagle   bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Veh_DeSultan     bsdo:operatedBy bsdo:Op_SWAP .

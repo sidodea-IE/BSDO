@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BSDO — Battery Swap Domain Ontology</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem;
+         font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 1.6rem; margin-bottom: .2rem; }
+  .sub { color: #666; margin-top: 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; }
+  th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid #8883; }
+  th { font-weight: 600; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .92em; }
+  footer { margin-top: 2.5rem; font-size: .9rem; color: #666; }
+</style>
+</head>
+<body>
+
+<h1>BSDO — Battery Swap Domain Ontology</h1>
+<p class="sub">An OWL 2 DL domain ontology for battery swap ecosystems for electric two-wheelers.</p>
+
+<p>BSDO models the entities that battery swapping requires and that charging-oriented vocabularies do
+not provide: a battery pack as a persistent object with an identity of its own, its changing location
+over time, the separation of ownership from physical custody, and the exchange of a pack as a
+transfer of an object rather than a transfer of energy.</p>
+
+<p>The class hierarchy is derived from Formal Concept Analysis over artefacts observed in two
+independently operated ecosystems, so that every class can be traced back to the facts that motivated
+it.</p>
+
+<h2>Download</h2>
+
+<table>
+<tr><th>File</th><th>Contents</th></tr>
+<tr><td><a href="bsdo.ttl">bsdo.ttl</a> · <a href="bsdo.owl">bsdo.owl</a></td>
+    <td>Terminology (TBox)</td></tr>
+<tr><td><a href="bsdo-abox.ttl">bsdo-abox.ttl</a> · <a href="bsdo-abox.owl">bsdo-abox.owl</a></td>
+    <td>Population (ABox)</td></tr>
+<tr><td><a href="bsdo-cq8-test.ttl">bsdo-cq8-test.ttl</a> · <a href="bsdo-cq8-test.owl">bsdo-cq8-test.owl</a></td>
+    <td>Cross-ecosystem incompatibility test</td></tr>
+<tr><td><a href="bsdo-merged.ttl">bsdo-merged.ttl</a> · <a href="bsdo-merged.owl">bsdo-merged.owl</a></td>
+    <td>Terminology and population in one file</td></tr>
+<tr><td><a href="bsdo-merged-cq8.ttl">bsdo-merged-cq8.ttl</a> · <a href="bsdo-merged-cq8.owl">bsdo-merged-cq8.owl</a></td>
+    <td>The above, plus the incompatibility test</td></tr>
+</table>
+
+<p>Open <code>bsdo-merged.owl</code> in an OWL editor such as Protégé to inspect the artefact without
+resolving imports over the network.</p>
+
+<h2>The incompatibility test</h2>
+
+<p>Loading <code>bsdo-cq8-test.ttl</code> together with the terminology and population is
+<strong>expected to make the knowledge base inconsistent</strong>. Incompatibility between ecosystems
+is detected as logical unsatisfiability rather than as an empty query result, which distinguishes a
+genuine conflict from missing data under the open-world assumption.</p>
+
+<h2>Alignment</h2>
+
+<p>BSDO aligns to the EMMO <em>domain-battery</em> and <em>domain-electrochemistry</em> modules, by
+reference rather than by import.</p>
+
+<h2>Namespace</h2>
+
+<p>Entity IRIs are minted under <code>https://w3id.org/bsdo#</code>, with
+<code>owl:versionIRI</code> <code>https://w3id.org/bsdo/0.2.0</code>.</p>
+
+<footer>
+Version 0.2.0-draft · Licensed under
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> ·
+Source and issue tracker on <a href="./">the repository</a>.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rdf:RDF
+   xmlns:bsdo="https://w3id.org/bsdo#"
+   xmlns:owl="http://www.w3.org/2002/07/owl#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
+>
+  <rdf:Description rdf:about="https://w3id.org/bsdo/cq8-test">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="https://w3id.org/bsdo/abox"/>
+    <rdfs:label xml:lang="en">BSDO cross-ecosystem incompatibility test</rdfs:label>
+    <rdfs:comment xml:lang="en">Test scenario: a lithium iron phosphate pack from one ecosystem is inserted into a handling device of the other ecosystem that accepts lithium-ion packs only.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V_test">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Small">
+    <bsdo:accepts rdf:resource="https://w3id.org/bsdo#Pack_V_test"/>
+  </rdf:Description>
+</rdf:RDF>
