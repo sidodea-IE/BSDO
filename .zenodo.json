@@ -1,0 +1,22 @@
+{
+  "title": "BSDO: Battery Swap Domain Ontology",
+  "upload_type": "software",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "creators": [
+    {
+      "name": "Dea Auvia, Sido",
+      "affiliation": "Universitas Sebelas Maret, Surakarta, Indonesia"
+    }
+  ],
+  "keywords": [
+    "ontology",
+    "battery swapping",
+    "electric two-wheeler",
+    "semantic interoperability",
+    "OWL",
+    "formal concept analysis",
+    "battery passport"
+  ],
+  "description": "<p>BSDO is an OWL 2 DL domain ontology for battery swap ecosystems for electric two-wheelers. It models the entities that battery swapping requires and that charging-oriented vocabularies do not provide: a battery pack as a persistent object with an identity of its own, its changing location over time, the separation of ownership from physical custody, and the exchange of a pack as a transfer of an object rather than a transfer of energy.</p>\n\n<p>The class hierarchy is derived from Formal Concept Analysis over artefacts observed in two independently operated ecosystems, so that every class can be traced back to the facts that motivated it. The deposit contains the terminology (TBox), a population of the two ecosystems with all identifiers pseudonymised (ABox), and a test scenario in which cross-ecosystem incompatibility is detected as logical unsatisfiability rather than as an empty query result.</p>\n\n<p>BSDO aligns by reference to the EMMO domain-battery and domain-electrochemistry modules. Entity IRIs are minted under <code>https://w3id.org/bsdo#</code>.</p>"
+}
