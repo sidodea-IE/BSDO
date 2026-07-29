@@ -1,0 +1,496 @@
+@prefix bsdo:  <https://w3id.org/bsdo#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bat:   <https://w3id.org/emmo/domain/battery#> .
+@prefix echem: <https://w3id.org/emmo/domain/electrochemistry#> .
+
+#################################################################
+#  BSDO — Battery Swap Domain Ontology
+#  TBox v2, diturunkan dari concept lattice K1–K4 (26 Jul 2026)
+#
+#  SETIAP kelas di bawah menyebut konsep formal asalnya pada
+#  rdfs:comment, sehingga jalur derivasi dapat ditelusuri:
+#     kelas OWL -> konsep kokoh -> sel insidensi -> fakta terobservasi
+#  Sumber: 4_filetambahan/fca_lattice_hasil.md §6
+#
+#  ⚠️ Hanya konsep KOKOH (muncul di lattice pesimistik DAN optimistik)
+#     yang dijadikan kelas. Konsep bergantung-asumsi tidak dipakai.
+#################################################################
+
+<https://w3id.org/bsdo> rdf:type owl:Ontology ;
+    owl:versionIRI <https://w3id.org/bsdo/0.2.0> ;
+    owl:versionInfo "0.2.0-draft" ;
+    dcterms:title "BSDO — Battery Swap Domain Ontology"@en ;
+    dcterms:creator "Sido Dea Auvia" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment """Domain ontology for battery swap ecosystems for electric two-wheelers.
+TBox derived from Formal Concept Analysis over four artefact-family contexts (batteries,
+station devices, service flows, vehicles), following METHONTOLOGY with FCA substituting the
+informal conceptualisation activity. Only concepts robust across pessimistic and optimistic
+readings of unarticulated data were promoted to classes.
+Aligned to EMMO domain-battery and domain-electrochemistry (the vocabulary layer profiled by
+BattINFO). NOTE: the w3id.org/bsdo redirect is not yet registered."""@en .
+
+#################################################################
+#  1. PERISTIWA LAYANAN — dari konsep kokoh K3
+#     Pembelahan teratas: transfer objek vs transfer energi (BSOR D5)
+#################################################################
+
+bsdo:ServiceEvent rdf:type owl:Class ;
+    rdfs:label "Service Event"@en , "Peristiwa Layanan"@id ;
+    rdfs:comment "Peristiwa terbatas-waktu di mana energi disediakan bagi kendaraan, baik dengan menukar pembawa fisik maupun dengan memindahkan energi ke pembawa yang tetap."@id .
+
+bsdo:ObjectTransferEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ServiceEvent ;
+    rdfs:label "Object Transfer Event"@en ;
+    rdfs:comment "Konsep kokoh K3 {f1..f6}, intensi {tukarObjek}. Enam alur dari KEDUA ekosistem; pembelahan ini lintas-operator, bukan artefak satu operator."@id .
+
+bsdo:EnergyTransferEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ServiceEvent ;
+    rdfs:label "Energy Transfer Event"@en ;
+    rdfs:comment "Konsep kokoh K3 {f7} (SCB), intensi {transferEnergi}. Pembawa fisik tidak berpindah."@id .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( bsdo:ObjectTransferEvent bsdo:EnergyTransferEvent ) .
+
+bsdo:SwapEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ObjectTransferEvent ;
+    rdfs:label "Swap Event"@en , "Peristiwa Tukar"@id ;
+    rdfs:comment "Pertukaran objek yang pak keluarannya TIDAK kembali kepada pengguna."@id .
+
+bsdo:LoanEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ObjectTransferEvent ;
+    rdfs:label "Loan Event"@en ;
+    skos:altLabel "Tukar Titip"@id ;
+    rdfs:comment "Pertukaran objek dengan pak pinjaman; pak milik pengguna dikembalikan dalam batas waktu."@id .
+
+bsdo:DepositChargingEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:EnergyTransferEvent ;
+    rdfs:label "Deposit Charging Event"@en ;
+    skos:altLabel "SCB"@id , "Sistem Charge Battery"@id ;
+    rdfs:comment "Pak milik pengguna dititipkan ke kabinet untuk diisi, lalu diambil kembali."@id .
+
+#  --- Kelas terdefinisi: memotong pembelahan di atas ---
+#  Konsep kokoh K3 {f6,f7}. f6 adalah ObjectTransfer, f7 adalah EnergyTransfer,
+#  namun keduanya berbagi struktur kustodi. Karena itu kelas ini TIDAK ditempatkan
+#  di bawah salah satu cabang — keanggotaannya diinferensi.
+
+bsdo:CustodyPreservingEvent rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:ServiceEvent
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:hasCustodyDeadlineHours ;
+                               owl:minCardinality "1"^^xsd:nonNegativeInteger ]
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:returnsPackTo ;
+                               owl:minCardinality "1"^^xsd:nonNegativeInteger ] ) ] ;
+    rdfs:label "Custody-Preserving Event"@en ;
+    rdfs:comment "Konsep kokoh K3 {f6,f7}. Peristiwa di mana PENGUASAAN berpindah sementara sedangkan KEPEMILIKAN tidak. Arah kustodi berlawanan pada kedua anggotanya: pada LoanEvent pengguna memegang pak operator; pada DepositChargingEvent operator memegang pak pengguna. Tidak satu pun ontologi pembanding (lihat telaah_BSOR_tabel_bukti.md) memiliki konstruk ini. BSOR D4."@id .
+
+#################################################################
+#  2. PERANGKAT — dari konsep kokoh K2
+#################################################################
+
+bsdo:BatteryHandlingDevice rdf:type owl:Class ;
+    rdfs:label "Battery Handling Device"@en .
+
+bsdo:SwapDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ;
+    rdfs:label "Swap Device"@en ;
+    skos:altLabel "BSS"@id , "Swap Poin"@id , "SGB"@id , "kabinet"@id ;
+    rdfs:comment "Konsep kokoh K2 {s1,s2,s4}, intensi {swap, booking, mitra}."@id .
+
+bsdo:ChargingDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ;
+    rdfs:label "Charging Device"@en ;
+    rdfs:comment "Konsep kokoh K2 {s3,s4}, intensi {charge}."@id .
+
+#  ⚠️ SwapDevice dan ChargingDevice SENGAJA TIDAK disjoint.
+#  Kabinet SGB Volta (s4) adalah saksi: ia melayani penukaran DAN pengisian (SCB).
+#  SWAP Energy memisahkan keduanya (Swap Home = charging saja); Volta menggabungkan.
+#  Menyatakan disjoint akan membuat kabinet Volta tak-terpenuhi. Lihat fca_lattice_hasil.md §3.
+
+bsdo:DualFunctionDevice rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:SwapDevice bsdo:ChargingDevice ) ] ;
+    rdfs:label "Dual-Function Device"@en ;
+    rdfs:comment "Perangkat yang melakukan penukaran objek sekaligus transfer energi. Perbedaan arsitektural lintas ekosistem yang hanya muncul karena kedua fungsi dimodelkan sebagai atribut terpisah."@id .
+
+bsdo:BatterySlot rdf:type owl:Class ;
+    rdfs:label "Battery Slot"@en ;
+    skos:altLabel "Slot"@id , "Pintu"@id ;
+    rdfs:comment "Istilah asli berbeda per ekosistem: SWAP Energy memakai 'Slot', Volta memakai 'Pintu'. Dipertahankan sebagai altLabel, tidak dinormalisasi."@id .
+
+#################################################################
+#  3. BATERAI — dari konsep kokoh K1
+#################################################################
+
+bsdo:SwappableBattery rdf:type owl:Class ;
+    rdfs:subClassOf bat:battery_74ed2670_657d_4f0b_b0a6_3f13bc2e9c17 ;   # emmo:Battery
+    rdfs:label "Swappable Battery"@en , "Baterai Tukar"@id ;
+    rdfs:comment "Selaras ke EMMO domain-battery:Battery (lapisan kosakata yang diprofilkan BattINFO, bukan BattINFO itu sendiri)."@id .
+
+#  --- Kelas tegangan: atribut yang TIDAK menentukan pertukaran ---
+bsdo:VoltageClass rdf:type owl:Class ;
+    rdfs:label "Nominal Voltage Class"@en .
+
+bsdo:VC_60V rdf:type owl:NamedIndividual , bsdo:VoltageClass ; rdfs:label "60 V"@en .
+bsdo:VC_64V rdf:type owl:NamedIndividual , bsdo:VoltageClass ; rdfs:label "64 V"@en .
+bsdo:VC_72V rdf:type owl:NamedIndividual , bsdo:VoltageClass ; rdfs:label "72 V"@en .
+
+#  --- Kimia sel: pembeda ekosistem yang SESUNGGUHNYA ---
+bsdo:CellChemistry rdf:type owl:Class ;
+    rdfs:label "Cell Chemistry"@en .
+
+bsdo:LithiumIon rdf:type owl:NamedIndividual , bsdo:CellChemistry ;
+    rdfs:label "Lithium-Ion (generic)"@en .
+bsdo:LithiumIronPhosphate rdf:type owl:NamedIndividual , bsdo:CellChemistry ;
+    rdfs:label "LiFePO4"@en .
+[] rdf:type owl:AllDifferent ;
+   owl:distinctMembers ( bsdo:LithiumIon bsdo:LithiumIronPhosphate ) .
+
+bsdo:LithiumIonSwappableBattery rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:SwappableBattery
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:hasCellChemistry ;
+                               owl:hasValue bsdo:LithiumIon ] ) ] ;
+    rdfs:subClassOf bsdo:SwappableBattery ,
+                    bat:battery_96addc62_ea04_449a_8237_4cd541dd8e5f ;   # emmo:LithiumIonBattery
+    rdfs:label "Lithium-Ion Swappable Battery"@en ;
+    rdfs:comment "SubClassOf SwappableBattery dinyatakan eksplisit meskipun sudah tersirat dari equivalentClass, agar kueri SPARQL atas graf mentah (tanpa reasoner) tetap bekerja."@id .
+
+bsdo:LFPSwappableBattery rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:SwappableBattery
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:hasCellChemistry ;
+                               owl:hasValue bsdo:LithiumIronPhosphate ] ) ] ;
+    rdfs:subClassOf bsdo:SwappableBattery ;
+    rdfs:label "LiFePO4 Swappable Battery"@en .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( bsdo:LithiumIonSwappableBattery bsdo:LFPSwappableBattery ) .
+
+#################################################################
+#  4. KEPEMILIKAN vs PENGUASAAN — BSOR D4, kontribusi inti
+#################################################################
+
+bsdo:Agent rdf:type owl:Class ; rdfs:label "Agent"@en .
+bsdo:Customer rdf:type owl:Class ; rdfs:subClassOf bsdo:Agent ; rdfs:label "Customer"@en ;
+    skos:altLabel "Volters"@id .
+bsdo:Operator rdf:type owl:Class ; rdfs:subClassOf bsdo:Agent ; rdfs:label "Operator"@en .
+
+bsdo:operatedBy rdf:type owl:ObjectProperty ;
+    rdfs:range bsdo:Operator ;
+    rdfs:label "operated by"@en ;
+    rdfs:comment "Menautkan artefak apa pun (perangkat, paket tarif, aturan kelayakan, model baterai) ke operator ekosistemnya. Sengaja TANPA rdfs:domain agar dapat dipakai lintas famili artefak — keanggotaan ekosistem terobservasi langsung untuk setiap artefak dalam studi ini. Diperlukan agar CQ4 dan CQ5 dapat dijawab."@id .
+
+bsdo:ownedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:Agent ;
+    rdfs:label "owned by"@en ;
+    rdfs:comment "Kepemilikan: bertahan melintasi peristiwa layanan."@id .
+
+bsdo:heldBy rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:Agent ;
+    rdfs:label "held by"@en ;
+    rdfs:comment "Penguasaan fisik saat ini. Fungsional: satu pak dipegang paling banyak satu pihak. Dapat berbeda dari ownedBy — inilah pembedaan yang tidak dimiliki ontologi pembanding mana pun."@id .
+
+bsdo:hasCustodyDeadlineHours rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range xsd:decimal ;
+    rdfs:label "custody deadline (hours)"@en ;
+    rdfs:comment "Batas waktu penguasaan sementara, dalam JAM. Terobservasi: 6 jam pada Tukar Titip dan SCB (manual Volta Membership). CATATAN: xsd:duration sengaja TIDAK dipakai karena bukan bagian dari peta datatype OWL 2 — memakainya akan mengeluarkan ontologi dari profil OWL 2 DL."@id .
+
+bsdo:returnsPackTo rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:Agent ;
+    rdfs:label "returns pack to"@en .
+
+#  --- Status pendaftaran jaringan: hak mengelola bergantung padanya ---
+bsdo:NetworkEnrolmentStatus rdf:type owl:Class ; rdfs:label "Network Enrolment Status"@en .
+bsdo:Online rdf:type owl:NamedIndividual , bsdo:NetworkEnrolmentStatus ; rdfs:label "online"@en .
+bsdo:Offline rdf:type owl:NamedIndividual , bsdo:NetworkEnrolmentStatus ; rdfs:label "offline"@en .
+[] rdf:type owl:AllDifferent ; owl:distinctMembers ( bsdo:Online bsdo:Offline ) .
+
+bsdo:hasEnrolmentStatus rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:NetworkEnrolmentStatus ;
+    rdfs:label "has enrolment status"@en .
+
+bsdo:mayBeChargedByHolder rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:boolean ;
+    rdfs:label "may be charged by holder"@en ;
+    rdfs:comment "Hak mengelola, TERPISAH dari kepemilikan. Bukti: buku panduan Volta 401 melarang pengisian mandiri; buku panduan Volta Eagle memberi petunjuk pengisian. Pembeda: status pendaftaran jaringan, bukan kepemilikan."@id .
+
+bsdo:NetworkEnrolledBattery rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty bsdo:hasEnrolmentStatus ; owl:hasValue bsdo:Online ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+        owl:onProperty bsdo:mayBeChargedByHolder ;
+        owl:hasValue "false"^^xsd:boolean ] ;
+    rdfs:label "Network-Enrolled Battery"@en ;
+    rdfs:comment "Pak terdaftar SGB: kepemilikan tetap pada pengguna, hak mengisi daya berada pada operator. Inilah pemisahan kepemilikan dari hak mengelola, terdokumentasi pada manual resmi operator."@id .
+
+#################################################################
+#  5. IDENTITAS — BSOR D1
+#################################################################
+
+bsdo:hasUnitIdentifier rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:string ;
+    rdfs:label "unit identifier"@en ;
+    rdfs:comment "Pengenal unit persisten, lepas dari kendaraan mana pun. Terobservasi di KEDUA ekosistem. Skema penomoran berbeda dan tidak saling ditafsirkan; tidak ada yang tampak mengikuti ISO/IEC 15459 sebagaimana diwajibkan Regulasi (EU) 2023/1542 Art. 77(3)."@id .
+
+bsdo:IdentifierScheme rdf:type owl:Class ; rdfs:label "Identifier Scheme"@en .
+bsdo:hasIdentifierScheme rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:IdentifierScheme .
+
+#################################################################
+#  6. KEADAAN PADA SAAT PERISTIWA — BSOR D3 (terbatas, disengaja)
+#################################################################
+
+bsdo:BatteryStateObservation rdf:type owl:Class ;
+    rdfs:label "Battery State Observation"@en ;
+    rdfs:comment "Reifikasi keadaan pak PADA SATU TITIK WAKTU. D3 sengaja dibatasi pada keadaan-saat-transaksi, bukan lintasan ruang-waktu penuh; batas ini dinyatakan di Limitations."@id .
+
+bsdo:observedAt rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range xsd:dateTime .
+bsdo:observationOf rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range bsdo:SwappableBattery .
+bsdo:hasStateOfCharge rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range xsd:decimal ;
+    rdfs:seeAlso echem:electrochemistry_8b2aaa50_bbe1_45da_8778_8898326246a2 ;
+    rdfs:comment "Selaras ke StateOfCharge di domain-electrochemistry. CATATAN: kelas StateOfCharge di namespace domain/battery berstatus owl:deprecated — jangan dipakai."@id .
+bsdo:hasQualitativeHealthLabel rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range xsd:string ;
+    rdfs:seeAlso echem:electrochemistry_a7a4614f_2426_46f3_8475_cda4a9fabfce ;
+    rdfs:comment "SENGAJA bertipe string, bukan desimal. Satu ekosistem memaparkan lencana kualitatif ('Healthy') tanpa skala, ambang, atau metode penurunan yang diungkapkan; satu lagi tidak memaparkan apa pun. Ini BUKAN state of health terkuantifikasi sebagaimana dituntut Annex XIII §4(b) Regulasi (EU) 2023/1542, dan tidak dapat dipetakan lintas operator."@id .
+
+#################################################################
+#  7. PARTISIPAN PERISTIWA — reifikasi n-ary (BSOR D5, D2, D3)
+#################################################################
+
+bsdo:hasParticipantCustomer rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:Customer .
+bsdo:occursAtDevice rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:BatteryHandlingDevice .
+bsdo:occursAtSlot rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:BatterySlot .
+bsdo:eventTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range xsd:dateTime .
+bsdo:packRemoved rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ObjectTransferEvent ; rdfs:range bsdo:SwappableBattery ;
+    rdfs:label "pack removed from vehicle"@en .
+bsdo:packInserted rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ObjectTransferEvent ; rdfs:range bsdo:SwappableBattery ;
+    rdfs:label "pack inserted into vehicle"@en .
+
+#  --- Relasi baterai-kendaraan: TEMPORER, bukan mereologis tetap (BSOR D2) ---
+bsdo:ElectricMotorcycle rdf:type owl:Class ;
+    rdfs:label "Electric Motorcycle"@en , "Motor Listrik"@id .
+
+bsdo:BatteryInstallation rdf:type owl:Class ;
+    rdfs:label "Battery Installation"@en ;
+    rdfs:comment "Reifikasi pemasangan pak pada kendaraan. Relasi ini SENGAJA tidak dimodelkan sebagai part-of mereologis: dalam swapping pak berpindah antar kendaraan, sehingga relasi tetap akan salah. Bandingkan EVO (Kivrakidis et al. 2024) yang memiliki pola reifikasi serupa (BatteryRelation) tetapi pada tingkat TIPE dan tanpa dimensi waktu."@id .
+bsdo:installedPack rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryInstallation ; rdfs:range bsdo:SwappableBattery .
+bsdo:installedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryInstallation ; rdfs:range bsdo:ElectricMotorcycle .
+bsdo:installationFrom rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryInstallation ; rdfs:range xsd:dateTime .
+
+#################################################################
+#  8. TARIF — dua dimensi kuota yang TIDAK SEPADAN (CQ5)
+#################################################################
+
+bsdo:QuotaPlan rdf:type owl:Class ;
+    rdfs:label "Prepaid Quota Plan"@en ;
+    rdfs:comment "Kedua ekosistem memakai pola yang sama: kuota prabayar dengan masa berlaku. Yang berbeda adalah DIMENSI kuotanya."@id .
+
+bsdo:DistanceQuotaPlan rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:QuotaPlan ;
+    rdfs:label "Distance Quota Plan"@en ;
+    rdfs:comment "Kuota dalam kilometer (SWAP Energy: 100/250/500 km dengan masa berlaku 30/60 hari)."@id .
+
+bsdo:EventCountQuotaPlan rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:QuotaPlan ;
+    rdfs:label "Event-Count Quota Plan"@en ;
+    rdfs:comment "Kuota dalam jumlah penukaran (Volta: 1/14/50 kali per hari/minggu/bulan)."@id .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( bsdo:DistanceQuotaPlan bsdo:EventCountQuotaPlan ) .
+#  Disjointness ini MEMODELKAN ketaksepadanan: konversi antar keduanya menuntut
+#  km-per-swap, yang bergantung kapasitas pak dan kondisi berkendara — bukan faktor tetap.
+
+bsdo:quotaAmount rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:QuotaPlan ; rdfs:range xsd:decimal .
+bsdo:validityDays rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:QuotaPlan ; rdfs:range xsd:integer .
+
+#################################################################
+#  9. KELAYAKAN TUKAR — predikat yang ekstensinya BERBEDA (CQ5b)
+#################################################################
+
+bsdo:SwapEligibilityRule rdf:type owl:Class ;
+    rdfs:label "Swap Eligibility Rule"@en ;
+    rdfs:comment "Aturan yang menetapkan kapan sebuah pak dianggap siap ditukar. Terobservasi: SWAP Energy memakai ambang tunggal SoC >= 50%; Volta melaporkan dua bucket (<50% dan >=80%) yang TIDAK mempartisi interval yang sama. Pak pada 65% terklasifikasi oleh yang pertama dan tidak terklasifikasi oleh yang kedua."@id .
+bsdo:thresholdPercent rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:SwapEligibilityRule ; rdfs:range xsd:decimal .
+bsdo:declaredBy rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwapEligibilityRule ; rdfs:range bsdo:Operator .
+
+#################################################################
+# 10. SIFAT BATERAI
+#################################################################
+
+bsdo:hasVoltageClass rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:VoltageClass ;
+    rdfs:comment "CATATAN: satu artefak dapat memiliki lebih dari satu deklarasi kelas tegangan. Baterai SWAP dideklarasikan 64 V oleh situs resmi dan 60 V oleh aplikasi. Properti ini SENGAJA tidak fungsional agar ketidakstabilan terminologi dapat direkam apa adanya."@id .
+bsdo:hasCellChemistry rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:CellChemistry .
+bsdo:hasCapacityAh rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:decimal .
+bsdo:hasCapacityKWh rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:decimal .
+
+#################################################################
+# 11. INKOMPATIBILITAS SEBAGAI INFERENSI — CQ6, CQ8
+#     Kompatibilitas TIDAK di-assert. Perangkat menerima kimia tertentu;
+#     memasukkan pak berkimia lain menjadikan individual tak-terpenuhi.
+#################################################################
+
+bsdo:acceptsChemistry rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryHandlingDevice ; rdfs:range bsdo:CellChemistry .
+
+bsdo:accepts rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryHandlingDevice ; rdfs:range bsdo:SwappableBattery ;
+    rdfs:comment "Pak yang benar-benar dapat dilayani perangkat. TIDAK di-assert manual; dibatasi oleh aksioma kimia di bawah sehingga ketidakcocokan terdeteksi sebagai inkonsistensi, bukan sebagai hasil kueri kosong."@id .
+
+bsdo:LithiumIonOnlyDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ,
+        [ rdf:type owl:Restriction ;
+          owl:onProperty bsdo:accepts ;
+          owl:allValuesFrom bsdo:LithiumIonSwappableBattery ] ;
+    rdfs:label "Lithium-Ion-Only Device"@en .
+
+bsdo:LFPOnlyDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ,
+        [ rdf:type owl:Restriction ;
+          owl:onProperty bsdo:accepts ;
+          owl:allValuesFrom bsdo:LFPSwappableBattery ] ;
+    rdfs:label "LiFePO4-Only Device"@en .
+
+#  Uji CQ8: menyatakan sebuah LithiumIonOnlyDevice menerima pak LiFePO4
+#  membuat pak itu anggota dua kelas yang disjoint -> reasoner melaporkan
+#  inkonsistensi. Ini memenuhi syarat "inkompatibilitas sebagai unsatisfiability,
+#  bukan hasil kueri kosong" (Q1_Section3_Methodology_v1.md §3.7).
+
+#################################################################
+# 12. PERBAIKAN OOPS! — P34 (Important) & P08 (Minor)
+#     Ditambahkan 28 Jul 2026 setelah scan OOPS! atas BSDO_v2.owl.
+#################################################################
+
+#  --- P34: stub alignment EMMO dideklarasikan sebagai kelas ---
+#  Kedua IRI dipakai sebagai target rdfs:subClassOf tetapi tidak diimpor
+#  (impor penuh domain-battery = 4952 kelas, tidak sepadan untuk kebutuhan ini).
+#  Deklarasi lokal + label membuatnya terbaca di Protégé dan menutup P34.
+
+bat:battery_74ed2670_657d_4f0b_b0a6_3f13bc2e9c17 rdf:type owl:Class ;
+    rdfs:label "Battery (EMMO domain-battery)"@en ;
+    rdfs:comment "Stub alignment ke EMMO domain-battery:Battery. Dideklarasikan lokal, bukan diimpor: impor penuh modul (4952 kelas) tidak sepadan dengan kebutuhan alignment tunggal ini. IRI diverifikasi terhadap battery-inferred.ttl."@id ;
+    rdfs:isDefinedBy <https://w3id.org/emmo/domain/battery> .
+
+bat:battery_96addc62_ea04_449a_8237_4cd541dd8e5f rdf:type owl:Class ;
+    rdfs:label "LithiumIonBattery (EMMO domain-battery)"@en ;
+    rdfs:comment "Stub alignment ke EMMO domain-battery:LithiumIonBattery. IRI diverifikasi terhadap battery-inferred.ttl."@id ;
+    rdfs:isDefinedBy <https://w3id.org/emmo/domain/battery> .
+
+#  --- P08: label & komentar untuk properti ---
+bsdo:hasCellChemistry     rdfs:label "has cell chemistry"@en ;
+    rdfs:comment "Kimia sel yang dinyatakan produsen. Pembeda ekosistem yang sesungguhnya — lihat CQ4b."@id .
+bsdo:hasVoltageClass      rdfs:comment "Kelas tegangan nominal yang DIDEKLARASIKAN. Tidak fungsional: satu artefak dapat memiliki lebih dari satu deklarasi dari sumber berbeda."@id .
+bsdo:hasCapacityAh        rdfs:label "capacity (Ah)"@en ;
+    rdfs:comment "Kapasitas dalam ampere-jam. Satu ekosistem melaporkan Ah, yang lain kWh — satuan tidak sepadan tanpa tegangan aktual."@id .
+bsdo:hasCapacityKWh       rdfs:label "capacity (kWh)"@en ;
+    rdfs:comment "Kapasitas dalam kilowatt-jam. Lihat catatan pada hasCapacityAh."@id .
+bsdo:hasIdentifierScheme  rdfs:label "has identifier scheme"@en ;
+    rdfs:comment "Skema penomoran pengenal unit. Kedua ekosistem memakai skema berbeda yang tidak saling ditafsirkan — titik pemetaan pertama untuk roaming (CQ7)."@id .
+bsdo:hasEnrolmentStatus   rdfs:comment "Status pendaftaran pak pada jaringan operator. Menentukan hak mengelola, BUKAN kepemilikan."@id .
+bsdo:hasStateOfCharge     rdfs:label "state of charge (%)"@en .
+bsdo:hasQualitativeHealthLabel rdfs:label "qualitative health label"@en .
+bsdo:accepts              rdfs:label "accepts"@en .
+bsdo:acceptsChemistry     rdfs:label "accepts chemistry"@en ;
+    rdfs:comment "Kimia sel yang dapat dilayani perangkat. Dasar deteksi inkompatibilitas sebagai inkonsistensi (CQ8)."@id .
+bsdo:occursAtDevice       rdfs:label "occurs at device"@en .
+bsdo:occursAtSlot         rdfs:label "occurs at slot"@en .
+bsdo:eventTime            rdfs:label "event time"@en .
+bsdo:hasParticipantCustomer rdfs:label "has participant customer"@en .
+bsdo:packRemoved          rdfs:comment "Pak yang dikeluarkan dari kendaraan pada peristiwa transfer objek."@id .
+bsdo:packInserted         rdfs:comment "Pak yang dipasang ke kendaraan pada peristiwa transfer objek."@id .
+bsdo:returnsPackTo        rdfs:comment "Pihak yang menerima kembali pak pada akhir peristiwa. Hanya terisi pada peristiwa yang mempertahankan kepemilikan."@id .
+bsdo:installedPack        rdfs:label "installed pack"@en .
+bsdo:installedIn          rdfs:label "installed in"@en .
+bsdo:installationFrom     rdfs:label "installation from"@en .
+bsdo:observationOf        rdfs:label "observation of"@en .
+bsdo:observedAt           rdfs:label "observed at"@en .
+bsdo:declaredBy           rdfs:label "declared by"@en .
+bsdo:quotaAmount          rdfs:label "quota amount"@en ;
+    rdfs:comment "Besaran kuota. SATUANNYA bergantung subkelas: kilometer pada DistanceQuotaPlan, jumlah penukaran pada EventCountQuotaPlan. Keduanya disjoint karena tidak sepadan."@id .
+bsdo:validityDays         rdfs:label "validity (days)"@en .
+bsdo:thresholdPercent     rdfs:label "threshold (%)"@en .
+
+#  --- P08: komentar untuk kelas ---
+bsdo:Agent                 rdfs:comment "Pihak yang dapat memiliki atau memegang pak baterai."@id .
+bsdo:Customer              rdfs:comment "Pengguna akhir. Istilah asli Volta: Volters."@id .
+bsdo:Operator              rdfs:comment "Penyelenggara ekosistem battery swap."@id .
+bsdo:ElectricMotorcycle    rdfs:comment "Kendaraan roda dua listrik berbaterai tukar. Relasi ke pak bersifat temporer — lihat BatteryInstallation."@id .
+bsdo:CellChemistry         rdfs:comment "Kimia sel sebagai nilai terenumerasi. LiFePO4 dan Lithium-Ion generik dinyatakan berbeda."@id .
+bsdo:VoltageClass          rdfs:comment "Kelas tegangan nominal terdeklarasi. CATATAN: dimensi ini BERIMPITAN lintas ekosistem (60 V dan 64 V) sehingga TIDAK menentukan kemampuan tukar."@id .
+bsdo:IdentifierScheme      rdfs:comment "Skema penomoran pengenal unit, khas per ekosistem."@id .
+bsdo:NetworkEnrolmentStatus rdfs:comment "Status pendaftaran pak pada jaringan: online (terdaftar) atau offline."@id .
+bsdo:BatteryHandlingDevice rdfs:comment "Perangkat yang menangani pak baterai, baik dengan menukar maupun mengisi."@id .
+bsdo:LithiumIonOnlyDevice  rdfs:comment "Perangkat yang hanya menerima pak berkimia Lithium-Ion. Batasan allValuesFrom di sini yang membuat inkompatibilitas terdeteksi sebagai inkonsistensi."@id .
+bsdo:LFPOnlyDevice         rdfs:comment "Perangkat yang hanya menerima pak berkimia LiFePO4."@id .
+bsdo:LFPSwappableBattery   rdfs:comment "Pak tukar berkimia LiFePO4. Disjoint dengan LithiumIonSwappableBattery."@id .
+
+#  --- P08 lanjutan: menutup sisa 13 entitas ---
+bsdo:hasVoltageClass   rdfs:label "has voltage class"@en .
+bsdo:declaredBy        rdfs:comment "Operator yang mendeklarasikan aturan ini. Aturan kelayakan bersifat khas-operator, bukan standar bersama."@id .
+bsdo:eventTime         rdfs:comment "Waktu terjadinya peristiwa. Umumnya kosong: payload transaksi tidak dapat diobservasi dari sumber yang tersedia (lihat CQ3)."@id .
+bsdo:hasParticipantCustomer rdfs:comment "Pelanggan yang terlibat dalam peristiwa layanan."@id .
+bsdo:occursAtDevice    rdfs:comment "Perangkat tempat peristiwa berlangsung."@id .
+bsdo:occursAtSlot      rdfs:comment "Slot atau pintu tempat pak ditempatkan. Istilah asli berbeda per ekosistem."@id .
+bsdo:installedPack     rdfs:comment "Pak yang terpasang pada kendaraan dalam episode pemasangan ini."@id .
+bsdo:installedIn       rdfs:comment "Kendaraan tempat pak terpasang dalam episode ini."@id .
+bsdo:installationFrom  rdfs:comment "Awal episode pemasangan. Menjadikan relasi baterai-kendaraan temporer, bukan mereologis tetap (BSOR D2)."@id .
+bsdo:observationOf     rdfs:comment "Pak yang keadaannya diamati."@id .
+bsdo:observedAt        rdfs:comment "Saat pengamatan dilakukan. Membatasi BSOR D3 pada keadaan-pada-titik-waktu, bukan lintasan penuh."@id .
+bsdo:thresholdPercent  rdfs:comment "Ambang SoC yang dideklarasikan aturan. Nilai yang sama dapat menandakan hal berbeda: ambang tunggal pada satu ekosistem, batas bucket pada ekosistem lain (CQ5b)."@id .
+bsdo:validityDays      rdfs:comment "Masa berlaku kuota dalam hari. Kuota habis karena terpakai ATAU karena lewat waktu, mana yang lebih dahulu."@id .
+
+#################################################################
+# 13. PERBAIKAN OOPS! putaran 2 — P11 (Important)
+#     Ditambahkan 28 Jul 2026.
+#################################################################
+
+#  `operatedBy` semula tanpa rdfs:domain karena berlaku lintas famili artefak.
+#  Alih-alih membiarkannya tanpa domain, diperkenalkan kelas payung yang memang
+#  bermakna: keempat famili objek konteks FCA (baterai, perangkat, alur layanan,
+#  kendaraan) plus artefak komersial semuanya adalah ARTEFAK YANG TERIKAT PADA
+#  SATU EKOSISTEM. Kelas ini bukan tambalan — ia adalah kategori yang sudah
+#  dipakai secara implisit sejak desain konteks formal.
+
+bsdo:EcosystemArtefact rdf:type owl:Class ;
+    rdfs:label "Ecosystem Artefact"@en , "Artefak Ekosistem"@id ;
+    rdfs:comment "Artefak apa pun yang terikat pada satu ekosistem battery swap tertentu. Payung bagi keempat famili objek yang dipakai sebagai konteks formal FCA (model baterai, perangkat stasiun, alur layanan, model kendaraan) serta artefak komersial dan normatif. Keterikatan pada ekosistem inilah yang membuat perbandingan lintas-ekosistem dapat dirumuskan sama sekali."@id .
+
+bsdo:SwappableBattery      rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:BatteryHandlingDevice rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:ServiceEvent          rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:ElectricMotorcycle    rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:QuotaPlan             rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:SwapEligibilityRule   rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:BatterySlot           rdfs:subClassOf bsdo:EcosystemArtefact .
+
+bsdo:operatedBy rdfs:domain bsdo:EcosystemArtefact .
