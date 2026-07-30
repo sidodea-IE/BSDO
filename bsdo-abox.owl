@@ -7,64 +7,17 @@
    xmlns:rdfs="http://www.w3.org/2000/01/rdf-schema#"
    xmlns:skos="http://www.w3.org/2004/02/skos/core#"
 >
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Inst_V01">
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_SWAP_72V">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryInstallation"/>
-    <bsdo:installedPack rdf:resource="https://w3id.org/bsdo#Pack_V01"/>
-    <bsdo:installedIn rdf:resource="https://w3id.org/bsdo#Veh_Volta401"/>
-    <rdfs:comment xml:lang="en">The installation is reified rather than modelled as a mereological part-whole relation: a pack moves between vehicles through exchange, so a fixed relation would be false.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Swap3">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
-    <rdfs:label xml:lang="en">SWAP direct swap, 3-slot</rdfs:label>
-    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_SWAP_Small"/>
-    <rdfs:comment xml:lang="en">Source: in-application procedure guide for the smaller station type.</rdfs:comment>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
+    <rdfs:label xml:lang="en">SWAP battery, 72 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_72V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">30</bsdo:hasCapacityAh>
+    <bsdo:hasCapacityKWh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.1</bsdo:hasCapacityKWh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
+    <rdfs:comment xml:lang="en">Source: operator website and vehicle manufacturer specification page.</rdfs:comment>
     <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V02">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
-    <bsdo:hasUnitIdentifier>VOLTA-PSEUDO-02</bsdo:hasUnitIdentifier>
-    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
-    <bsdo:hasEnrolmentStatus rdf:resource="https://w3id.org/bsdo#Online"/>
-    <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_Volta_Mitra">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
-    <rdfs:label xml:lang="en">Volta SGB Mitra, SPBU</rdfs:label>
-    <rdfs:comment xml:lang="en">Host: fuel station. Availability is reported as aggregate bands rather than per door. The difference in display from the other observed cabinet is unexplained and is not taken as evidence of a different device type.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_Volta_Low">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
-    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:thresholdPercent>
-    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-    <rdfs:label xml:lang="en">Volta bucket, below 50%</rdfs:label>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_100km">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
-    <rdfs:label xml:lang="en">Try to Ride</rdfs:label>
-    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</bsdo:quotaAmount>
-    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</bsdo:validityDays>
-    <rdfs:comment xml:lang="en">Quota denominated in kilometres.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nefee5cb2e894403388142a3147039d88b1">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
-    <owl:distinctMembers rdf:nodeID="nefee5cb2e894403388142a3147039d88b2"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_Ganti">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
-    <rdfs:label xml:lang="en">Volta direct exchange</rdfs:label>
-    <skos:altLabel xml:lang="id">Ganti Baterai</skos:altLabel>
-    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
-    <rdfs:comment xml:lang="en">Source: operator application user manual. Select a cabinet, scan, an empty door opens, exchange. Neither payment nor a time limit is mentioned, in contrast to the booking and loan flows of the same operator.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_SCB">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -78,14 +31,246 @@
     <rdfs:comment xml:lang="en">Source: operator application user manual. Activate the service, scan within a time limit, begin charging, and retrieve the customer's own pack before the custody deadline expires. Custody runs in the opposite direction from the loan flow: here the operator holds the customer's pack.</rdfs:comment>
     <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Bulanan">
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_Volta_Mitra">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdfs:label xml:lang="en">Volta SGB Mitra, SPBU</rdfs:label>
+    <rdfs:comment xml:lang="en">Host: fuel station. Availability is reported as aggregate bands rather than per door. The difference in display from the other observed cabinet is unexplained and is not taken as evidence of a different device type.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_100km">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
+    <rdfs:label xml:lang="en">Try to Ride</rdfs:label>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">100</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in kilometres.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Small">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonOnlyDevice"/>
+    <rdfs:label xml:lang="en">SWAP Small station</rdfs:label>
+    <skos:altLabel xml:lang="id">3-Slot Station</skos:altLabel>
+    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <rdfs:comment xml:lang="en">Source: operator website. Published capacity differs by one from the slot count stated in the application; the additional slot is presumed to receive the customer's depleted pack. On this station type the indicator colours encode charge level.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_Booking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">Volta booking</rdfs:label>
+    <skos:altLabel xml:lang="id">Booking Baterai</skos:altLabel>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
+    <bsdo:hasParticipantCustomer rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Select a cabinet, pay, then a time limit applies for scanning before the door opens.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Mingguan">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
-    <rdfs:label xml:lang="en">Monthly plan</rdfs:label>
-    <skos:altLabel xml:lang="id">Paket Bulanan</skos:altLabel>
-    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:quotaAmount>
-    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</bsdo:validityDays>
-    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate. The plan is bound to one registered vehicle.</rdfs:comment>
+    <rdfs:label xml:lang="en">Weekly plan</rdfs:label>
+    <skos:altLabel xml:lang="id">Paket Mingguan</skos:altLabel>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">14</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_Volta_Cabinet">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPOnlyDevice"/>
+    <rdfs:label xml:lang="en">Volta SGB cabinet</rdfs:label>
+    <skos:altLabel xml:lang="id">kabinet SGB</skos:altLabel>
+    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+    <rdfs:comment xml:lang="en">Eight doors observed, with status and state of charge reported per door. This cabinet performs both exchange and charging, and is therefore classified as both a swap device and a charging device; a reasoner should infer it to be a dual-function device. The other ecosystem separates these functions across distinct appliances.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Obs_V01_a">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
+    <bsdo:observationOf rdf:resource="https://w3id.org/bsdo#Pack_V01"/>
+    <bsdo:hasStateOfCharge rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">92</bsdo:hasStateOfCharge>
+    <rdfs:comment xml:lang="en">This ecosystem exposes state of charge per unit but exposes no health indicator.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Big">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonOnlyDevice"/>
+    <rdfs:label xml:lang="en">SWAP Big station</rdfs:label>
+    <skos:altLabel xml:lang="id">8-Slot Station</skos:altLabel>
+    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <rdfs:comment xml:lang="en">Source: operator website. On this station type the indicator colours encode the state of an authentication process, a different meaning from the same colours on the smaller type of the same operator.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_DeSultan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">Smoot De Sultan</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: vehicle manufacturer specification page.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_SWAP_64V">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
+    <rdfs:label xml:lang="en">SWAP battery, 64 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_64V"/>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_60V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
+    <bsdo:hasCapacityKWh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.3</bsdo:hasCapacityKWh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
+    <rdfs:comment xml:lang="en">Source: operator website. Two voltage classes are deliberately asserted: the website states one value while the operator's own application labels the same product with another. This intra-ecosystem terminological instability is recorded rather than resolved.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_Volta_High">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">80</bsdo:thresholdPercent>
+    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+    <rdfs:label xml:lang="en">Volta bucket, 80% and above</rdfs:label>
+    <rdfs:comment xml:lang="en">This operator reports two bands that do not partition the same interval. A pack in the intervening range satisfies the other operator's threshold but falls into neither band here.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_SWAP_Sleman">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdfs:label xml:lang="en">SWAP station, Sleman</rdfs:label>
+    <rdfs:comment xml:lang="en">Station identifier pseudonymised. Eight slots observed, each reporting state of charge and voltage class.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Booking">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">SWAP booking</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: in-application booking dialogue. Time limits, scan requirements and automatic door opening are not documented for this flow.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Scheme_Volta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
+    <rdfs:label xml:lang="en">Volta unit identifier scheme</rdfs:label>
+    <rdfs:comment xml:lang="en">Observed pattern: a fixed prefix and digit block, followed by four letters and a further digit sequence. Not interpretable against the other ecosystem's scheme, and does not appear to follow ISO/IEC 15459.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Inst_V01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryInstallation"/>
+    <bsdo:installedPack rdf:resource="https://w3id.org/bsdo#Pack_V01"/>
+    <bsdo:installedIn rdf:resource="https://w3id.org/bsdo#Veh_Volta401"/>
+    <rdfs:comment xml:lang="en">The installation is reified rather than modelled as a mereological part-whole relation: a pack moves between vehicles through exchange, so a fixed relation would be false.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_TukarTitip">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LoanEvent"/>
+    <rdfs:label xml:lang="en">Volta pack loan against deposited pack</rdfs:label>
+    <skos:altLabel xml:lang="id">Tukar Titip</skos:altLabel>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
+    <bsdo:hasCustodyDeadlineHours rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6</bsdo:hasCustodyDeadlineHours>
+    <bsdo:returnsPackTo rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Pay, scan within a time limit, collect a borrowed pack, and exchange it back for the customer's own before the custody deadline expires. The original term has no equivalent in the other ecosystem and is retained as an alternative label.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Swap3">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">SWAP direct swap, 3-slot</rdfs:label>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_SWAP_Small"/>
+    <rdfs:comment xml:lang="en">Source: in-application procedure guide for the smaller station type.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Harian">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
+    <rdfs:label xml:lang="en">Daily plan</rdfs:label>
+    <skos:altLabel xml:lang="id">Paket Harian</skos:altLabel>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_Volta_Eagle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
+    <rdfs:label xml:lang="en">Volta SGB battery, 64 V class</rdfs:label>
+    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_64V"/>
+    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
+    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">21</bsdo:hasCapacityAh>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual, specification page. This pack shares a nominal voltage class with a pack of the other ecosystem, and has near-identical practical capacity, yet the two differ in cell chemistry and cannot be interchanged.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
+    <bsdo:hasUnitIdentifier>VOLTA-PSEUDO-01</bsdo:hasUnitIdentifier>
+    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
+    <bsdo:hasEnrolmentStatus rdf:resource="https://w3id.org/bsdo#Online"/>
+    <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view.</rdfs:comment>
+    <bsdo:ownedBy rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <bsdo:heldBy rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
+    <bsdo:mayBeChargedByHolder rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</bsdo:mayBeChargedByHolder>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Op_Volta">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#Operator"/>
+    <rdfs:label xml:lang="en">Volta</rdfs:label>
+    <skos:altLabel xml:lang="id">PT Volta Indonesia Semesta</skos:altLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo/abox">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
+    <owl:imports rdf:resource="https://w3id.org/bsdo"/>
+    <dcterms:title xml:lang="en">BSDO ABox — SWAP Energy &amp; Volta</dcterms:title>
+    <rdfs:comment xml:lang="en">Population of two Indonesian battery swap ecosystems, drawn from operator applications, official websites, and manufacturer documentation. All identifiers are pseudonymised.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_Volta_Cirebon">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdfs:label xml:lang="en">Volta SGB, Cirebon showroom</rdfs:label>
+    <rdfs:comment xml:lang="en">Eight doors, two occupied and the remainder empty or unavailable. Host: brand showroom.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_250km">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
+    <rdfs:label xml:lang="en">Good Good Ride</rdfs:label>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">250</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in kilometres. The website and the application state different validity periods for this plan; both are recorded.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Op_SWAP">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#Operator"/>
+    <rdfs:label xml:lang="en">SWAP Energy</rdfs:label>
+    <skos:altLabel xml:lang="id">Swap Energi Indonesia</skos:altLabel>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_Volta_Low">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
+    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:thresholdPercent>
+    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+    <rdfs:label xml:lang="en">Volta bucket, below 50%</rdfs:label>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Cust_V01">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#Customer"/>
+    <rdfs:label xml:lang="en">Customer V01 (pseudonymised)</rdfs:label>
+    <rdfs:comment xml:lang="en">Personal data of a third party is fully pseudonymised: name, photograph, registration number, chassis and engine numbers, and geographic coordinates are not recorded.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Swap8">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
+    <rdfs:label xml:lang="en">SWAP direct swap, 8-slot</rdfs:label>
+    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_SWAP_Big"/>
+    <rdfs:comment xml:lang="en">Source: in-application procedure guide for the larger station type, in which the pack is first placed on a separate reader before the slot.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_VoltaEagle">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">Volta Eagle</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual.</rdfs:comment>
     <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_Volta_401">
@@ -108,54 +293,6 @@
     <rdfs:comment xml:lang="en">Quota denominated in kilometres. Plan name spelled as it appears in the application.</rdfs:comment>
     <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_Volta401">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
-    <rdfs:label xml:lang="en">Volta 401</rdfs:label>
-    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual. Vehicle identifier pseudonymised.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_DeSultan">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
-    <rdfs:label xml:lang="en">Smoot De Sultan</rdfs:label>
-    <rdfs:comment xml:lang="en">Source: vehicle manufacturer specification page.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_Volta_Cabinet">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPOnlyDevice"/>
-    <rdfs:label xml:lang="en">Volta SGB cabinet</rdfs:label>
-    <skos:altLabel xml:lang="id">kabinet SGB</skos:altLabel>
-    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
-    <rdfs:comment xml:lang="en">Eight doors observed, with status and state of charge reported per door. This cabinet performs both exchange and charging, and is therefore classified as both a swap device and a charging device; a reasoner should infer it to be a dual-function device. The other ecosystem separates these functions across distinct appliances.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Home">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
-    <rdfs:label xml:lang="en">Swap Home charger</rdfs:label>
-    <rdfs:comment xml:lang="en">Source: operator website. A charging appliance rather than an exchange device, and the clearest instance in the data of the distinction between energy transfer and object transfer.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Harian">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
-    <rdfs:label xml:lang="en">Daily plan</rdfs:label>
-    <skos:altLabel xml:lang="id">Paket Harian</skos:altLabel>
-    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1</bsdo:quotaAmount>
-    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">1</bsdo:validityDays>
-    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Op_SWAP">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#Operator"/>
-    <rdfs:label xml:lang="en">SWAP Energy</rdfs:label>
-    <skos:altLabel xml:lang="id">Swap Energi Indonesia</skos:altLabel>
-  </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/bsdo#Obs_S01_a">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
@@ -164,97 +301,49 @@
     <bsdo:hasQualitativeHealthLabel>Healthy</bsdo:hasQualitativeHealthLabel>
     <rdfs:comment xml:lang="en">This ecosystem exposes a qualitative health badge whose scale, thresholds and derivation method are undisclosed. The value derives from demonstration material. Such a badge cannot be mapped onto the other ecosystem's silence, nor onto the quantified state-of-health information required by Regulation (EU) 2023/1542.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Swap8">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
-    <rdfs:label xml:lang="en">SWAP direct swap, 8-slot</rdfs:label>
-    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_SWAP_Big"/>
-    <rdfs:comment xml:lang="en">Source: in-application procedure guide for the larger station type, in which the pack is first placed on a separate reader before the slot.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+  <rdf:Description rdf:nodeID="n16881cd2a4044b72ad61e91f71d9da9cb2">
+    <rdf:first rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
+    <rdf:rest rdf:nodeID="n16881cd2a4044b72ad61e91f71d9da9cb3"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_SWAP_250km">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#DistanceQuotaPlan"/>
-    <rdfs:label xml:lang="en">Good Good Ride</rdfs:label>
-    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">250</bsdo:quotaAmount>
-    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">60</bsdo:validityDays>
-    <rdfs:comment xml:lang="en">Quota denominated in kilometres. The website and the application state different validity periods for this plan; both are recorded.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_SWAP_72V">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
-    <rdfs:label xml:lang="en">SWAP battery, 72 V class</rdfs:label>
-    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_72V"/>
-    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
-    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">30</bsdo:hasCapacityAh>
-    <bsdo:hasCapacityKWh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">2.1</bsdo:hasCapacityKWh>
-    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
-    <rdfs:comment xml:lang="en">Source: operator website and vehicle manufacturer specification page.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Obs_V01_a">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#BatteryStateObservation"/>
-    <bsdo:observationOf rdf:resource="https://w3id.org/bsdo#Pack_V01"/>
-    <bsdo:hasStateOfCharge rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">92</bsdo:hasStateOfCharge>
-    <rdfs:comment xml:lang="en">This ecosystem exposes state of charge per unit but exposes no health indicator.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_VoltaEagle">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
-    <rdfs:label xml:lang="en">Volta Eagle</rdfs:label>
-    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_SWAP_Booking">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
-    <rdfs:label xml:lang="en">SWAP booking</rdfs:label>
-    <rdfs:comment xml:lang="en">Source: in-application booking dialogue. Time limits, scan requirements and automatic door opening are not documented for this flow.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Big">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonOnlyDevice"/>
-    <rdfs:label xml:lang="en">SWAP Big station</rdfs:label>
-    <skos:altLabel xml:lang="id">8-Slot Station</skos:altLabel>
-    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
-    <rdfs:comment xml:lang="en">Source: operator website. On this station type the indicator colours encode the state of an authentication process, a different meaning from the same colours on the smaller type of the same operator.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_TukarTitip">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LoanEvent"/>
-    <rdfs:label xml:lang="en">Volta pack loan against deposited pack</rdfs:label>
-    <skos:altLabel xml:lang="id">Tukar Titip</skos:altLabel>
-    <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
-    <bsdo:hasCustodyDeadlineHours rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">6</bsdo:hasCustodyDeadlineHours>
-    <bsdo:returnsPackTo rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
-    <rdfs:comment xml:lang="en">Source: operator application user manual. Pay, scan within a time limit, collect a borrowed pack, and exchange it back for the customer's own before the custody deadline expires. The original term has no equivalent in the other ecosystem and is retained as an alternative label.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V01">
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_V02">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
-    <bsdo:hasUnitIdentifier>VOLTA-PSEUDO-01</bsdo:hasUnitIdentifier>
+    <bsdo:hasUnitIdentifier>VOLTA-PSEUDO-02</bsdo:hasUnitIdentifier>
     <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
     <bsdo:hasEnrolmentStatus rdf:resource="https://w3id.org/bsdo#Online"/>
     <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view.</rdfs:comment>
-    <bsdo:ownedBy rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
-    <bsdo:heldBy rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
-    <bsdo:mayBeChargedByHolder rdf:datatype="http://www.w3.org/2001/XMLSchema#boolean">false</bsdo:mayBeChargedByHolder>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_Booking">
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Flow_Volta_Ganti">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEvent"/>
-    <rdfs:label xml:lang="en">Volta booking</rdfs:label>
-    <skos:altLabel xml:lang="id">Booking Baterai</skos:altLabel>
+    <rdfs:label xml:lang="en">Volta direct exchange</rdfs:label>
+    <skos:altLabel xml:lang="id">Ganti Baterai</skos:altLabel>
     <bsdo:occursAtDevice rdf:resource="https://w3id.org/bsdo#Dev_Volta_Cabinet"/>
-    <bsdo:hasParticipantCustomer rdf:resource="https://w3id.org/bsdo#Cust_V01"/>
-    <rdfs:comment xml:lang="en">Source: operator application user manual. Select a cabinet, pay, then a time limit applies for scanning before the door opens.</rdfs:comment>
+    <rdfs:comment xml:lang="en">Source: operator application user manual. Select a cabinet, scan, an empty door opens, exchange. Neither payment nor a time limit is mentioned, in contrast to the booking and loan flows of the same operator.</rdfs:comment>
     <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Bulanan">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
+    <rdfs:label xml:lang="en">Monthly plan</rdfs:label>
+    <skos:altLabel xml:lang="id">Paket Bulanan</skos:altLabel>
+    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">50</bsdo:quotaAmount>
+    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">30</bsdo:validityDays>
+    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate. The plan is bound to one registered vehicle.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Scheme_SWAP">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
+    <rdfs:label xml:lang="en">SWAP unit identifier scheme</rdfs:label>
+    <rdfs:comment xml:lang="en">Observed pattern: a two-letter prefix indicating entity type, followed by a digit sequence. Does not appear to follow ISO/IEC 15459.</rdfs:comment>
+  </rdf:Description>
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Home">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
+    <rdfs:label xml:lang="en">Swap Home charger</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: operator website. A charging appliance rather than an exchange device, and the clearest instance in the data of the distinction between energy transfer and object transfer.</rdfs:comment>
+    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
   </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_SWAP">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
@@ -264,16 +353,6 @@
     <rdfs:label xml:lang="en">SWAP swap-eligibility threshold</rdfs:label>
     <rdfs:comment xml:lang="en">The application states a single state-of-charge eligibility threshold. Stock is reported as three counters: swappable, reservable, and total.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Plan_Volta_Mingguan">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#EventCountQuotaPlan"/>
-    <rdfs:label xml:lang="en">Weekly plan</rdfs:label>
-    <skos:altLabel xml:lang="id">Paket Mingguan</skos:altLabel>
-    <bsdo:quotaAmount rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">14</bsdo:quotaAmount>
-    <bsdo:validityDays rdf:datatype="http://www.w3.org/2001/XMLSchema#integer">7</bsdo:validityDays>
-    <rdfs:comment xml:lang="en">Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-  </rdf:Description>
   <rdf:Description rdf:about="https://w3id.org/bsdo#Pack_S01">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
     <rdf:type rdf:resource="https://w3id.org/bsdo#SwappableBattery"/>
@@ -282,98 +361,19 @@
     <bsdo:ownedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
     <rdfs:comment xml:lang="en">Identifier pseudonymised. Source: operator application, battery view, drawn from demonstration material. The field structure is treated as evidence; the values are not treated as measurements. Operator ownership is inferred from the distance-based tariff model rather than directly observed.</rdfs:comment>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Scheme_Volta">
+  <rdf:Description rdf:about="https://w3id.org/bsdo#Veh_Volta401">
     <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
-    <rdfs:label xml:lang="en">Volta unit identifier scheme</rdfs:label>
-    <rdfs:comment xml:lang="en">Observed pattern: a fixed prefix and digit block, followed by four letters and a further digit sequence. Not interpretable against the other ecosystem's scheme, and does not appear to follow ISO/IEC 15459.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Elig_Volta_High">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapEligibilityRule"/>
-    <bsdo:thresholdPercent rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">80</bsdo:thresholdPercent>
-    <bsdo:declaredBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
-    <rdfs:label xml:lang="en">Volta bucket, 80% and above</rdfs:label>
-    <rdfs:comment xml:lang="en">This operator reports two bands that do not partition the same interval. A pack in the intervening range satisfies the other operator's threshold but falls into neither band here.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_Volta_Cirebon">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#ChargingDevice"/>
-    <rdfs:label xml:lang="en">Volta SGB, Cirebon showroom</rdfs:label>
-    <rdfs:comment xml:lang="en">Eight doors, two occupied and the remainder empty or unavailable. Host: brand showroom.</rdfs:comment>
+    <rdf:type rdf:resource="https://w3id.org/bsdo#ElectricMotorcycle"/>
+    <rdfs:label xml:lang="en">Volta 401</rdfs:label>
+    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual. Vehicle identifier pseudonymised.</rdfs:comment>
     <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_Volta_Eagle">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LFPSwappableBattery"/>
-    <rdfs:label xml:lang="en">Volta SGB battery, 64 V class</rdfs:label>
-    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_64V"/>
-    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIronPhosphate"/>
-    <bsdo:hasCapacityAh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">21</bsdo:hasCapacityAh>
-    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_Volta"/>
-    <rdfs:comment xml:lang="en">Source: manufacturer owner's manual, specification page. This pack shares a nominal voltage class with a pack of the other ecosystem, and has near-identical practical capacity, yet the two differ in cell chemistry and cannot be interchanged.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
+  <rdf:Description rdf:nodeID="n16881cd2a4044b72ad61e91f71d9da9cb1">
+    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#AllDifferent"/>
+    <owl:distinctMembers rdf:nodeID="n16881cd2a4044b72ad61e91f71d9da9cb2"/>
   </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Sta_SWAP_Sleman">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
-    <rdfs:label xml:lang="en">SWAP station, Sleman</rdfs:label>
-    <rdfs:comment xml:lang="en">Station identifier pseudonymised. Eight slots observed, each reporting state of charge and voltage class.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Cust_V01">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#Customer"/>
-    <rdfs:label xml:lang="en">Customer V01 (pseudonymised)</rdfs:label>
-    <rdfs:comment xml:lang="en">Personal data of a third party is fully pseudonymised: name, photograph, registration number, chassis and engine numbers, and geographic coordinates are not recorded.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nefee5cb2e894403388142a3147039d88b2">
-    <rdf:first rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-    <rdf:rest rdf:nodeID="nefee5cb2e894403388142a3147039d88b3"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Scheme_SWAP">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#IdentifierScheme"/>
-    <rdfs:label xml:lang="en">SWAP unit identifier scheme</rdfs:label>
-    <rdfs:comment xml:lang="en">Observed pattern: a two-letter prefix indicating entity type, followed by a digit sequence. Does not appear to follow ISO/IEC 15459.</rdfs:comment>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Dev_SWAP_Small">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#SwapDevice"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonOnlyDevice"/>
-    <rdfs:label xml:lang="en">SWAP Small station</rdfs:label>
-    <skos:altLabel xml:lang="id">3-Slot Station</skos:altLabel>
-    <bsdo:acceptsChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
-    <rdfs:comment xml:lang="en">Source: operator website. Published capacity differs by one from the slot count stated in the application; the additional slot is presumed to receive the customer's depleted pack. On this station type the indicator colours encode charge level.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#BatMod_SWAP_64V">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#LithiumIonSwappableBattery"/>
-    <rdfs:label xml:lang="en">SWAP battery, 64 V class</rdfs:label>
-    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_64V"/>
-    <bsdo:hasVoltageClass rdf:resource="https://w3id.org/bsdo#VC_60V"/>
-    <bsdo:hasCellChemistry rdf:resource="https://w3id.org/bsdo#LithiumIon"/>
-    <bsdo:hasCapacityKWh rdf:datatype="http://www.w3.org/2001/XMLSchema#decimal">1.3</bsdo:hasCapacityKWh>
-    <bsdo:hasIdentifierScheme rdf:resource="https://w3id.org/bsdo#Scheme_SWAP"/>
-    <rdfs:comment xml:lang="en">Source: operator website. Two voltage classes are deliberately asserted: the website states one value while the operator's own application labels the same product with another. This intra-ecosystem terminological instability is recorded rather than resolved.</rdfs:comment>
-    <bsdo:operatedBy rdf:resource="https://w3id.org/bsdo#Op_SWAP"/>
-  </rdf:Description>
-  <rdf:Description rdf:nodeID="nefee5cb2e894403388142a3147039d88b3">
+  <rdf:Description rdf:nodeID="n16881cd2a4044b72ad61e91f71d9da9cb3">
     <rdf:first rdf:resource="https://w3id.org/bsdo#Op_Volta"/>
     <rdf:rest rdf:resource="http://www.w3.org/1999/02/22-rdf-syntax-ns#nil"/>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo#Op_Volta">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#NamedIndividual"/>
-    <rdf:type rdf:resource="https://w3id.org/bsdo#Operator"/>
-    <rdfs:label xml:lang="en">Volta</rdfs:label>
-    <skos:altLabel xml:lang="id">PT Volta Indonesia Semesta</skos:altLabel>
-  </rdf:Description>
-  <rdf:Description rdf:about="https://w3id.org/bsdo/abox">
-    <rdf:type rdf:resource="http://www.w3.org/2002/07/owl#Ontology"/>
-    <owl:imports rdf:resource="https://w3id.org/bsdo"/>
-    <dcterms:title xml:lang="en">BSDO ABox — SWAP Energy &amp; Volta</dcterms:title>
-    <rdfs:comment xml:lang="en">Population of two Indonesian battery swap ecosystems, drawn from operator applications, official websites, and manufacturer documentation. All identifiers are pseudonymised.</rdfs:comment>
   </rdf:Description>
 </rdf:RDF>

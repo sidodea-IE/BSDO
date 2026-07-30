@@ -38,7 +38,7 @@ station devices, service flows, vehicles), following METHONTOLOGY with FCA subst
 informal conceptualisation activity. Only concepts robust across pessimistic and optimistic
 readings of unarticulated data were promoted to classes.
 Aligned to EMMO domain-battery and domain-electrochemistry (the vocabulary layer profiled by
-BattINFO). NOTE: the w3id.org/bsdo redirect is not yet registered."""@en .
+BattINFO)."""@en .
 
 #################################################################
 #  1. SERVICE EVENTS
