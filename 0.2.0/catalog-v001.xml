@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<catalog prefer="public" xmlns="urn:oasis:names:tc:entity:xmlns:xml:catalog">
+    <!-- Maps the ontology IRIs to local files so that owl:imports resolves
+         offline. Protege reads this file automatically when it sits in the
+         same directory as the ontology files. -->
+    <uri id="BSDO terminology" name="https://w3id.org/bsdo" uri="bsdo.ttl"/>
+    <uri id="BSDO population" name="https://w3id.org/bsdo/abox" uri="bsdo-abox.ttl"/>
+</catalog>

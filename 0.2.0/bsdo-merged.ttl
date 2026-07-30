@@ -1,0 +1,817 @@
+@prefix bsdo:  <https://w3id.org/bsdo#> .
+@prefix owl:   <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:   <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs:  <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xsd:   <http://www.w3.org/2001/XMLSchema#> .
+@prefix skos:  <http://www.w3.org/2004/02/skos/core#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix bat:   <https://w3id.org/emmo/domain/battery#> .
+@prefix echem: <https://w3id.org/emmo/domain/electrochemistry#> .
+@prefix bsdo: <https://w3id.org/bsdo#> .
+@prefix owl:  <http://www.w3.org/2002/07/owl#> .
+@prefix rdf:  <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+
+#################################################################
+#  BSDO — Battery Swap Domain Ontology
+#  Terminology and population in a single file
+#
+#  Provided so that the ontology can be opened in a desktop editor
+#  without resolving imports over the network. Logically equivalent
+#  to bsdo.ttl loaded together with bsdo-abox.ttl.
+#
+#  Licence: CC-BY 4.0
+#################################################################
+
+<https://w3id.org/bsdo/merged> rdf:type owl:Ontology ;
+    owl:versionInfo "0.2.0-draft" ;
+    dcterms:title "BSDO — terminology and population merged"@en ;
+    dcterms:creator "Sido Dea Auvia" ;
+    dcterms:license <https://creativecommons.org/licenses/by/4.0/> ;
+    rdfs:comment "The BSDO terminology and its population combined into one file for editors that cannot resolve imports. Logically equivalent to bsdo.ttl together with bsdo-abox.ttl."@en .
+
+
+#################################################################
+#  PART I — TERMINOLOGY
+#################################################################
+
+#################################################################
+#  1. SERVICE EVENTS
+#     Top-level split: object transfer versus energy transfer
+#################################################################
+
+bsdo:ServiceEvent rdf:type owl:Class ;
+    rdfs:label "Service Event"@en ;
+    rdfs:comment "A bounded event in which energy is supplied to a vehicle, either by exchanging the physical carrier or by transferring energy into a carrier that remains in place."@en .
+
+bsdo:ObjectTransferEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ServiceEvent ;
+    rdfs:label "Object Transfer Event"@en ;
+    rdfs:comment "Events in which the physical carrier is exchanged. Derived from a formal concept spanning six service flows drawn from both ecosystems, so the distinction is not an artefact of one operator's product line."@en .
+
+bsdo:EnergyTransferEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ServiceEvent ;
+    rdfs:label "Energy Transfer Event"@en ;
+    rdfs:comment "Events in which energy is transferred without exchanging the physical carrier."@en .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( bsdo:ObjectTransferEvent bsdo:EnergyTransferEvent ) .
+
+bsdo:SwapEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ObjectTransferEvent ;
+    rdfs:label "Swap Event"@en ;
+    rdfs:comment "An exchange in which the outgoing pack does not return to the customer."@en .
+
+bsdo:LoanEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:ObjectTransferEvent ;
+    rdfs:label "Loan Event"@en ;
+    skos:altLabel "Tukar Titip"@id ;
+    rdfs:comment "An exchange in which the customer receives a borrowed pack and later returns it, within a stated deadline, in exchange for their own."@en .
+
+bsdo:DepositChargingEvent rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:EnergyTransferEvent ;
+    rdfs:label "Deposit Charging Event"@en ;
+    skos:altLabel "SCB"@id , "Sistem Charge Battery"@id ;
+    rdfs:comment "The customer's own pack is deposited in a cabinet for charging and later retrieved."@en .
+
+#  --- Defined class, crossing the split above ---
+#  One member is an object transfer and the other an energy transfer, yet both
+#  share the same custody structure. The class is therefore not placed under
+#  either branch; membership is inferred.
+
+bsdo:CustodyPreservingEvent rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:ServiceEvent
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:hasCustodyDeadlineHours ;
+                               owl:minCardinality "1"^^xsd:nonNegativeInteger ]
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:returnsPackTo ;
+                               owl:minCardinality "1"^^xsd:nonNegativeInteger ] ) ] ;
+    rdfs:label "Custody-Preserving Event"@en ;
+    rdfs:comment "Events in which custody transfers temporarily while ownership does not. Membership is inferred rather than asserted, and deliberately crosses the object-transfer / energy-transfer partition: in a loan event the customer holds an operator's pack, whereas in a deposit-charging event the operator holds the customer's pack."@en .
+
+#################################################################
+#  2. DEVICES
+#################################################################
+
+bsdo:BatteryHandlingDevice rdf:type owl:Class ;
+    rdfs:label "Battery Handling Device"@en .
+
+bsdo:SwapDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ;
+    rdfs:label "Swap Device"@en ;
+    skos:altLabel "BSS"@id , "Swap Poin"@id , "SGB"@id , "kabinet"@id ;
+    rdfs:comment "A device that exchanges battery packs."@en .
+
+bsdo:ChargingDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ;
+    rdfs:label "Charging Device"@en ;
+    rdfs:comment "A device that transfers energy into a battery pack in place."@en .
+
+#  SwapDevice and ChargingDevice are deliberately NOT disjoint.
+#  One ecosystem separates exchange and charging across distinct appliances;
+#  the other performs both at a single cabinet. Declaring disjointness would
+#  render that cabinet unsatisfiable.
+
+bsdo:DualFunctionDevice rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:SwapDevice bsdo:ChargingDevice ) ] ;
+    rdfs:label "Dual-Function Device"@en ;
+    rdfs:comment "A device performing both object exchange and energy transfer. One ecosystem separates these functions across distinct appliances; the other combines them in a single cabinet. The distinction becomes visible only because the two functions are modelled as separate attributes."@en .
+
+bsdo:BatterySlot rdf:type owl:Class ;
+    rdfs:label "Battery Slot"@en ;
+    skos:altLabel "Slot"@id , "Pintu"@id ;
+    rdfs:comment "The two ecosystems use different native terms for this concept. Both are retained as alternative labels rather than normalised to a single term."@en .
+
+#################################################################
+#  3. BATTERIES
+#################################################################
+
+bsdo:SwappableBattery rdf:type owl:Class ;
+    rdfs:subClassOf bat:battery_74ed2670_657d_4f0b_b0a6_3f13bc2e9c17 ;   # emmo:Battery
+    rdfs:label "Swappable Battery"@en ;
+    rdfs:comment "Aligned to the Battery class of the EMMO domain-battery module, which is the vocabulary layer that the BattINFO application ontology profiles."@en .
+
+#  --- Voltage class: an attribute that does NOT determine interchange ---
+bsdo:VoltageClass rdf:type owl:Class ;
+    rdfs:label "Nominal Voltage Class"@en .
+
+bsdo:VC_60V rdf:type owl:NamedIndividual , bsdo:VoltageClass ; rdfs:label "60 V"@en .
+bsdo:VC_64V rdf:type owl:NamedIndividual , bsdo:VoltageClass ; rdfs:label "64 V"@en .
+bsdo:VC_72V rdf:type owl:NamedIndividual , bsdo:VoltageClass ; rdfs:label "72 V"@en .
+
+#  --- Cell chemistry: the dimension that actually separates the ecosystems ---
+bsdo:CellChemistry rdf:type owl:Class ;
+    rdfs:label "Cell Chemistry"@en .
+
+bsdo:LithiumIon rdf:type owl:NamedIndividual , bsdo:CellChemistry ;
+    rdfs:label "Lithium-Ion (generic)"@en .
+bsdo:LithiumIronPhosphate rdf:type owl:NamedIndividual , bsdo:CellChemistry ;
+    rdfs:label "LiFePO4"@en .
+[] rdf:type owl:AllDifferent ;
+   owl:distinctMembers ( bsdo:LithiumIon bsdo:LithiumIronPhosphate ) .
+
+bsdo:LithiumIonSwappableBattery rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:SwappableBattery
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:hasCellChemistry ;
+                               owl:hasValue bsdo:LithiumIon ] ) ] ;
+    rdfs:subClassOf bsdo:SwappableBattery ,
+                    bat:battery_96addc62_ea04_449a_8237_4cd541dd8e5f ;   # emmo:LithiumIonBattery
+    rdfs:label "Lithium-Ion Swappable Battery"@en ;
+    rdfs:comment "The subclass axiom is stated explicitly although it is entailed by the equivalent-class definition, so that SPARQL queries over the raw graph work without a reasoner."@en .
+
+bsdo:LFPSwappableBattery rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Class ;
+        owl:intersectionOf ( bsdo:SwappableBattery
+                             [ rdf:type owl:Restriction ;
+                               owl:onProperty bsdo:hasCellChemistry ;
+                               owl:hasValue bsdo:LithiumIronPhosphate ] ) ] ;
+    rdfs:subClassOf bsdo:SwappableBattery ;
+    rdfs:label "LiFePO4 Swappable Battery"@en .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( bsdo:LithiumIonSwappableBattery bsdo:LFPSwappableBattery ) .
+
+#################################################################
+#  4. OWNERSHIP AND CUSTODY
+#################################################################
+
+bsdo:Agent rdf:type owl:Class ; rdfs:label "Agent"@en .
+bsdo:Customer rdf:type owl:Class ; rdfs:subClassOf bsdo:Agent ; rdfs:label "Customer"@en ;
+    skos:altLabel "Volters"@id .
+bsdo:Operator rdf:type owl:Class ; rdfs:subClassOf bsdo:Agent ; rdfs:label "Operator"@en .
+
+bsdo:operatedBy rdf:type owl:ObjectProperty ;
+    rdfs:range bsdo:Operator ;
+    rdfs:label "operated by"@en ;
+    rdfs:comment "Relates an artefact to the operator whose ecosystem it belongs to. Ecosystem membership is what makes cross-ecosystem comparison expressible at all."@en .
+
+bsdo:ownedBy rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:Agent ;
+    rdfs:label "owned by"@en ;
+    rdfs:comment "Ownership, which persists across service events."@en .
+
+bsdo:heldBy rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:Agent ;
+    rdfs:label "held by"@en ;
+    rdfs:comment "Current physical custody. Functional: a pack is held by at most one party at a time. Custody can diverge from ownership, and changes at every exchange."@en .
+
+bsdo:hasCustodyDeadlineHours rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range xsd:decimal ;
+    rdfs:label "custody deadline (hours)"@en ;
+    rdfs:comment "The deadline for temporary custody, expressed in hours. Note that xsd:duration is deliberately not used: it is not part of the OWL 2 datatype map and would place the ontology outside OWL 2 DL."@en .
+
+bsdo:returnsPackTo rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:Agent ;
+    rdfs:label "returns pack to"@en .
+
+#  --- Network enrolment status: the right to manage depends on it ---
+bsdo:NetworkEnrolmentStatus rdf:type owl:Class ; rdfs:label "Network Enrolment Status"@en .
+bsdo:Online rdf:type owl:NamedIndividual , bsdo:NetworkEnrolmentStatus ; rdfs:label "online"@en .
+bsdo:Offline rdf:type owl:NamedIndividual , bsdo:NetworkEnrolmentStatus ; rdfs:label "offline"@en .
+[] rdf:type owl:AllDifferent ; owl:distinctMembers ( bsdo:Online bsdo:Offline ) .
+
+bsdo:hasEnrolmentStatus rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:NetworkEnrolmentStatus ;
+    rdfs:label "has enrolment status"@en .
+
+bsdo:mayBeChargedByHolder rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:boolean ;
+    rdfs:label "may be charged by holder"@en ;
+    rdfs:comment "The right to charge a pack, which is separate from owning it. The same physical pack may fall under different rights regimes depending on its network enrolment status, with ownership unchanged throughout."@en .
+
+bsdo:NetworkEnrolledBattery rdf:type owl:Class ;
+    owl:equivalentClass [ rdf:type owl:Restriction ;
+        owl:onProperty bsdo:hasEnrolmentStatus ; owl:hasValue bsdo:Online ] ;
+    rdfs:subClassOf [ rdf:type owl:Restriction ;
+        owl:onProperty bsdo:mayBeChargedByHolder ;
+        owl:hasValue "false"^^xsd:boolean ] ;
+    rdfs:label "Network-Enrolled Battery"@en ;
+    rdfs:comment "A pack enrolled in an operator's network: ownership remains with the customer while the right to charge rests with the operator."@en .
+
+#################################################################
+#  5. UNIT IDENTITY
+#################################################################
+
+bsdo:hasUnitIdentifier rdf:type owl:DatatypeProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:string ;
+    rdfs:label "unit identifier"@en ;
+    rdfs:comment "A persistent unit identifier, independent of any vehicle. Both ecosystems maintain such identifiers, but under mutually uninterpretable schemes, and neither follows the identification standard required of battery passports by Regulation (EU) 2023/1542."@en .
+
+bsdo:IdentifierScheme rdf:type owl:Class ; rdfs:label "Identifier Scheme"@en .
+bsdo:hasIdentifierScheme rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:IdentifierScheme .
+
+#################################################################
+#  6. STATE AT AN EVENT (bounded temporal representation)
+#################################################################
+
+bsdo:BatteryStateObservation rdf:type owl:Class ;
+    rdfs:label "Battery State Observation"@en ;
+    rdfs:comment "Reification of a pack's state at a single point in time. Temporal representation is deliberately bounded to state at an event rather than a continuous trajectory."@en .
+
+bsdo:observedAt rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range xsd:dateTime .
+bsdo:observationOf rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range bsdo:SwappableBattery .
+bsdo:hasStateOfCharge rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range xsd:decimal ;
+    rdfs:seeAlso echem:electrochemistry_8b2aaa50_bbe1_45da_8778_8898326246a2 ;
+    rdfs:comment "Aligned to StateOfCharge in the EMMO domain-electrochemistry module. The StateOfCharge class in the domain-battery namespace is deprecated and is not used here."@en .
+bsdo:hasQualitativeHealthLabel rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryStateObservation ; rdfs:range xsd:string ;
+    rdfs:seeAlso echem:electrochemistry_a7a4614f_2426_46f3_8475_cda4a9fabfce ;
+    rdfs:comment "Deliberately typed as a string rather than a numeric quantity. One ecosystem exposes a qualitative badge whose scale, thresholds and derivation method are undisclosed; the other exposes nothing. Typing it numerically would imply a comparability the sources do not support."@en .
+
+#################################################################
+#  7. EVENT PARTICIPANTS (n-ary reification)
+#################################################################
+
+bsdo:hasParticipantCustomer rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:Customer .
+bsdo:occursAtDevice rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:BatteryHandlingDevice .
+bsdo:occursAtSlot rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range bsdo:BatterySlot .
+bsdo:eventTime rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:ServiceEvent ; rdfs:range xsd:dateTime .
+bsdo:packRemoved rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ObjectTransferEvent ; rdfs:range bsdo:SwappableBattery ;
+    rdfs:label "pack removed from vehicle"@en .
+bsdo:packInserted rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:ObjectTransferEvent ; rdfs:range bsdo:SwappableBattery ;
+    rdfs:label "pack inserted into vehicle"@en .
+
+#  --- Battery-vehicle relation: temporary, not a fixed part-whole ---
+bsdo:ElectricMotorcycle rdf:type owl:Class ;
+    rdfs:label "Electric Motorcycle"@en .
+
+bsdo:BatteryInstallation rdf:type owl:Class ;
+    rdfs:label "Battery Installation"@en ;
+    rdfs:comment "Reification of the association between a pack and a vehicle. This is deliberately not modelled as a mereological part-whole relation: in a swap domain a pack moves between vehicles, so a fixed relation would be false."@en .
+bsdo:installedPack rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryInstallation ; rdfs:range bsdo:SwappableBattery .
+bsdo:installedIn rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryInstallation ; rdfs:range bsdo:ElectricMotorcycle .
+bsdo:installationFrom rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:BatteryInstallation ; rdfs:range xsd:dateTime .
+
+#################################################################
+#  8. TARIFFS (two incommensurable quota dimensions)
+#################################################################
+
+bsdo:QuotaPlan rdf:type owl:Class ;
+    rdfs:label "Prepaid Quota Plan"@en ;
+    rdfs:comment "Both ecosystems sell prepaid quota with an expiry period. What differs is the dimension in which the quota is denominated."@en .
+
+bsdo:DistanceQuotaPlan rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:QuotaPlan ;
+    rdfs:label "Distance Quota Plan"@en ;
+    rdfs:comment "Quota denominated in kilometres travelled."@en .
+
+bsdo:EventCountQuotaPlan rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:QuotaPlan ;
+    rdfs:label "Event-Count Quota Plan"@en ;
+    rdfs:comment "Quota denominated in number of exchange events."@en .
+
+[] rdf:type owl:AllDisjointClasses ;
+   owl:members ( bsdo:DistanceQuotaPlan bsdo:EventCountQuotaPlan ) .
+#  This disjointness models the incommensurability: converting between the two
+#  requires a distance-per-exchange figure that depends on pack capacity and
+#  riding conditions, and is therefore not a fixed factor.
+
+bsdo:quotaAmount rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:QuotaPlan ; rdfs:range xsd:decimal .
+bsdo:validityDays rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:QuotaPlan ; rdfs:range xsd:integer .
+
+#################################################################
+#  9. SWAP ELIGIBILITY
+#################################################################
+
+bsdo:SwapEligibilityRule rdf:type owl:Class ;
+    rdfs:label "Swap Eligibility Rule"@en ;
+    rdfs:comment "A rule stating when a pack counts as ready to be exchanged. Eligibility is operator-relative: the two ecosystems declare thresholds that do not partition the same interval, so the predicate has no ontology-wide extension."@en .
+bsdo:thresholdPercent rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:SwapEligibilityRule ; rdfs:range xsd:decimal .
+bsdo:declaredBy rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwapEligibilityRule ; rdfs:range bsdo:Operator .
+
+#################################################################
+# 10. BATTERY PROPERTIES
+#################################################################
+
+bsdo:hasVoltageClass rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:VoltageClass ;
+    rdfs:comment "Deliberately not functional: a single product may carry more than one declared voltage class when different sources of the same operator label it differently. Non-functionality records that instability rather than resolving it."@en .
+bsdo:hasCellChemistry rdf:type owl:ObjectProperty , owl:FunctionalProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range bsdo:CellChemistry .
+bsdo:hasCapacityAh rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:decimal .
+bsdo:hasCapacityKWh rdf:type owl:DatatypeProperty ;
+    rdfs:domain bsdo:SwappableBattery ; rdfs:range xsd:decimal .
+
+#################################################################
+# 11. INCOMPATIBILITY AS AN INFERENCE
+#     Compatibility is never asserted. A device accepts a given chemistry;
+#     asserting otherwise renders the individual unsatisfiable.
+#################################################################
+
+bsdo:acceptsChemistry rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryHandlingDevice ; rdfs:range bsdo:CellChemistry .
+
+bsdo:accepts rdf:type owl:ObjectProperty ;
+    rdfs:domain bsdo:BatteryHandlingDevice ; rdfs:range bsdo:SwappableBattery ;
+    rdfs:comment "The packs a device can serve. Never asserted directly; constrained by chemistry axioms so that incompatibility surfaces as a logical inconsistency rather than as an empty query result."@en .
+
+bsdo:LithiumIonOnlyDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ,
+        [ rdf:type owl:Restriction ;
+          owl:onProperty bsdo:accepts ;
+          owl:allValuesFrom bsdo:LithiumIonSwappableBattery ] ;
+    rdfs:label "Lithium-Ion-Only Device"@en .
+
+bsdo:LFPOnlyDevice rdf:type owl:Class ;
+    rdfs:subClassOf bsdo:BatteryHandlingDevice ,
+        [ rdf:type owl:Restriction ;
+          owl:onProperty bsdo:accepts ;
+          owl:allValuesFrom bsdo:LFPSwappableBattery ] ;
+    rdfs:label "LiFePO4-Only Device"@en .
+
+#  Asserting that a chemistry-restricted device accepts a pack of the other
+#  chemistry places that pack in two disjoint classes, so a reasoner reports
+#  an inconsistency. Incompatibility is thus detected as unsatisfiability
+#  rather than as an empty query result.
+
+#################################################################
+# 12. EXTERNAL ALIGNMENT TARGETS, LABELS AND DEFINITIONS
+#################################################################
+
+#  --- EMMO alignment stubs, declared locally ---
+#  Both IRIs serve as rdfs:subClassOf targets but the module is not imported:
+#  a full import would introduce several thousand classes to obtain two
+#  subsumption relations. Local declaration keeps them readable in editors.
+
+bat:battery_74ed2670_657d_4f0b_b0a6_3f13bc2e9c17 rdf:type owl:Class ;
+    rdfs:label "Battery (EMMO domain-battery)"@en ;
+    rdfs:comment "Alignment stub for the Battery class of the EMMO domain-battery module. Declared locally rather than imported: importing the full module would introduce several thousand classes to obtain a single subsumption relation."@en ;
+    rdfs:isDefinedBy <https://w3id.org/emmo/domain/battery> .
+
+bat:battery_96addc62_ea04_449a_8237_4cd541dd8e5f rdf:type owl:Class ;
+    rdfs:label "LithiumIonBattery (EMMO domain-battery)"@en ;
+    rdfs:comment "Alignment stub for the LithiumIonBattery class of the EMMO domain-battery module."@en ;
+    rdfs:isDefinedBy <https://w3id.org/emmo/domain/battery> .
+
+#  --- Property labels and definitions ---
+bsdo:hasCellChemistry     rdfs:label "has cell chemistry"@en ;
+    rdfs:comment "The cell chemistry declared by the manufacturer. This is the dimension on which interchange actually fails."@en .
+bsdo:hasVoltageClass      rdfs:comment "The declared nominal voltage class. Not functional, since one artefact may carry more than one declaration from different sources."@en .
+bsdo:hasCapacityAh        rdfs:label "capacity (Ah)"@en ;
+    rdfs:comment "Capacity in ampere-hours. The two ecosystems report capacity in different units, which are not convertible without the actual rather than nominal voltage."@en .
+bsdo:hasCapacityKWh       rdfs:label "capacity (kWh)"@en ;
+    rdfs:comment "Capacity in kilowatt-hours. See the note on capacity in ampere-hours."@en .
+bsdo:hasIdentifierScheme  rdfs:label "has identifier scheme"@en ;
+    rdfs:comment "The numbering scheme of a unit identifier. The two ecosystems use mutually uninterpretable schemes, which is the first mapping any roaming arrangement must resolve."@en .
+bsdo:hasEnrolmentStatus   rdfs:comment "A pack's enrolment status in an operator's network. This determines the right to manage the pack, not its ownership."@en .
+bsdo:hasStateOfCharge     rdfs:label "state of charge (%)"@en .
+bsdo:hasQualitativeHealthLabel rdfs:label "qualitative health label"@en .
+bsdo:accepts              rdfs:label "accepts"@en .
+bsdo:acceptsChemistry     rdfs:label "accepts chemistry"@en ;
+    rdfs:comment "The cell chemistry a device can serve. Together with the disjointness of the chemistry classes, this is what makes incompatibility derivable as a logical inconsistency."@en .
+bsdo:occursAtDevice       rdfs:label "occurs at device"@en .
+bsdo:occursAtSlot         rdfs:label "occurs at slot"@en .
+bsdo:eventTime            rdfs:label "event time"@en .
+bsdo:hasParticipantCustomer rdfs:label "has participant customer"@en .
+bsdo:packRemoved          rdfs:comment "The pack removed from the vehicle during an object-transfer event."@en .
+bsdo:packInserted         rdfs:comment "The pack inserted into the vehicle during an object-transfer event."@en .
+bsdo:returnsPackTo        rdfs:comment "The party to whom a pack is returned at the end of an event. Present only on events that preserve ownership."@en .
+bsdo:installedPack        rdfs:label "installed pack"@en .
+bsdo:installedIn          rdfs:label "installed in"@en .
+bsdo:installationFrom     rdfs:label "installation from"@en .
+bsdo:observationOf        rdfs:label "observation of"@en .
+bsdo:observedAt           rdfs:label "observed at"@en .
+bsdo:declaredBy           rdfs:label "declared by"@en .
+bsdo:quotaAmount          rdfs:label "quota amount"@en ;
+    rdfs:comment "The quota amount. Its unit depends on the subclass: kilometres for a distance plan, exchange events for an event-count plan. The two are disjoint because they are not commensurable."@en .
+bsdo:validityDays         rdfs:label "validity (days)"@en .
+bsdo:thresholdPercent     rdfs:label "threshold (%)"@en .
+
+#  --- Class definitions ---
+bsdo:Agent                 rdfs:comment "A party that can own or hold a battery pack."@en .
+bsdo:Customer              rdfs:comment "An end user of a battery swap service."@en .
+bsdo:Operator              rdfs:comment "An operator of a battery swap ecosystem."@en .
+bsdo:ElectricMotorcycle    rdfs:comment "An electric two-wheeler using swappable batteries. Its relation to a pack is temporary; see BatteryInstallation."@en .
+bsdo:CellChemistry         rdfs:comment "Cell chemistry as an enumerated value."@en .
+bsdo:VoltageClass          rdfs:comment "Declared nominal voltage class. This dimension overlaps across the ecosystems studied and therefore does not determine whether packs can be interchanged."@en .
+bsdo:IdentifierScheme      rdfs:comment "A unit identifier scheme, specific to an ecosystem."@en .
+bsdo:NetworkEnrolmentStatus rdfs:comment "A pack's network enrolment status: enrolled or not enrolled."@en .
+bsdo:BatteryHandlingDevice rdfs:comment "A device that handles battery packs, whether by exchanging or by charging them."@en .
+bsdo:LithiumIonOnlyDevice  rdfs:comment "A device that accepts only lithium-ion packs. The value restriction declared here is what makes incompatibility detectable as an inconsistency."@en .
+bsdo:LFPOnlyDevice         rdfs:comment "A device that accepts only lithium iron phosphate packs."@en .
+bsdo:LFPSwappableBattery   rdfs:comment "A swappable pack with lithium iron phosphate chemistry. Disjoint with the lithium-ion class."@en .
+
+#  --- Further labels and definitions ---
+bsdo:hasVoltageClass   rdfs:label "has voltage class"@en .
+bsdo:declaredBy        rdfs:comment "The operator declaring this rule. Eligibility rules are operator-specific rather than a shared standard."@en .
+bsdo:eventTime         rdfs:comment "The time at which an event occurred. Generally unpopulated: transaction payloads could not be observed from available sources."@en .
+bsdo:hasParticipantCustomer rdfs:comment "The customer participating in a service event."@en .
+bsdo:occursAtDevice    rdfs:comment "The device at which an event takes place."@en .
+bsdo:occursAtSlot      rdfs:comment "The slot or door in which a pack is placed. The two ecosystems use different native terms."@en .
+bsdo:installedPack     rdfs:comment "The pack installed in the vehicle during this installation episode."@en .
+bsdo:installedIn       rdfs:comment "The vehicle in which the pack is installed during this episode."@en .
+bsdo:installationFrom  rdfs:comment "The start of an installation episode, which makes the battery-vehicle relation temporary rather than a fixed part-whole."@en .
+bsdo:observationOf     rdfs:comment "The pack whose state is observed."@en .
+bsdo:observedAt        rdfs:comment "The time of observation, which bounds temporal representation to state at a point in time rather than a full trajectory."@en .
+bsdo:thresholdPercent  rdfs:comment "The state-of-charge threshold a rule declares. The same numeric value can mean different things: a single eligibility threshold in one ecosystem, a band boundary in the other."@en .
+bsdo:validityDays      rdfs:comment "The validity period of a quota in days. A quota is exhausted either by use or by expiry, whichever comes first."@en .
+
+#################################################################
+# 13. UMBRELLA CLASS FOR ECOSYSTEM-BOUND ARTEFACTS
+#################################################################
+
+#  `operatedBy` initially carried no rdfs:domain, since it applies across
+#  artefact families.
+#  An umbrella class is introduced instead of leaving the property without a
+#  domain. All four artefact families used as formal contexts, together with
+#  the commercial and normative artefacts, are artefacts bound to a single
+#  ecosystem. That binding is what makes cross-ecosystem comparison expressible.
+
+bsdo:EcosystemArtefact rdf:type owl:Class ;
+    rdfs:label "Ecosystem Artefact"@en ;
+    rdfs:comment "Any artefact bound to a particular battery swap ecosystem: battery models, station devices, service flows, vehicle models, and the commercial and normative artefacts that accompany them. This binding is what makes cross-ecosystem comparison expressible."@en .
+
+bsdo:SwappableBattery      rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:BatteryHandlingDevice rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:ServiceEvent          rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:ElectricMotorcycle    rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:QuotaPlan             rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:SwapEligibilityRule   rdfs:subClassOf bsdo:EcosystemArtefact .
+bsdo:BatterySlot           rdfs:subClassOf bsdo:EcosystemArtefact .
+
+bsdo:operatedBy rdfs:domain bsdo:EcosystemArtefact .
+
+
+#################################################################
+#  PART II — POPULATION
+#################################################################
+
+#################################################################
+#  1. OPERATORS
+#################################################################
+
+bsdo:Op_SWAP rdf:type owl:NamedIndividual , bsdo:Operator ;
+    rdfs:label "SWAP Energy"@en ;
+    skos:altLabel "Swap Energi Indonesia"@id .
+
+bsdo:Op_Volta rdf:type owl:NamedIndividual , bsdo:Operator ;
+    rdfs:label "Volta"@en ;
+    skos:altLabel "PT Volta Indonesia Semesta"@id .
+
+[] rdf:type owl:AllDifferent ; owl:distinctMembers ( bsdo:Op_SWAP bsdo:Op_Volta ) .
+
+#################################################################
+#  2. IDENTIFIER SCHEMES
+#     The two schemes are mutually uninterpretable; this is a finding.
+#################################################################
+
+bsdo:Scheme_SWAP rdf:type owl:NamedIndividual , bsdo:IdentifierScheme ;
+    rdfs:label "SWAP unit identifier scheme"@en ;
+    rdfs:comment "Observed pattern: a two-letter prefix indicating entity type, followed by a digit sequence. Does not appear to follow ISO/IEC 15459."@en .
+
+bsdo:Scheme_Volta rdf:type owl:NamedIndividual , bsdo:IdentifierScheme ;
+    rdfs:label "Volta unit identifier scheme"@en ;
+    rdfs:comment "Observed pattern: a fixed prefix and digit block, followed by four letters and a further digit sequence. Not interpretable against the other ecosystem's scheme, and does not appear to follow ISO/IEC 15459."@en .
+
+#################################################################
+#  3. BATTERY MODELS
+#################################################################
+
+bsdo:BatMod_SWAP_64V rdf:type owl:NamedIndividual , bsdo:LithiumIonSwappableBattery ;
+    rdfs:label "SWAP battery, 64 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_64V , bsdo:VC_60V ;
+    bsdo:hasCellChemistry bsdo:LithiumIon ;
+    bsdo:hasCapacityKWh "1.3"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_SWAP ;
+    rdfs:comment "Source: operator website. Two voltage classes are deliberately asserted: the website states one value while the operator's own application labels the same product with another. This intra-ecosystem terminological instability is recorded rather than resolved."@en .
+
+bsdo:BatMod_SWAP_72V rdf:type owl:NamedIndividual , bsdo:LithiumIonSwappableBattery ;
+    rdfs:label "SWAP battery, 72 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_72V ;
+    bsdo:hasCellChemistry bsdo:LithiumIon ;
+    bsdo:hasCapacityAh "30"^^xsd:decimal ;
+    bsdo:hasCapacityKWh "2.1"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_SWAP ;
+    rdfs:comment "Source: operator website and vehicle manufacturer specification page."@en .
+
+bsdo:BatMod_Volta_401 rdf:type owl:NamedIndividual , bsdo:LFPSwappableBattery ;
+    rdfs:label "Volta SGB battery, 60 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_60V ;
+    bsdo:hasCellChemistry bsdo:LithiumIronPhosphate ;
+    bsdo:hasCapacityAh "23"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    rdfs:comment "Source: manufacturer owner's manual, specification page."@en .
+
+bsdo:BatMod_Volta_Eagle rdf:type owl:NamedIndividual , bsdo:LFPSwappableBattery ;
+    rdfs:label "Volta SGB battery, 64 V class"@en ;
+    bsdo:hasVoltageClass bsdo:VC_64V ;
+    bsdo:hasCellChemistry bsdo:LithiumIronPhosphate ;
+    bsdo:hasCapacityAh "21"^^xsd:decimal ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    rdfs:comment "Source: manufacturer owner's manual, specification page. This pack shares a nominal voltage class with a pack of the other ecosystem, and has near-identical practical capacity, yet the two differ in cell chemistry and cannot be interchanged."@en .
+
+#################################################################
+#  4. OBSERVED BATTERY UNITS (identifiers pseudonymised)
+#################################################################
+
+bsdo:Pack_S01 rdf:type owl:NamedIndividual , bsdo:SwappableBattery ;
+    bsdo:hasUnitIdentifier "SWAP-PSEUDO-01" ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_SWAP ;
+    bsdo:ownedBy bsdo:Op_SWAP ;
+    rdfs:comment "Identifier pseudonymised. Source: operator application, battery view, drawn from demonstration material. The field structure is treated as evidence; the values are not treated as measurements. Operator ownership is inferred from the distance-based tariff model rather than directly observed."@en .
+
+bsdo:Pack_V01 rdf:type owl:NamedIndividual , bsdo:SwappableBattery ;
+    bsdo:hasUnitIdentifier "VOLTA-PSEUDO-01" ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    bsdo:hasEnrolmentStatus bsdo:Online ;
+    rdfs:comment "Identifier pseudonymised. Source: operator application, battery view."@en .
+
+bsdo:Pack_V02 rdf:type owl:NamedIndividual , bsdo:SwappableBattery ;
+    bsdo:hasUnitIdentifier "VOLTA-PSEUDO-02" ;
+    bsdo:hasIdentifierScheme bsdo:Scheme_Volta ;
+    bsdo:hasEnrolmentStatus bsdo:Online ;
+    rdfs:comment "Identifier pseudonymised. Source: operator application, battery view."@en .
+
+#  --- State observations, bounded to a point in time ---
+bsdo:Obs_V01_a rdf:type owl:NamedIndividual , bsdo:BatteryStateObservation ;
+    bsdo:observationOf bsdo:Pack_V01 ;
+    bsdo:hasStateOfCharge "92"^^xsd:decimal ;
+    rdfs:comment "This ecosystem exposes state of charge per unit but exposes no health indicator."@en .
+
+bsdo:Obs_S01_a rdf:type owl:NamedIndividual , bsdo:BatteryStateObservation ;
+    bsdo:observationOf bsdo:Pack_S01 ;
+    bsdo:hasStateOfCharge "99"^^xsd:decimal ;
+    bsdo:hasQualitativeHealthLabel "Healthy" ;
+    rdfs:comment "This ecosystem exposes a qualitative health badge whose scale, thresholds and derivation method are undisclosed. The value derives from demonstration material. Such a badge cannot be mapped onto the other ecosystem's silence, nor onto the quantified state-of-health information required by Regulation (EU) 2023/1542."@en .
+
+#################################################################
+#  5. DEVICES
+#################################################################
+
+bsdo:Dev_SWAP_Small rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:LithiumIonOnlyDevice ;
+    rdfs:label "SWAP Small station"@en ;
+    skos:altLabel "3-Slot Station"@id ;
+    bsdo:acceptsChemistry bsdo:LithiumIon ;
+    rdfs:comment "Source: operator website. Published capacity differs by one from the slot count stated in the application; the additional slot is presumed to receive the customer's depleted pack. On this station type the indicator colours encode charge level."@en .
+
+bsdo:Dev_SWAP_Big rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:LithiumIonOnlyDevice ;
+    rdfs:label "SWAP Big station"@en ;
+    skos:altLabel "8-Slot Station"@id ;
+    bsdo:acceptsChemistry bsdo:LithiumIon ;
+    rdfs:comment "Source: operator website. On this station type the indicator colours encode the state of an authentication process, a different meaning from the same colours on the smaller type of the same operator."@en .
+
+bsdo:Dev_SWAP_Home rdf:type owl:NamedIndividual , bsdo:ChargingDevice ;
+    rdfs:label "Swap Home charger"@en ;
+    rdfs:comment "Source: operator website. A charging appliance rather than an exchange device, and the clearest instance in the data of the distinction between energy transfer and object transfer."@en .
+
+bsdo:Dev_Volta_Cabinet rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:ChargingDevice , bsdo:LFPOnlyDevice ;
+    rdfs:label "Volta SGB cabinet"@en ;
+    skos:altLabel "kabinet SGB"@id ;
+    bsdo:acceptsChemistry bsdo:LithiumIronPhosphate ;
+    rdfs:comment "Eight doors observed, with status and state of charge reported per door. This cabinet performs both exchange and charging, and is therefore classified as both a swap device and a charging device; a reasoner should infer it to be a dual-function device. The other ecosystem separates these functions across distinct appliances."@en .
+
+#  --- Observed station instances ---
+bsdo:Sta_SWAP_Sleman rdf:type owl:NamedIndividual , bsdo:SwapDevice ;
+    rdfs:label "SWAP station, Sleman"@en ;
+    rdfs:comment "Station identifier pseudonymised. Eight slots observed, each reporting state of charge and voltage class."@en .
+
+bsdo:Sta_Volta_Cirebon rdf:type owl:NamedIndividual , bsdo:SwapDevice , bsdo:ChargingDevice ;
+    rdfs:label "Volta SGB, Cirebon showroom"@en ;
+    rdfs:comment "Eight doors, two occupied and the remainder empty or unavailable. Host: brand showroom."@en .
+
+bsdo:Sta_Volta_Mitra rdf:type owl:NamedIndividual , bsdo:SwapDevice ;
+    rdfs:label "Volta SGB Mitra, SPBU"@en ;
+    rdfs:comment "Host: fuel station. Availability is reported as aggregate bands rather than per door. The difference in display from the other observed cabinet is unexplained and is not taken as evidence of a different device type."@en .
+
+#################################################################
+#  6. SWAP ELIGIBILITY RULES
+#################################################################
+
+bsdo:Elig_SWAP rdf:type owl:NamedIndividual , bsdo:SwapEligibilityRule ;
+    bsdo:thresholdPercent "50"^^xsd:decimal ;
+    bsdo:declaredBy bsdo:Op_SWAP ;
+    rdfs:label "SWAP swap-eligibility threshold"@en ;
+    rdfs:comment "The application states a single state-of-charge eligibility threshold. Stock is reported as three counters: swappable, reservable, and total."@en .
+
+bsdo:Elig_Volta_Low rdf:type owl:NamedIndividual , bsdo:SwapEligibilityRule ;
+    bsdo:thresholdPercent "50"^^xsd:decimal ;
+    bsdo:declaredBy bsdo:Op_Volta ;
+    rdfs:label "Volta bucket, below 50%"@en .
+
+bsdo:Elig_Volta_High rdf:type owl:NamedIndividual , bsdo:SwapEligibilityRule ;
+    bsdo:thresholdPercent "80"^^xsd:decimal ;
+    bsdo:declaredBy bsdo:Op_Volta ;
+    rdfs:label "Volta bucket, 80% and above"@en ;
+    rdfs:comment "This operator reports two bands that do not partition the same interval. A pack in the intervening range satisfies the other operator's threshold but falls into neither band here."@en .
+
+#################################################################
+#  7. TARIFF PLANS
+#################################################################
+
+bsdo:Plan_SWAP_100km rdf:type owl:NamedIndividual , bsdo:DistanceQuotaPlan ;
+    rdfs:label "Try to Ride"@en ;
+    bsdo:quotaAmount "100"^^xsd:decimal ; bsdo:validityDays "30"^^xsd:integer ;
+    rdfs:comment "Quota denominated in kilometres."@en .
+bsdo:Plan_SWAP_250km rdf:type owl:NamedIndividual , bsdo:DistanceQuotaPlan ;
+    rdfs:label "Good Good Ride"@en ;
+    bsdo:quotaAmount "250"^^xsd:decimal ; bsdo:validityDays "60"^^xsd:integer ;
+    rdfs:comment "Quota denominated in kilometres. The website and the application state different validity periods for this plan; both are recorded."@en .
+bsdo:Plan_SWAP_500km rdf:type owl:NamedIndividual , bsdo:DistanceQuotaPlan ;
+    rdfs:label "Happly Ride"@en ;
+    bsdo:quotaAmount "500"^^xsd:decimal ; bsdo:validityDays "60"^^xsd:integer ;
+    rdfs:comment "Quota denominated in kilometres. Plan name spelled as it appears in the application."@en .
+
+bsdo:Plan_Volta_Harian rdf:type owl:NamedIndividual , bsdo:EventCountQuotaPlan ;
+    rdfs:label "Daily plan"@en ;
+    skos:altLabel "Paket Harian"@id ;
+    bsdo:quotaAmount "1"^^xsd:decimal ; bsdo:validityDays "1"^^xsd:integer ;
+    rdfs:comment "Quota denominated in number of exchange events."@en .
+bsdo:Plan_Volta_Mingguan rdf:type owl:NamedIndividual , bsdo:EventCountQuotaPlan ;
+    rdfs:label "Weekly plan"@en ;
+    skos:altLabel "Paket Mingguan"@id ;
+    bsdo:quotaAmount "14"^^xsd:decimal ; bsdo:validityDays "7"^^xsd:integer ;
+    rdfs:comment "Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate."@en .
+bsdo:Plan_Volta_Bulanan rdf:type owl:NamedIndividual , bsdo:EventCountQuotaPlan ;
+    rdfs:label "Monthly plan"@en ;
+    skos:altLabel "Paket Bulanan"@id ;
+    bsdo:quotaAmount "50"^^xsd:decimal ; bsdo:validityDays "30"^^xsd:integer ;
+    rdfs:comment "Quota denominated in number of exchange events. Purchases beyond the quota revert to the daily rate. The plan is bound to one registered vehicle."@en .
+
+#################################################################
+#  8. SERVICE FLOW SPECIFICATIONS
+#  These are procedure specifications taken from official documentation, not
+#  logged transactions. Transaction payloads could not be observed.
+#################################################################
+
+bsdo:Flow_SWAP_Swap3 rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "SWAP direct swap, 3-slot"@en ;
+    bsdo:occursAtDevice bsdo:Dev_SWAP_Small ;
+    rdfs:comment "Source: in-application procedure guide for the smaller station type."@en .
+
+bsdo:Flow_SWAP_Swap8 rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "SWAP direct swap, 8-slot"@en ;
+    bsdo:occursAtDevice bsdo:Dev_SWAP_Big ;
+    rdfs:comment "Source: in-application procedure guide for the larger station type, in which the pack is first placed on a separate reader before the slot."@en .
+
+bsdo:Flow_SWAP_Booking rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "SWAP booking"@en ;
+    rdfs:comment "Source: in-application booking dialogue. Time limits, scan requirements and automatic door opening are not documented for this flow."@en .
+
+bsdo:Flow_Volta_Ganti rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "Volta direct exchange"@en ;
+    skos:altLabel "Ganti Baterai"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    rdfs:comment "Source: operator application user manual. Select a cabinet, scan, an empty door opens, exchange. Neither payment nor a time limit is mentioned, in contrast to the booking and loan flows of the same operator."@en .
+
+bsdo:Flow_Volta_Booking rdf:type owl:NamedIndividual , bsdo:SwapEvent ;
+    rdfs:label "Volta booking"@en ;
+    skos:altLabel "Booking Baterai"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    bsdo:hasParticipantCustomer bsdo:Cust_V01 ;
+    rdfs:comment "Source: operator application user manual. Select a cabinet, pay, then a time limit applies for scanning before the door opens."@en .
+
+bsdo:Flow_Volta_TukarTitip rdf:type owl:NamedIndividual , bsdo:LoanEvent ;
+    rdfs:label "Volta pack loan against deposited pack"@en ;
+    skos:altLabel "Tukar Titip"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    bsdo:hasCustodyDeadlineHours "6"^^xsd:decimal ;
+    bsdo:returnsPackTo bsdo:Cust_V01 ;
+    rdfs:comment "Source: operator application user manual. Pay, scan within a time limit, collect a borrowed pack, and exchange it back for the customer's own before the custody deadline expires. The original term has no equivalent in the other ecosystem and is retained as an alternative label."@en .
+
+bsdo:Flow_Volta_SCB rdf:type owl:NamedIndividual , bsdo:DepositChargingEvent ;
+    rdfs:label "Volta deposited-pack charging service"@en ;
+    skos:altLabel "SCB"@id , "Sistem Charge Battery"@id ;
+    bsdo:occursAtDevice bsdo:Dev_Volta_Cabinet ;
+    bsdo:hasCustodyDeadlineHours "6"^^xsd:decimal ;
+    bsdo:returnsPackTo bsdo:Cust_V01 ;
+    rdfs:comment "Source: operator application user manual. Activate the service, scan within a time limit, begin charging, and retrieve the customer's own pack before the custody deadline expires. Custody runs in the opposite direction from the loan flow: here the operator holds the customer's pack."@en .
+
+#################################################################
+#  9. AGENTS AND VEHICLES
+#################################################################
+
+bsdo:Cust_V01 rdf:type owl:NamedIndividual , bsdo:Customer ;
+    rdfs:label "Customer V01 (pseudonymised)"@en ;
+    rdfs:comment "Personal data of a third party is fully pseudonymised: name, photograph, registration number, chassis and engine numbers, and geographic coordinates are not recorded."@en .
+
+bsdo:Veh_Volta401 rdf:type owl:NamedIndividual , bsdo:ElectricMotorcycle ;
+    rdfs:label "Volta 401"@en ;
+    rdfs:comment "Source: manufacturer owner's manual. Vehicle identifier pseudonymised."@en .
+
+bsdo:Veh_VoltaEagle rdf:type owl:NamedIndividual , bsdo:ElectricMotorcycle ;
+    rdfs:label "Volta Eagle"@en ;
+    rdfs:comment "Source: manufacturer owner's manual."@en .
+
+bsdo:Veh_DeSultan rdf:type owl:NamedIndividual , bsdo:ElectricMotorcycle ;
+    rdfs:label "Smoot De Sultan"@en ;
+    rdfs:comment "Source: vehicle manufacturer specification page."@en .
+
+#  --- Battery-vehicle relation: temporary, not a fixed part-whole ---
+bsdo:Inst_V01 rdf:type owl:NamedIndividual , bsdo:BatteryInstallation ;
+    bsdo:installedPack bsdo:Pack_V01 ;
+    bsdo:installedIn bsdo:Veh_Volta401 ;
+    rdfs:comment "The installation is reified rather than modelled as a mereological part-whole relation: a pack moves between vehicles through exchange, so a fixed relation would be false."@en .
+
+#################################################################
+# 10. OWNERSHIP VERSUS CUSTODY — DOCUMENTARY EVIDENCE
+#################################################################
+
+bsdo:Pack_V01 bsdo:ownedBy bsdo:Cust_V01 ;
+              bsdo:heldBy bsdo:Cust_V01 ;
+              bsdo:mayBeChargedByHolder "false"^^xsd:boolean .
+
+#  The owner's manual for a network-enrolled model forbids the user from
+#  charging the pack, while the manual for another model of the same operator
+#  provides charging instructions. The customer owns the pack and holds it,
+#  but is not authorised to charge it: ownership and the right to manage are
+#  separate, and the distinguishing factor is network enrolment status.
+
+#################################################################
+# 11. ECOSYSTEM MEMBERSHIP
+#     Every artefact was observed within a particular ecosystem.
+#################################################################
+
+bsdo:BatMod_SWAP_64V   bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:BatMod_SWAP_72V   bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:BatMod_Volta_401  bsdo:operatedBy bsdo:Op_Volta .
+bsdo:BatMod_Volta_Eagle bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Dev_SWAP_Small    bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Dev_SWAP_Big      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Dev_SWAP_Home     bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Dev_Volta_Cabinet bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Sta_SWAP_Sleman   bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Sta_Volta_Cirebon bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Sta_Volta_Mitra   bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Plan_SWAP_100km      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Plan_SWAP_250km      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Plan_SWAP_500km      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Plan_Volta_Harian    bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Plan_Volta_Mingguan  bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Plan_Volta_Bulanan   bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Flow_SWAP_Swap3      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Flow_SWAP_Swap8      bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Flow_SWAP_Booking    bsdo:operatedBy bsdo:Op_SWAP .
+bsdo:Flow_Volta_Ganti     bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Flow_Volta_Booking   bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Flow_Volta_TukarTitip bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Flow_Volta_SCB       bsdo:operatedBy bsdo:Op_Volta .
+
+bsdo:Veh_Volta401     bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Veh_VoltaEagle   bsdo:operatedBy bsdo:Op_Volta .
+bsdo:Veh_DeSultan     bsdo:operatedBy bsdo:Op_SWAP .

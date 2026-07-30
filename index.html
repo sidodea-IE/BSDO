@@ -3,34 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>BSDO 0.2.0 — frozen release</title>
+<title>BSDO — Battery Swap Domain Ontology</title>
 <style>
   :root { color-scheme: light dark; }
-  body { max-width: 44rem; margin: 3rem auto; padding: 0 1.25rem;
+  body { max-width: 46rem; margin: 3rem auto; padding: 0 1.25rem;
          font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
-  h1 { font-size: 1.5rem; margin-bottom: .2rem; }
+  h1 { font-size: 1.6rem; margin-bottom: .2rem; }
   .sub { color: #666; margin-top: 0; }
-  .warn { border-left: 3px solid #b45309; padding: .1rem 0 .1rem .9rem; margin: 1.4rem 0; }
   table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; }
   th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid #8883; }
-  code { font-family: ui-monospace, Consolas, monospace; font-size: .92em; }
+  th { font-weight: 600; }
+  code { font-family: ui-monospace, "Cascadia Code", Consolas, monospace; font-size: .92em; }
   footer { margin-top: 2.5rem; font-size: .9rem; color: #666; }
 </style>
 </head>
 <body>
 
-<h1>BSDO 0.2.0</h1>
-<p class="sub">Battery Swap Domain Ontology — frozen release</p>
+<h1>BSDO — Battery Swap Domain Ontology</h1>
+<p class="sub">An OWL 2 DL domain ontology for battery swap ecosystems for electric two-wheelers.</p>
 
-<p>This is the target of the version identifier
-<code>https://w3id.org/bsdo/0.2.0</code>.</p>
+<p>BSDO models the entities that battery swapping requires and that charging-oriented vocabularies do
+not provide: a battery pack as a persistent object with an identity of its own, its changing location
+over time, the separation of ownership from physical custody, and the exchange of a pack as a
+transfer of an object rather than a transfer of energy.</p>
 
-<div class="warn">
-<p><strong>These files do not change.</strong> A version identifier has to keep resolving to the
-release it names, so that an ontology or dataset which declared an import of this version still
-resolves to what it was written against after later releases change the files at the root.</p>
-<p>For the current release, see <a href="../">the ontology home page</a>.</p>
-</div>
+<p>The class hierarchy is derived from Formal Concept Analysis over artefacts observed in two
+independently operated ecosystems, so that every class can be traced back to the facts that motivated
+it.</p>
+
+<h2>Download</h2>
 
 <table>
 <tr><th>File</th><th>Contents</th></tr>
@@ -46,9 +47,30 @@ resolves to what it was written against after later releases change the files at
     <td>The above, plus the incompatibility test</td></tr>
 </table>
 
+<p>Open <code>bsdo-merged.owl</code> in an OWL editor such as Protégé to inspect the artefact without
+resolving imports over the network.</p>
+
+<h2>The incompatibility test</h2>
+
+<p>Loading <code>bsdo-cq8-test.ttl</code> together with the terminology and population is
+<strong>expected to make the knowledge base inconsistent</strong>. Incompatibility between ecosystems
+is detected as logical unsatisfiability rather than as an empty query result, which distinguishes a
+genuine conflict from missing data under the open-world assumption.</p>
+
+<h2>Alignment</h2>
+
+<p>BSDO aligns to the EMMO <em>domain-battery</em> and <em>domain-electrochemistry</em> modules, by
+reference rather than by import.</p>
+
+<h2>Namespace</h2>
+
+<p>Entity IRIs are minted under <code>https://w3id.org/bsdo#</code>, with
+<code>owl:versionIRI</code> <code>https://w3id.org/bsdo/0.2.0</code>.</p>
+
 <footer>
-Archived at <a href="https://doi.org/10.5281/zenodo.21683493">10.5281/zenodo.21683493</a> ·
-Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+Version 0.2.0-draft · Licensed under
+<a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> ·
+Source and issue tracker on <a href="./">the repository</a>.
 </footer>
 
 </body>

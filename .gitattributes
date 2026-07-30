@@ -1,0 +1,16 @@
+# Line endings are normalised to LF, and this matters here beyond tidiness.
+#
+# A multi-line rdfs:comment carries its line breaks inside the literal. On a
+# Windows checkout those breaks are CRLF, so the Turtle and the RDF/XML of the
+# same ontology ended up with different literals: git normalises the newlines
+# in a .ttl file, but in RDF/XML the carriage return is escaped as a character
+# entity and survives. The two serialisations then no longer agreed.
+#
+# Declaring the serialisations as LF text keeps them equivalent.
+
+*.ttl  text eol=lf
+*.owl  text eol=lf
+*.xml  text eol=lf
+*.md   text eol=lf
+*.html text eol=lf
+*.json text eol=lf

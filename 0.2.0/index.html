@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>BSDO 0.2.0 — frozen release</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 44rem; margin: 3rem auto; padding: 0 1.25rem;
+         font: 16px/1.65 system-ui, -apple-system, "Segoe UI", sans-serif; }
+  h1 { font-size: 1.5rem; margin-bottom: .2rem; }
+  .sub { color: #666; margin-top: 0; }
+  .warn { border-left: 3px solid #b45309; padding: .1rem 0 .1rem .9rem; margin: 1.4rem 0; }
+  table { border-collapse: collapse; width: 100%; margin: 1.2rem 0; }
+  th, td { text-align: left; padding: .45rem .6rem; border-bottom: 1px solid #8883; }
+  code { font-family: ui-monospace, Consolas, monospace; font-size: .92em; }
+  footer { margin-top: 2.5rem; font-size: .9rem; color: #666; }
+</style>
+</head>
+<body>
+
+<h1>BSDO 0.2.0</h1>
+<p class="sub">Battery Swap Domain Ontology — frozen release</p>
+
+<p>This is the target of the version identifier
+<code>https://w3id.org/bsdo/0.2.0</code>.</p>
+
+<div class="warn">
+<p><strong>These files do not change.</strong> A version identifier has to keep resolving to the
+release it names, so that an ontology or dataset which declared an import of this version still
+resolves to what it was written against after later releases change the files at the root.</p>
+<p>For the current release, see <a href="../">the ontology home page</a>.</p>
+</div>
+
+<table>
+<tr><th>File</th><th>Contents</th></tr>
+<tr><td><a href="bsdo.ttl">bsdo.ttl</a> · <a href="bsdo.owl">bsdo.owl</a></td>
+    <td>Terminology (TBox)</td></tr>
+<tr><td><a href="bsdo-abox.ttl">bsdo-abox.ttl</a> · <a href="bsdo-abox.owl">bsdo-abox.owl</a></td>
+    <td>Population (ABox)</td></tr>
+<tr><td><a href="bsdo-cq8-test.ttl">bsdo-cq8-test.ttl</a> · <a href="bsdo-cq8-test.owl">bsdo-cq8-test.owl</a></td>
+    <td>Cross-ecosystem incompatibility test</td></tr>
+<tr><td><a href="bsdo-merged.ttl">bsdo-merged.ttl</a> · <a href="bsdo-merged.owl">bsdo-merged.owl</a></td>
+    <td>Terminology and population in one file</td></tr>
+<tr><td><a href="bsdo-merged-cq8.ttl">bsdo-merged-cq8.ttl</a> · <a href="bsdo-merged-cq8.owl">bsdo-merged-cq8.owl</a></td>
+    <td>The above, plus the incompatibility test</td></tr>
+</table>
+
+<footer>
+Archived at <a href="https://doi.org/10.5281/zenodo.21683493">10.5281/zenodo.21683493</a> ·
+Licensed under <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>
+</footer>
+
+</body>
+</html>
