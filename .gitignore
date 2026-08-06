@@ -9,6 +9,10 @@ Thumbs.db
 *.ttl.bak
 *-backup.*
 
+# Python bytecode from the supplementary scripts
+__pycache__/
+*.pyc
+
 # Nothing outside this directory belongs in the repository:
 # no screenshots, no manuscript drafts, no raw captures.
 *.png

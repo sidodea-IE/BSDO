@@ -1,0 +1,4 @@
+object,label,ecosystem,1500 W,2500 W,one pack,two packs,weight <= 150 kg,weight > 150 kg,double disc brake,keyless without NFC,keyless with NFC,vehicle identifier
+v1,Smoot De Sultan,SWAP,.,x,?,?,x,.,.,?,?,x
+v2,Volta 401,Volta,x,.,.,x,.,x,.,x,.,x
+v3,Volta Eagle,Volta,x,.,.,x,x,.,x,.,x,?

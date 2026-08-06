@@ -65,10 +65,23 @@ reference rather than by import.</p>
 <h2>Namespace</h2>
 
 <p>Entity IRIs are minted under <code>https://w3id.org/bsdo#</code>, with
-<code>owl:versionIRI</code> <code>https://w3id.org/bsdo/0.2.0</code>.</p>
+<code>owl:versionIRI</code> <code>https://w3id.org/bsdo/0.3.0</code> and
+<code>owl:priorVersion</code> <code>https://w3id.org/bsdo/0.2.0</code>.</p>
+
+<p>Each release is also frozen in a directory of its own, so that a version identifier keeps
+resolving to the release it names: <a href="0.3.0/">0.3.0</a>, <a href="0.2.0/">0.2.0</a>.</p>
+
+<h2>Supplementary material</h2>
+
+<p><a href="fca_supplementary/">fca_supplementary/</a> holds the four formal contexts as CSV and
+the scripts that recompute every concept lattice reported in the manuscript and check the published
+figure against them; <code>lattice.py</code> uses the standard library only.
+<a href="termfreq_supplementary/">termfreq_supplementary/</a> holds the term lists and the script
+behind the lexical scan. Derived renderings in PDF and PNG are not distributed; the scripts
+regenerate them from the sources included here.</p>
 
 <footer>
-Version 0.2.0-draft · Licensed under
+Version 0.3.0 · Licensed under
 <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> ·
 Source and issue tracker on <a href="./">the repository</a>.
 </footer>

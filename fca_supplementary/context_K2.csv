@@ -1,0 +1,5 @@
+object,label,ecosystem,exchange,charging,capacity <= 2,capacity 3-8,status per slot,SoC per slot,booking,dimensions,certification,host partner,separate reader,colour = process state,colour = charge level
+s1,SWAP 3-slot,SWAP,x,.,x,.,?,?,x,x,x,x,.,.,x
+s2,SWAP 8-slot,SWAP,x,.,.,x,x,x,x,x,x,x,x,x,.
+s3,SWAP Home,SWAP,.,x,x,.,.,.,?,x,?,.,.,?,?
+s4,Volta SGB cabinet,Volta,x,x,.,x,x,x,x,?,?,x,.,?,?

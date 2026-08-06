@@ -93,12 +93,31 @@ the values are not treated as measurements.
 ## Namespace
 
 Entity IRIs are minted under `https://w3id.org/bsdo#`, with `owl:versionIRI`
-`https://w3id.org/bsdo/0.2.0`.
+`https://w3id.org/bsdo/0.3.0` and `owl:priorVersion` `https://w3id.org/bsdo/0.2.0`.
+
+Each release is also frozen in a directory of its own, so that a version identifier keeps resolving
+to the release it names: [`0.3.0/`](0.3.0/), [`0.2.0/`](0.2.0/).
 
 ## Status
 
-Version 0.2.0-draft. The artefact accompanies a manuscript under preparation; classes, properties
-and identifiers may change before the first stable release.
+Version 0.3.0. The artefact accompanies a manuscript under preparation; classes, properties and
+identifiers may change before the first stable release.
+
+Since 0.2.0: every class carries a `derivationPath` annotation naming its provenance (`lattice`,
+`composed`, `reuse`, or `structural`), the lithium iron phosphate chemistry value is aligned to the
+EMMO chemical-substance module, and individuals carry a source annotation recording what each value
+was read from. The minor component moves rather than the patch component because the signature
+gained a term.
+
+## Supplementary material
+
+| Directory | Contents |
+|---|---|
+| [`fca_supplementary/`](fca_supplementary/) | The four formal contexts as CSV, and the scripts that recompute every concept lattice reported in the manuscript and check the published figure against them. `lattice.py` uses the standard library only |
+| [`termfreq_supplementary/`](termfreq_supplementary/) | Term lists and the script behind the lexical scan reported in the manuscript |
+
+Derived renderings in PDF and PNG are not distributed; the scripts regenerate them from the sources
+included here.
 
 ## Licence
 

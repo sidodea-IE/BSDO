@@ -1,0 +1,57 @@
+{
+  "_comment": [
+    "Term lists for the lexical scan reported in Section 2 of the BSDO paper.",
+    "Fixed BEFORE counting, and deliberately NOT tuned to reproduce any figure",
+    "carried in an earlier draft. Two lists are declared per category so that the",
+    "result can be read under either, and the sensitivity is visible rather than",
+    "hidden in a choice of vocabulary.",
+    "",
+    "NARROW = words that denote the concept itself (nominal / attributive forms).",
+    "BROAD  = narrow, plus inflected and verbal forms whose occurrences in an",
+    "         academic text are frequently authorial ('we identify three",
+    "         challenges') rather than domain usage. Every occurrence that is",
+    "         BROAD-only is emitted as a KWIC line by termfreq.py so a reader can",
+    "         adjudicate it without rerunning anything."
+  ],
+
+  "categories": {
+    "identity_traceability": {
+      "bsor_dimension": "D1",
+      "narrow": ["identity", "identifier", "identifiers",
+                 "traceability", "traceable", "trace", "provenance"],
+      "broad_extra": ["identification", "identify", "identifies", "identified"]
+    },
+
+    "ownership_custody": {
+      "bsor_dimension": "D4",
+      "narrow": ["ownership", "owner", "owners", "custody", "custodian",
+                 "possession"],
+      "broad_extra": ["own", "owned", "possess", "holder", "tenure", "title",
+                      "lease", "rental"]
+    }
+  },
+
+  "corpus": {
+    "_comment": [
+      "Scope: the four ontologies that Table 2 records as assessed FROM THEIR",
+      "PUBLICATIONS. The scan is over publication text, not over ontology files.",
+      "Artefacts assessed from their ontology files are deliberately excluded:",
+      "mixing prose with serialised RDF in one count would make the number",
+      "uninterpretable."
+    ],
+    "root": "../../2_source_article",
+    "documents": {
+      "BPO":                     "Battery Production Ontology.pdf.md",
+      "EVO":                     "AIAI24_EVO3 (2).pdf.md",
+      "ChargingStationOntology": "CharginstationOntology.pdf.md",
+      "OntoSoC":                 "ONTOSOC.pdf.md"
+    }
+  },
+
+  "matching": {
+    "case_sensitive": false,
+    "boundary": "whole word (regex \\b...\\b)",
+    "stemming": "none",
+    "note": "No stemming, so 'traceability' and 'trace' are counted as separate terms and do not double-count each other."
+  }
+}

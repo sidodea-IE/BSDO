@@ -1,0 +1,226 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="190mm" height="226.84mm" viewBox="0 0 538.58 643" font-family="Helvetica, Arial, sans-serif" fill="#111111">
+<title>Concept lattices of the formal contexts K1, K2 and K3 under two readings of the incomplete data</title>
+<rect x="0" y="0" width="538.58" height="643" fill="#ffffff"></rect>
+<g id="panel-a">
+<text x="6" y="19.0" font-size="8.6" font-weight="bold">(a) K1  battery models</text>
+<g stroke="#4d4d4d" stroke-width="0.6" fill="none">
+<line x1="265.2" y1="184.8" x2="83.8" y2="129.2"></line>
+<line x1="266.1" y1="183.3" x2="208.9" y2="130.7"></line>
+<line x1="271.9" y1="183.3" x2="329.1" y2="130.7"></line>
+<line x1="272.8" y1="184.8" x2="454.2" y2="129.2"></line>
+<line x1="448.0" y1="87.4" x2="415.0" y2="58.6"></line>
+<line x1="238.7" y1="54.4" x2="311.3" y2="23.6"></line>
+<line x1="408.2" y1="54.7" x2="318.8" y2="23.3"></line>
+<line x1="83.0" y1="125.4" x2="121.0" y2="92.6"></line>
+<line x1="83.9" y1="126.9" x2="211.1" y2="91.1"></line>
+<line x1="83.9" y1="127.3" x2="287.7" y2="91.3"></line>
+<line x1="202.4" y1="126.3" x2="127.6" y2="91.7"></line>
+<line x1="209.9" y1="127.1" x2="371.1" y2="90.9"></line>
+<line x1="335.8" y1="126.8" x2="447.2" y2="91.2"></line>
+<line x1="328.2" y1="126.8" x2="218.8" y2="91.2"></line>
+<line x1="335.0" y1="125.4" x2="372.0" y2="92.6"></line>
+<line x1="457.3" y1="124.1" x2="451.7" y2="93.9"></line>
+<line x1="454.1" y1="127.1" x2="302.2" y2="91.7"></line>
+<line x1="297.1" y1="82.9" x2="313.9" y2="25.8"></line>
+<line x1="371.1" y1="89.1" x2="238.9" y2="56.9"></line>
+<line x1="377.9" y1="87.3" x2="409.1" y2="58.7"></line>
+<line x1="127.8" y1="88.8" x2="231.2" y2="57.2"></line>
+<line x1="217.0" y1="86.6" x2="233.0" y2="59.4"></line>
+</g>
+<circle cx="269" cy="186" r="3.3" fill="#111111"></circle>
+<circle cx="80" cy="128" r="3.3" fill="#111111"></circle>
+<circle cx="206" cy="128" r="3.3" fill="#111111"></circle>
+<circle cx="332" cy="128" r="3.3" fill="#111111"></circle>
+<circle cx="458" cy="128" r="3.3" fill="#111111"></circle>
+<circle cx="124" cy="90" r="3.3" fill="#111111"></circle>
+<circle cx="215" cy="90" r="3.3" fill="#111111"></circle>
+<circle cx="295" cy="90" r="6.7" fill="none" stroke="#111111" stroke-width="0.75"></circle>
+<circle cx="295" cy="90" r="3.3" fill="#111111"></circle>
+<circle cx="375" cy="90" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="451" cy="90" r="3.3" fill="#111111"></circle>
+<circle cx="235" cy="56" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="412" cy="56" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="315" cy="22" r="3.3" fill="#111111"></circle>
+</g>
+<g id="panel-b">
+<text x="6" y="200.0" font-size="8.6" font-weight="bold">(b) K2  station device types</text>
+<g stroke="#4d4d4d" stroke-width="0.6" fill="none">
+<line x1="274.2" y1="389.8" x2="89.8" y2="330.2"></line>
+<line x1="275.0" y1="388.3" x2="213.0" y2="331.7"></line>
+<line x1="280.6" y1="387.9" x2="327.4" y2="332.1"></line>
+<line x1="281.8" y1="389.8" x2="466.2" y2="330.2"></line>
+<line x1="173.9" y1="236.0" x2="296.1" y2="204.0"></line>
+<line x1="300.0" y1="233.0" x2="300.0" y2="207.0"></line>
+<line x1="88.2" y1="325.7" x2="122.8" y2="274.3"></line>
+<line x1="89.7" y1="327.5" x2="221.3" y2="272.5"></line>
+<line x1="206.7" y1="326.7" x2="128.3" y2="273.3"></line>
+<line x1="213.7" y1="327.5" x2="348.3" y2="272.5"></line>
+<line x1="326.5" y1="327.1" x2="228.5" y2="272.9"></line>
+<line x1="333.5" y1="327.0" x2="423.6" y2="274.7"></line>
+<line x1="466.4" y1="327.2" x2="355.6" y2="272.8"></line>
+<line x1="467.7" y1="325.7" x2="434.2" y2="277.1"></line>
+<line x1="128.2" y1="268.6" x2="166.8" y2="239.4"></line>
+<line x1="128.9" y1="270.2" x2="296.1" y2="237.8"></line>
+<line x1="221.6" y1="268.9" x2="173.4" y2="239.1"></line>
+<line x1="348.7" y1="268.8" x2="303.3" y2="239.2"></line>
+<line x1="423.4" y1="267.6" x2="303.5" y2="204.9"></line>
+</g>
+<circle cx="278" cy="391" r="3.3" fill="#111111"></circle>
+<circle cx="86" cy="329" r="3.3" fill="#111111"></circle>
+<circle cx="210" cy="329" r="3.3" fill="#111111"></circle>
+<circle cx="330" cy="329" r="3.3" fill="#111111"></circle>
+<circle cx="470" cy="329" r="3.3" fill="#111111"></circle>
+<circle cx="125" cy="271" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="225" cy="271" r="3.3" fill="#111111"></circle>
+<circle cx="352" cy="271" r="3.3" fill="#111111"></circle>
+<circle cx="430" cy="271" r="6.7" fill="none" stroke="#111111" stroke-width="0.75"></circle>
+<circle cx="430" cy="271" r="3.3" fill="#111111"></circle>
+<circle cx="170" cy="237" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="300" cy="237" r="3.3" fill="#111111"></circle>
+<circle cx="300" cy="203" r="3.3" fill="#111111"></circle>
+</g>
+<g id="panel-c">
+<text x="6" y="405.0" font-size="8.6" font-weight="bold">(c) K3  service flows</text>
+<g stroke="#4d4d4d" stroke-width="0.6" fill="none">
+<line x1="265.2" y1="600.8" x2="83.8" y2="545.2"></line>
+<line x1="266.1" y1="599.3" x2="208.9" y2="546.7"></line>
+<line x1="271.9" y1="599.3" x2="329.1" y2="546.7"></line>
+<line x1="272.8" y1="600.8" x2="454.2" y2="545.2"></line>
+<line x1="226.3" y1="474.4" x2="156.8" y2="444.9"></line>
+<line x1="233.6" y1="474.3" x2="296.4" y2="443.7"></line>
+<line x1="346.7" y1="473.8" x2="303.3" y2="444.2"></line>
+<line x1="156.7" y1="438.9" x2="221.4" y2="409.7"></line>
+<line x1="296.4" y1="440.3" x2="228.6" y2="409.7"></line>
+<line x1="80.0" y1="540.0" x2="80.0" y2="514.0"></line>
+<line x1="204.8" y1="540.2" x2="196.2" y2="513.8"></line>
+<line x1="209.6" y1="542.3" x2="276.4" y2="511.7"></line>
+<line x1="328.7" y1="541.8" x2="283.3" y2="512.2"></line>
+<line x1="335.6" y1="542.2" x2="393.4" y2="513.3"></line>
+<line x1="454.5" y1="542.0" x2="406.4" y2="513.7"></line>
+<line x1="82.9" y1="507.2" x2="144.7" y2="447.2"></line>
+<line x1="197.9" y1="507.2" x2="227.1" y2="478.8"></line>
+<line x1="276.7" y1="507.8" x2="233.3" y2="478.2"></line>
+<line x1="283.6" y1="508.3" x2="346.4" y2="477.7"></line>
+<line x1="393.9" y1="505.8" x2="353.3" y2="478.2"></line>
+</g>
+<circle cx="269" cy="602" r="3.3" fill="#111111"></circle>
+<circle cx="80" cy="544" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="206" cy="544" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="332" cy="544" r="3.3" fill="#111111"></circle>
+<circle cx="458" cy="544" r="3.3" fill="#111111"></circle>
+<circle cx="80" cy="510" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="195" cy="510" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="280" cy="510" r="3.3" fill="#111111"></circle>
+<circle cx="400" cy="510" r="6.7" fill="none" stroke="#111111" stroke-width="0.75"></circle>
+<circle cx="400" cy="510" r="3.3" fill="#111111"></circle>
+<circle cx="230" cy="476" r="3.3" fill="#111111"></circle>
+<circle cx="350" cy="476" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="150" cy="442" r="6.7" fill="none" stroke="#111111" stroke-width="0.75"></circle>
+<circle cx="150" cy="442" r="3.3" fill="#111111"></circle>
+<circle cx="300" cy="442" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<circle cx="225" cy="408" r="3.3" fill="#111111"></circle>
+</g>
+<g stroke="#707070" stroke-width="0.45" stroke-dasharray="1.3 1">
+<line x1="300.0" y1="232.9" x2="365.5" y2="230.3"></line>
+<line x1="352.0" y1="266.9" x2="414.0" y2="258.2"></line>
+<line x1="80.0" y1="514.1" x2="75.5" y2="516.7"></line>
+<line x1="206.0" y1="123.9" x2="228.1" y2="87.7"></line>
+<line x1="210.0" y1="324.9" x2="251.6" y2="281.7"></line>
+<line x1="295.0" y1="82.5" x2="282.5" y2="79.9"></line>
+<line x1="430.0" y1="263.5" x2="471.4" y2="260.9"></line>
+<line x1="206.0" y1="132.1" x2="226.5" y2="134.7"></line>
+<line x1="210.0" y1="333.1" x2="229.9" y2="335.7"></line>
+<line x1="80.0" y1="539.9" x2="84.5" y2="537.3"></line>
+<line x1="332.0" y1="548.1" x2="334.9" y2="550.7"></line>
+</g>
+<text x="80.5" y="45.9" font-size="7.2" font-weight="bold" fill="#111111">Li-ion</text>
+<text x="80.5" y="54.5" font-size="7.2" font-weight="bold" fill="#111111">capacity in kWh</text>
+<text x="80.5" y="63.1" font-size="7.2" font-weight="bold" fill="#111111">certification</text>
+<text x="80.5" y="71.7" font-size="7.2" font-weight="bold" fill="#111111">health indicator</text>
+<text x="80.5" y="80.3" font-size="7.2" font-weight="bold" fill="#111111">temperature</text>
+<text x="367.0" y="210.1" font-size="7.2" font-weight="bold" fill="#111111">exchange</text>
+<text x="367.0" y="218.7" font-size="7.2" font-weight="bold" fill="#111111">booking</text>
+<text x="367.0" y="227.3" font-size="7.2" font-weight="bold" fill="#111111">host partner</text>
+<text x="415.5" y="238.0" font-size="7.2" font-weight="bold" fill="#111111">capacity 3-8</text>
+<text x="415.5" y="246.6" font-size="7.2" font-weight="bold" fill="#111111">status per slot</text>
+<text x="415.5" y="255.2" font-size="7.2" font-weight="bold" fill="#111111">SoC per slot</text>
+<text x="390.3" y="478.1" font-size="7.2" font-weight="bold" fill="#111111">6-hour limit</text>
+<text x="390.3" y="486.7" font-size="7.2" font-weight="bold" fill="#111111">ownership retained</text>
+<text x="390.3" y="495.3" font-size="7.2" font-weight="bold" fill="#111111">same pack returned</text>
+<text x="292.2" y="422.1" font-size="7.2" font-weight="bold" fill="#111111">scan required</text>
+<text x="292.2" y="430.7" font-size="7.2" font-weight="bold" fill="#111111">membership</text>
+<text x="193.0" y="36.1" font-size="7.2" font-weight="bold" fill="#111111">unit identifier</text>
+<text x="193.0" y="44.7" font-size="7.2" font-weight="bold" fill="#111111">state of charge</text>
+<rect x="16.9" y="518.0" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="24.1" y="522.3" font-size="7.2" fill="#0b5563">SWAP 3-slot</text>
+<text x="24.1" y="530.9" font-size="7.2" fill="#0b5563">exchange</text>
+<rect x="16.9" y="535.2" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="24.1" y="539.5" font-size="7.2" fill="#0b5563">SWAP booking</text>
+<text x="229.6" y="76.1" font-size="7.2" font-weight="bold" fill="#111111">72 V</text>
+<text x="229.6" y="84.7" font-size="7.2" font-weight="bold" fill="#111111">weight</text>
+<text x="253.1" y="261.5" font-size="7.2" font-weight="bold" fill="#111111">separate reader</text>
+<text x="253.1" y="270.1" font-size="7.2" font-weight="bold" fill="#111111">colour = process</text>
+<text x="259.1" y="278.7" font-size="7.2" font-weight="bold" fill="#111111">state</text>
+<text x="117.1" y="427.3" font-size="7.2" font-weight="bold" fill="#111111">object transfer</text>
+<text x="403.5" y="46.3" font-size="7.2" font-weight="bold" fill="#111111">capacity in Ah</text>
+<text x="150.1" y="225.7" font-size="7.2" font-weight="bold" fill="#111111">dimensions</text>
+<text x="197.7" y="451.7" font-size="7.2" font-weight="bold" fill="#111111">network enrolment</text>
+<text x="345.9" y="466.3" font-size="7.2" font-weight="bold" fill="#111111">15-min limit</text>
+<text x="198.9" y="80.3" font-size="7.2" font-weight="bold" fill="#111111">60 V</text>
+<text x="264.8" y="76.9" font-size="7.2" font-weight="bold" fill="#111111">64 V</text>
+<text x="443.5" y="74.2" font-size="7.2" font-weight="bold" fill="#111111">LiFePO4</text>
+<text x="89.1" y="259.7" font-size="7.2" font-weight="bold" fill="#111111">certification</text>
+<text x="201.6" y="238.7" font-size="7.2" font-weight="bold" fill="#111111">capacity &lt;= 2</text>
+<text x="472.9" y="257.9" font-size="7.2" font-weight="bold" fill="#111111">charging</text>
+<text x="7.2" y="498.7" font-size="7.2" font-weight="bold" fill="#111111">separate swap record</text>
+<text x="153.0" y="491.7" font-size="7.2" font-weight="bold" fill="#111111">automatic door</text>
+<rect x="148.3" y="518.4" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="155.1" y="522.3" font-size="7.2" fill="#8a4a0f">Volta direct</text>
+<text x="155.1" y="530.9" font-size="7.2" fill="#8a4a0f">exchange</text>
+<text x="260.7" y="485.7" font-size="7.2" font-weight="bold" fill="#111111">payment in flow</text>
+<text x="44.1" y="116.7" font-size="7.2" font-weight="bold" fill="#111111">dimensions</text>
+<rect x="32.0" y="137.6" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="39.2" y="141.9" font-size="7.2" fill="#0b5563">SWAP 64 V pack</text>
+<rect x="228.0" y="136.0" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="235.2" y="140.3" font-size="7.2" fill="#0b5563">SWAP 72 V pack</text>
+<rect x="329.3" y="138.0" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="336.1" y="141.9" font-size="7.2" fill="#8a4a0f">Volta 401 pack</text>
+<rect x="427.0" y="142.5" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="433.8" y="146.4" font-size="7.2" fill="#8a4a0f">Volta Eagle pack</text>
+<text x="33.8" y="309.1" font-size="7.2" font-weight="bold" fill="#111111">colour = charge</text>
+<text x="39.8" y="317.7" font-size="7.2" font-weight="bold" fill="#111111">level</text>
+<rect x="49.4" y="345.6" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="56.6" y="349.9" font-size="7.2" fill="#0b5563">SWAP 3-slot station</text>
+<rect x="231.4" y="337.0" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="238.6" y="341.3" font-size="7.2" fill="#0b5563">SWAP 8-slot station</text>
+<rect x="329.6" y="337.0" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="336.8" y="341.3" font-size="7.2" fill="#0b5563">SWAP Home</text>
+<text x="336.8" y="349.9" font-size="7.2" fill="#0b5563">charger</text>
+<rect x="436.5" y="346.0" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="443.3" y="349.9" font-size="7.2" fill="#8a4a0f">Volta SGB cabinet</text>
+<text x="86.0" y="534.3" font-size="7.2" font-weight="bold" fill="#111111">separate reader</text>
+<rect x="13.3" y="553.6" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="20.5" y="557.9" font-size="7.2" fill="#0b5563">SWAP 8-slot exchange</text>
+<rect x="155.3" y="552.4" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="162.1" y="556.3" font-size="7.2" fill="#8a4a0f">Volta booking</text>
+<text x="306.2" y="519.7" font-size="7.2" font-weight="bold" fill="#111111">borrowed pack</text>
+<rect x="336.8" y="552.4" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="343.6" y="556.3" font-size="7.2" fill="#8a4a0f">Volta Tukar Titip</text>
+<text x="447.6" y="530.7" font-size="7.2" font-weight="bold" fill="#111111">energy transfer</text>
+<rect x="437.7" y="556.0" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="444.5" y="559.9" font-size="7.2" fill="#8a4a0f">Volta SCB</text>
+<circle cx="11.4" cy="620.7" r="3.3" fill="#111111"></circle>
+<text x="19.0" y="623.0" font-size="7.2" fill="#111111">robust concept (present under both readings)</text>
+<circle cx="188.8" cy="620.7" r="3.3" fill="#ffffff" stroke="#111111" stroke-width="0.9" stroke-dasharray="1.7 1.25"></circle>
+<text x="196.4" y="623.0" font-size="7.2" fill="#111111">assumption-dependent concept (one reading only)</text>
+<circle cx="386.5" cy="620.7" r="6.7" fill="none" stroke="#111111" stroke-width="0.75"></circle><circle cx="386.5" cy="620.7" r="3.3" fill="#111111"></circle>
+<text x="397.3" y="623.0" font-size="7.2" fill="#111111">concept discussed in the text</text>
+<rect x="8.0" y="631.0" width="4.4" height="4.4" fill="#0b5563"></rect>
+<text x="17.2" y="635.5" font-size="7.2" fill="#0b5563">SWAP ecosystem object</text>
+<rect x="116.8" y="631.4" width="3.6" height="3.6" fill="#ffffff" stroke="#8a4a0f" stroke-width="0.8"></rect>
+<text x="125.6" y="635.5" font-size="7.2" fill="#8a4a0f">Volta ecosystem object</text>
+<text x="219.8" y="635.5" font-size="7.2" fill="#111111">bold, above node = attribute</text>
+<text x="330.0" y="635.5" font-size="7.2" fill="#111111">below node = object</text>
+<line x1="414.2" y1="633.2" x2="426.2" y2="633.2" stroke="#707070" stroke-width="0.45" stroke-dasharray="1.3 1"></line>
+<text x="429.2" y="635.5" font-size="7.2" fill="#111111">links a label to its node</text>
+</svg>

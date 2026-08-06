@@ -1,0 +1,8 @@
+object,label,ecosystem,object transfer,energy transfer,payment in flow,15-min limit,6-hour limit,borrowed pack,ownership retained,scan required,membership,network enrolment,separate reader,separate swap record,automatic door,same pack returned
+f1,SWAP 3-slot exchange,SWAP,x,.,.,?,.,.,?,?,?,.,.,x,?,.
+f2,SWAP 8-slot exchange,SWAP,x,.,.,?,.,.,?,?,?,.,x,x,?,.
+f3,SWAP booking,SWAP,x,.,.,?,.,.,?,?,?,.,?,x,?,.
+f4,Volta direct exchange,Volta,x,.,.,.,.,.,?,x,x,x,.,?,x,.
+f5,Volta booking,Volta,x,.,x,x,.,.,?,x,x,x,.,?,x,.
+f6,Volta Tukar Titip,Volta,x,.,x,x,x,x,x,x,x,x,.,?,?,x
+f7,Volta SCB,Volta,.,x,.,x,x,.,x,x,x,.,.,?,?,x

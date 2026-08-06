@@ -1,5 +1,6 @@
 {
   "title": "BSDO: Battery Swap Domain Ontology",
+  "version": "0.3.0",
   "upload_type": "software",
   "license": "cc-by-4.0",
   "language": "eng",

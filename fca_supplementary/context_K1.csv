@@ -1,0 +1,5 @@
+object,label,ecosystem,60V,64V,72V,LiFePO4,Li-ion,capacity in Ah,capacity in kWh,dimensions,weight,certification,unit identifier,state of charge,health indicator,temperature
+b1,SWAP 64 V,SWAP,x,x,.,.,x,?,x,x,?,x,x,x,x,x
+b2,SWAP 72 V,SWAP,.,.,x,.,x,x,x,?,x,x,x,x,x,x
+b3,Volta 401,Volta,x,.,.,x,.,x,?,?,?,?,x,x,?,?
+b4,Volta Eagle,Volta,.,x,.,x,.,x,?,?,?,?,?,?,?,?
